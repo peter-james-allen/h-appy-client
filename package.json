@@ -23,6 +23,10 @@
       "!**/node_modules/**",
       "!**/babel.config.js",
       "!**/jest.setup.js"
+    ],
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
     ]
   },
   "dependencies": {

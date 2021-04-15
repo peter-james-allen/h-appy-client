@@ -48,7 +48,7 @@ function BuildMenuSection(props) {
         ListHeaderComponent={<Text style={styles.menuSubText}>{subText}</Text>}
         data={userData}
         renderItem={buildItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         navigation={props.navigation}
       />
       <View

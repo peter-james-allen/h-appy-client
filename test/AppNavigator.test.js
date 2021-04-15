@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { act } from 'react-dom/test-utils';
 import { AppNavigator } from '../routes/AppNavigator';
 
 describe('<AppNavigator />', () => {
