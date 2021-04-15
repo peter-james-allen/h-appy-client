@@ -5,6 +5,7 @@ import {
   StyleSheet, Text, View, Button, Image, TouchableOpacity, FlatList, ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+// import 'whatwg-fetch'
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -40,8 +41,6 @@ function BuildMenuSection(props) {
   const { userData } = props;
 
   apiData = apiData || badNetworkApiData;
-  console.log('apiData'); console.log(apiData);
-  console.log('userData'); console.log(userData);
   return (
 
     <CollapsibleView title={<Text style={styles.menuSection}>{section}</Text>} style={styles.menuCollapsible} noArrow>
