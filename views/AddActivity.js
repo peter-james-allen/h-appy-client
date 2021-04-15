@@ -1,6 +1,8 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
+} from 'react-native';
 import Header from '../components/header';
 
 export default function AddActivity() {
