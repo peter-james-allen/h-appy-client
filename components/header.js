@@ -6,7 +6,7 @@ export default function header() {
     <View style={styles.header}>
       <Text style={styles.title}>H-Appy</Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

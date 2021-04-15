@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
-import { StyleSheet, Text, View, Button, Image, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet, Text, View, Button, Image, TouchableOpacity, FlatList, ActivityIndicator,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function MainMenu() {
@@ -11,16 +13,14 @@ export default function MainMenu() {
       <View style={styles.header}>
         <Text style={styles.title}>Chez H-Appy</Text>
       </View>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('About')}
-      >
+      <TouchableOpacity onPress={() => navigation.navigate('About')}>
         <Text>About this App</Text>
       </TouchableOpacity>
       <Menu userData={userData} />
-        <Image
+      {/* <Image
         style={styles.homeImage}
         source={require('../forkknife.png')}
-      />
+      /> */}
       <StatusBar />
     </View>
   );
@@ -123,21 +123,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9d4'
+    backgroundColor: '#f8f9d4',
   },
   menuCollapsible: {
     width: 250,
     fontSize: 50,
     borderRadius: 25,
-    borderColor: '#240037'
+    borderColor: '#240037',
   },
   menuSubText: {
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 20,
   },
   menuSection: {
     fontSize: 30,
-    fontFamily: 'Didot'
+    fontFamily: 'Didot',
   },
   header: {
     position: 'absolute',
@@ -146,34 +146,34 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 60
+    height: 60,
   },
   title: {
     fontSize: 25,
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Didot'
+    fontFamily: 'Didot',
   },
   name: {
     fontSize: 25,
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Didot'
+    fontFamily: 'Didot',
   },
   homeImage: {
     bottom: 30,
     width: 200,
-    height: 200
+    height: 200,
   },
   item: {
     margin: 3,
     padding: 6,
     fontSize: 15,
-    backgroundColor: "#ffff99",
+    backgroundColor: '#ffff99',
     borderRadius: 20,
-  }
+  },
 });
 
 const userData = {
@@ -219,8 +219,8 @@ const userData = {
       name: 'Browse Reddit for 3 hours',
       ingredients: ['a phone', 'Ennui'],
     },
-  ]
-}
+  ],
+};
 
 const badNetworkApiData = [
   {
@@ -228,4 +228,4 @@ const badNetworkApiData = [
     name: "The chef isn't available for requests right now",
     ingredients: [],
   },
-]
+];
