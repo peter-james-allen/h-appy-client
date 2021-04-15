@@ -4,12 +4,15 @@ import {
   StyleSheet, Text, View, Button, Alert, FlatList, Image, ActivityIndicator, SafeAreaView,
 } from 'react-native';
 import { DrawerNavigator } from './routes/DrawerNavigator';
+import ErrorBoundary from './components/ErrorBoundary'
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.contentWrapper}>
-      <DrawerNavigator />
-    </SafeAreaView>
+    <ErrorBoundary>
+      <SafeAreaView style={styles.contentWrapper}>
+        <DrawerNavigator />
+      </SafeAreaView>
+    </ErrorBoundary>
   );
 }
 

@@ -5,6 +5,7 @@ import {
   StyleSheet, Text, View, Button, Image, TouchableOpacity, FlatList, ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import fetch from 'node-fetch';
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -21,6 +22,7 @@ export default function MainMenu() {
     </View>
   );
 }
+
 function buildItem(item) {
   return (
     <View style={styles.item}>
