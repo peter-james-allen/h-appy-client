@@ -18,10 +18,6 @@ export default function MainMenu() {
         <Text>About this App</Text>
       </TouchableOpacity>
       <Menu userData={userData} />
-      {/* <Image
-        style={styles.homeImage}
-        source={require('../forkknife.png')}
-      /> */}
       <StatusBar />
     </View>
   );
@@ -39,6 +35,7 @@ function BuildMenuSection(props) {
   const { subText } = props;
   let { apiData } = props;
   const { userData } = props;
+  const navigation = useNavigation();
 
   apiData = apiData || badNetworkApiData;
   return (
@@ -49,7 +46,6 @@ function BuildMenuSection(props) {
         data={userData}
         renderItem={buildItem}
         keyExtractor={(item) => item._id}
-        navigation={props.navigation}
       />
       <View
         style={{

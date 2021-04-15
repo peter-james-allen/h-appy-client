@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for h-appy-client/views/About.js</title>
+    <title>Code coverage report for h-appy-client/views/IndividualActivity.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">h-appy-client/views</a> About.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">h-appy-client/views</a> IndividualActivity.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -121,11 +121,7 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,19 +185,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useState } from 'react';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useState }  from 'react';
 import { useNavigation } from '@react-navigation/native';
-import {
-  StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
-} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator } from 'react-native';
 import Header from '../components/header';
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >About(</span>) {
+export default function <span class="fstat-no" title="function not covered" >IndividualActivity(</span>) {
   const navigation = <span class="cstat-no" title="statement not covered" >useNavigation();</span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;View style={styles.container}&gt;
       &lt;Header /&gt;
-      &lt;Text&gt;This is the About page&lt;/Text&gt;
+      &lt;Text&gt;this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size&lt;/Text&gt;
       &lt;Button
         title="Back to the Main Menu"
         onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigation.navigate('MainMenu')}</span>
@@ -216,21 +210,21 @@ const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9d4',
+    backgroundColor: '#f8f9d4'
   },
   menuCollapsible: {
     width: 250,
     fontSize: 50,
     borderRadius: 25,
-    borderColor: '#240037',
+    borderColor: '#240037'
   },
   menuSubText: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 20
   },
   menuSection: {
     fontSize: 30,
-    fontFamily: 'Didot',
+    fontFamily: 'Didot'
   },
   header: {
     position: 'absolute',
@@ -239,21 +233,21 @@ const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 60,
+    height: 60
   },
   title: {
     fontSize: 25,
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Didot',
+    fontFamily: 'Didot'
   },
   homeImage: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 30,
     width: 200,
-    height: 200,
-  },
+    height: 200
+  }
 });
 &nbsp;</pre></td></tr></table></pre>
 
