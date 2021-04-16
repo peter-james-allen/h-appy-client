@@ -8,6 +8,7 @@ import AddActivity from '../views/AddActivity';
 
 const Drawer = createDrawerNavigator();
 
+
 function Nibbles() {
   return (
     <IndividualCourse header="Nibbles" dataKey="nibbles" />
@@ -34,7 +35,16 @@ function Desserts() {
 
 const DrawerNavigator = () => (
   <NavigationContainer>
-    <Drawer.Navigator>
+    <Drawer.Navigator drawerStyle={{
+    backgroundColor: '#f8f9d4',
+    width: 240,
+  }} drawerContentOptions={{
+    activeTintColor: '#c7524a',
+    itemStyle: { marginVertical: 5 },
+    labelStyle: {
+      fontFamily: 'Didot'
+    }
+  }}>
       <Drawer.Screen name="Menu" component={MainMenu} />
       <Drawer.Screen name="About" component={About} />
       <Drawer.Screen name="Nibbles" component={Nibbles} />

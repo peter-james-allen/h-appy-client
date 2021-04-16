@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
+import {
+  StyleSheet, Text, View, Button, FlatList,
+} from 'react-native';
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
 
@@ -48,7 +50,7 @@ export default function IndividualCourse(props) {
       </View>
       <Button
         title="Back to the Main Menu"
-        onPress={() => navigation.navigate('MainMenu')}
+        onPress={() => navigation.navigate('Menu')}
       />
     </View>
   );

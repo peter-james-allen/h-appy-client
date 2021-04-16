@@ -13,7 +13,7 @@ export default function About() {
       <Text>This is the About page</Text>
       <Button
         title="Back to the Main Menu"
-        onPress={() => navigation.navigate('MainMenu')}
+        onPress={() => navigation.navigate('Menu')}
       />
     </View>
   );

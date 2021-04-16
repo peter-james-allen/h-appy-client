@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import Slider from '@react-native-community/slider';
 import {
   Text, View, TextInput, StyleSheet,
 } from 'react-native';
@@ -26,6 +27,49 @@ export default function AddActivity() {
         />
       </View>
 
+      <AccessibilitySlider />
+      <PriceSlider />
+
+    </View>
+  );
+}
+
+function AccessibilitySlider() {
+  const [accessibility, setAccessibility] = useState(0);
+  return (
+    <View>
+      <Text>
+        Accessibility:
+        {accessibility}
+      </Text>
+      <Slider
+        style={styles.slider}
+        minimumValue={0}
+        maximumValue={10}
+        minimumTrackTintColor="#FFFFFF"
+        maximumTrackTintColor="#000000"
+        onSlidingComplete={(value) => setAccessibility(Math.ceil(value))}
+      />
+    </View>
+  );
+}
+
+function PriceSlider() {
+  const [price, setPrice] = useState(0);
+  return (
+    <View>
+      <Text>
+        Price:
+        {price}
+      </Text>
+      <Slider
+        style={styles.slider}
+        minimumValue={0}
+        maximumValue={10}
+        minimumTrackTintColor="#FFFFFF"
+        maximumTrackTintColor="#000000"
+        onSlidingComplete={(value) => setPrice(Math.ceil(value))}
+      />
     </View>
   );
 }
@@ -42,5 +86,11 @@ const styles = StyleSheet.create({
     margin: 3,
     borderWidth: 2,
     width: '80%',
+  },
+  slider: {
+    width: 300,
+    opacity: 1,
+    height: 50,
+    marginTop: 50,
   },
 });
