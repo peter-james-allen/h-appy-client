@@ -1,10 +1,8 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect, useState } from 'react';
-import {
-  StyleSheet, Text, View, Button, Alert, FlatList, Image, ActivityIndicator, SafeAreaView,
-} from 'react-native';
+import React from 'react';
+import { StyleSheet, Platform, SafeAreaView } from 'react-native';
 import { DrawerNavigator } from './routes/DrawerNavigator';
-import ErrorBoundary from './components/ErrorBoundary'
+import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
   return (
@@ -21,5 +19,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8f9d4',
     paddingTop: Platform.OS === 'android' ? 25 : 0,
-  }
-})
+  },
+});
