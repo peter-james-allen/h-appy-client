@@ -37,7 +37,7 @@ const DrawerNavigator = () => (
   <NavigationContainer>
     <Drawer.Navigator
       drawerStyle={styles.drawer}
-      drawerContentOptions={drawerContent}
+      drawerContentOptions={drawerContentStyles}
     >
       <Drawer.Screen name="Menu" component={MainMenu} />
       <Drawer.Screen name="About" component={About} />
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const drawerContent = {
+const drawerContentStyles = {
   activeTintColor: '#c7524a',
   itemStyle: { marginVertical: 5 },
-  labelStyle: { fontFamily: 'Didot', fontSize: 20 },
+  labelStyle: { fontFamily: 'Didot', fontSize: 20, paddingTop: 10 },
 };

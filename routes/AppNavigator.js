@@ -19,8 +19,10 @@ const HomeNavigator = () => (
   </Navigator>
 );
 
-export const AppNavigator = () => (
+const AppNavigator = () => (
   <NavigationContainer>
     <HomeNavigator />
   </NavigationContainer>
 );
+
+export default AppNavigator;
