@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
+  StyleSheet, Text, View, Button, FlatList,
 } from 'react-native';
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
 
-
 function buildItem(item) {
-  console.log(item)
+  console.log(item);
   return (
-    <View >
+    <View>
       <Text>{item.item.name}</Text>
     </View>
   );
@@ -33,9 +32,9 @@ export default function IndividualCourse() {
     <View style={styles.container}>
       <Header />
       <CourseHeader />
-      <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
       <View style={styles.activityList}>
-        <FlatList 
+        <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
+        <FlatList
           data={apiData.nibbles}
           renderItem={buildItem}
           keyExtractor={(item) => item._id}
@@ -55,6 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f8f9d4',
+    alignContent: 'flex-start',
   },
   menuCollapsible: {
     width: 250,
