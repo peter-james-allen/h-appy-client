@@ -30,10 +30,16 @@ export default function IndividualCourse() {
 
   return (
     <View style={styles.container}>
-      <Header />
-      <CourseHeader />
-      <View style={styles.activityList}>
+      <View style={styles.headerFlexbox}>
+        <Header />
+      </View>
+      <View>
+        <CourseHeader />
+      </View>
+      <View style={styles.courseDetails}>
         <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
+      </View>
+      <View style={styles.activityList}>
         <FlatList
           data={apiData.nibbles}
           renderItem={buildItem}
@@ -56,6 +62,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f9d4',
     alignContent: 'flex-start',
   },
+  courseDetails: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+    width: '80%',
+    paddingTop: 10,
+    paddingBottom: 30,
+  },
+  headerFlexbox: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
   menuCollapsible: {
     width: 250,
     fontSize: 50,
@@ -73,6 +93,6 @@ const styles = StyleSheet.create({
   activityList: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
+    flex: 6,
   },
 });

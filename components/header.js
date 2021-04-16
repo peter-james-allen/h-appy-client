@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     maxHeight: 60,
+    height: 60,
+    position: 'absolute',
   },
   title: {
     fontSize: 25,
