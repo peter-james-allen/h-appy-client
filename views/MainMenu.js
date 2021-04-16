@@ -23,6 +23,19 @@ export default function MainMenu() {
   );
 }
 
+function FetchActivities() {
+  const [apiData, setApiData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/activities')
+      .then((response) => response.json())
+      .then((json) => setApiData(json))
+      .catch((error) => console.error(error));
+  }, []);
+
+  return apiData;
+}
+
 function Item(item) {
   return (
     <View style={styles.item}>
@@ -37,8 +50,8 @@ function MenuSection(props) {
   let { apiData } = props;
   const { userData } = props;
   const navigation = useNavigation();
-
   apiData = apiData || badNetworkApiData;
+
   return (
 
     <CollapsibleView
@@ -66,16 +79,8 @@ function MenuSection(props) {
 
 function Menu(props) {
   const { userData } = props;
-  const [isLoading, setLoading] = useState(true);
-  const [apiData, setApiData] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:3000/activities')
-      .then((response) => response.json())
-      .then((json) => setApiData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+  const apiData = FetchActivities();
 
   return (
     <View>
