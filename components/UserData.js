@@ -1,6 +1,3 @@
-import { useState, useEffect } from 'react';
-// import { createGlobalState } from 'react-hooks-global-state';
-
 // eslint-disable-next-line prefer-const
 let globalUserData = {
   nibbles: [

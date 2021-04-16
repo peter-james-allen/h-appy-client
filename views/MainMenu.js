@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
@@ -10,7 +12,7 @@ import Header from '../components/Header';
 import getUserData from '../components/UserData';
 
 export default function MainMenu() {
-  const [userData, setUserData] = useState(getUserData());
+  const [userData] = useState(getUserData());
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -33,11 +35,8 @@ function buildItem(item) {
 }
 
 function BuildMenuSection(props) {
-  const { section } = props;
-  const { subText } = props;
+  const { section, subText, userData } = props;
   let { apiData } = props;
-  const { userData } = props;
-  const navigation = useNavigation();
 
   apiData = apiData || badNetworkApiData;
   return (

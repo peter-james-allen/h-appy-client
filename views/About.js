@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
+  StyleSheet, Text, View, Button,
 } from 'react-native';
 import Header from '../components/Header';
 
@@ -22,7 +22,6 @@ export default function About() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f8f9d4',
