@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IndividualCourse renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignContent": "flex-start",
+      "alignItems": "center",
+      "backgroundColor": "#f8f9d4",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignContent": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#c7524a",
+          "flex": 1,
+          "fontSize": 24,
+          "fontWeight": "bold",
+          "height": 60,
+          "justifyContent": "center",
+          "maxHeight": 60,
+          "position": "absolute",
+          "top": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "alignItems": "center",
+            "fontFamily": "Didot",
+            "fontSize": 25,
+            "fontWeight": "bold",
+            "justifyContent": "center",
+          }
+        }
+      >
+        H-Appy
+      </Text>
+    </View>
+  </View>
+  <View>
+    <View
+      styles={
+        Object {
+          "flex": 1,
+          "maxHeight": 50,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontFamily": "Didot",
+            "fontSize": 40,
+          }
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignContent": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingBottom": 30,
+        "paddingTop": 10,
+        "width": "80%",
+      }
+    }
+  >
+    <Text>
+      this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 6,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <RCTScrollView
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityState={Object {}}
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "margin": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Back to the Main Menu
+      </Text>
+    </View>
+  </View>
+</View>
+`;

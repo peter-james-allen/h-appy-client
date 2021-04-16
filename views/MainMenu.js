@@ -9,7 +9,6 @@ import Header from '../components/Header';
 import { badNetworkApiData, userData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 
-
 export default function MainMenu() {
   const navigation = useNavigation();
   return (
