@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainMenu renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#f8f9d4",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#c7524a",
+        "flex": 1,
+        "fontSize": 24,
+        "fontWeight": "bold",
+        "height": 60,
+        "justifyContent": "center",
+        "maxHeight": 60,
+        "position": "absolute",
+        "top": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "alignItems": "center",
+          "fontFamily": "Didot",
+          "fontSize": 25,
+          "fontWeight": "bold",
+          "justifyContent": "center",
+        }
+      }
+    >
+      H-Appy
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text>
+      About this App
+    </Text>
+  </View>
+  <View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderColor": "#240037",
+          "borderRadius": 25,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "fontSize": 50,
+          "marginHorizontal": 10,
+          "marginVertical": 5,
+          "opacity": 1,
+          "padding": 5,
+          "width": 250,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontFamily": "Didot",
+              "fontSize": 30,
+            }
+          }
+        >
+          Nibbles
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderColor": "#240037",
+          "borderRadius": 25,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "fontSize": 50,
+          "marginHorizontal": 10,
+          "marginVertical": 5,
+          "opacity": 1,
+          "padding": 5,
+          "width": 250,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontFamily": "Didot",
+              "fontSize": 30,
+            }
+          }
+        >
+          Appetisers
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderColor": "#240037",
+          "borderRadius": 25,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "fontSize": 50,
+          "marginHorizontal": 10,
+          "marginVertical": 5,
+          "opacity": 1,
+          "padding": 5,
+          "width": 250,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontFamily": "Didot",
+              "fontSize": 30,
+            }
+          }
+        >
+          Mains
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderColor": "#240037",
+          "borderRadius": 25,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "fontSize": 50,
+          "marginHorizontal": 10,
+          "marginVertical": 5,
+          "opacity": 1,
+          "padding": 5,
+          "width": 250,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontFamily": "Didot",
+              "fontSize": 30,
+            }
+          }
+        >
+          Desserts
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

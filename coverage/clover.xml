@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1618605940998" clover="3.2.0">
-  <project timestamp="1618605940998" name="All files">
-    <metrics statements="68" coveredstatements="25" conditionals="4" coveredconditionals="0" methods="34" coveredmethods="6" elements="106" coveredelements="31" complexity="0" loc="68" ncloc="68" packages="5" files="12" classes="12"/>
+<coverage generated="1618606282145" clover="3.2.0">
+  <project timestamp="1618606282145" name="All files">
+    <metrics statements="68" coveredstatements="37" conditionals="4" coveredconditionals="2" methods="34" coveredmethods="9" elements="106" coveredelements="48" complexity="0" loc="68" ncloc="68" packages="5" files="12" classes="12"/>
     <package name="h-appy-client">
       <metrics statements="4" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="App.js" path="/Users/adamjonas/Projects/makers/week-11/h-appy-client/App.js">
@@ -11,8 +11,8 @@
       </file>
       <file name="stockData.js" path="/Users/adamjonas/Projects/makers/week-11/h-appy-client/stockData.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
       </file>
     </package>
     <package name="h-appy-client.components">
@@ -25,8 +25,8 @@
       </file>
       <file name="Header.js" path="/Users/adamjonas/Projects/makers/week-11/h-appy-client/components/Header.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
       </file>
     </package>
     <package name="h-appy-client.routes">
@@ -61,7 +61,7 @@
       </file>
     </package>
     <package name="h-appy-client.views">
-      <metrics statements="43" coveredstatements="14" conditionals="2" coveredconditionals="0" methods="21" coveredmethods="4"/>
+      <metrics statements="43" coveredstatements="26" conditionals="2" coveredconditionals="2" methods="21" coveredmethods="7"/>
       <file name="About.js" path="/Users/adamjonas/Projects/makers/week-11/h-appy-client/views/About.js">
         <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
@@ -101,24 +101,24 @@
         <line num="50" count="2" type="stmt"/>
       </file>
       <file name="MainMenu.js" path="/Users/adamjonas/Projects/makers/week-11/h-appy-client/views/MainMenu.js">
-        <metrics statements="17" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
+        <metrics statements="17" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="3"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="105" count="1" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="100" count="2" type="stmt"/>
       </file>
     </package>
   </project>

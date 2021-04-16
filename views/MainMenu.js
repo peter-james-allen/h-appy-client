@@ -65,7 +65,6 @@ function MenuSection(props) {
 
 function Menu(props) {
   const { userData } = props;
-
   const apiData = FetchActivities();
 
   return (
@@ -76,21 +75,18 @@ function Menu(props) {
         apiData={apiData.nibbles}
         userData={userData.nibbles}
       />
-
       <MenuSection
         section="Appetisers"
         subText="very tasty small things"
         apiData={apiData.appetisers}
         userData={userData.appetisers}
       />
-
       <MenuSection
         section="Mains"
         subText="very tasty medium things"
         apiData={apiData.mains}
         userData={userData.mains}
       />
-
       <MenuSection
         section="Desserts"
         subText="pudding"
