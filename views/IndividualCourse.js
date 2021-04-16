@@ -7,7 +7,6 @@ import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
 
 function buildItem(item) {
-  console.log(item);
   return (
     <View>
       <Text>{item.item.name}</Text>
