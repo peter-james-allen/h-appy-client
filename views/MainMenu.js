@@ -6,14 +6,13 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import fetch from 'node-fetch';
+import Header from '../components/Header'
 
 export default function MainMenu() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Chez H-Appy</Text>
-      </View>
+      <Header />
       <TouchableOpacity onPress={() => navigation.navigate('About')}>
         <Text>About this App</Text>
       </TouchableOpacity>
@@ -134,22 +133,6 @@ const styles = StyleSheet.create({
   },
   menuSection: {
     fontSize: 30,
-    fontFamily: 'Didot',
-  },
-  header: {
-    position: 'absolute',
-    top: 0,
-    backgroundColor: '#c7524a',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 60,
-  },
-  title: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    alignItems: 'center',
-    justifyContent: 'center',
     fontFamily: 'Didot',
   },
   name: {
