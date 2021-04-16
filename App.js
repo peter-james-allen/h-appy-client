@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import { StyleSheet, Platform, SafeAreaView } from 'react-native';
-import { DrawerNavigator } from './routes/DrawerNavigator';
+import DrawerNavigator from './routes/DrawerNavigator';
 import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {

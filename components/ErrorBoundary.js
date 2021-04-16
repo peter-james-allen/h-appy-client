@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native'
+import { Text } from 'react-native';
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return(<Text>Something went wrong</Text>)
+      return (<Text>Something went wrong</Text>);
     }
 
     return this.props.children;

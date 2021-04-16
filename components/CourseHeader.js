@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function CourseHeader() {
+export default function CourseHeader(props) {
+  const { header } = props;
   return (
     <View styles={styles.courseHeaderContainer}>
-      <Text style={styles.courseHeader}>Nibbles</Text>
+      <Text style={styles.courseHeader}>{header}</Text>
     </View>
   );
 }
