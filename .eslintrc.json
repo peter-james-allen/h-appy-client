@@ -21,6 +21,7 @@
     "jest"
 
   ],
+  "ignorePatterns": ["**/test/**"],
   "rules": {
     "react/jsx-filename-extension": 0,
     "jest/no-disabled-tests": "warn",
