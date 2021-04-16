@@ -42,7 +42,7 @@ function AccessibilitySlider() {
       <Tooltip popover={<Text>
         Accessibility is an indication of how easy it is to set out to do this activity, with 0 being easy to 10 being hard.
         </Text>} width={150} height={150} backgroundColor={'#c1c4c8'}>
-        <Text>Accessibility: {accessibility}</Text>
+        <Text style={styles.indicators}>Accessibility: {accessibility}</Text>
       </Tooltip>
       <Slider
         style={styles.slider}
@@ -63,7 +63,7 @@ function PriceSlider() {
       <Tooltip popover={<Text>
         Price is an indication of how expensive this activity can be, with 0 being free to 10 being very expensive.
         </Text>} width={150} height={150} backgroundColor={'#c1c4c8'}>
-        <Text>Price: {price}</Text>
+        <Text style={styles.indicators}>Price: {price}</Text>
       </Tooltip>
       <Slider
         style={styles.slider}
@@ -96,4 +96,12 @@ const styles = StyleSheet.create({
     height: 50,
     marginTop: 50,
   },
+  indicators: {
+    fontSize: 15,
+    textAlign: 'center',
+    top: 40,
+    padding: 0,
+    borderRadius: 0,
+    borderWidth: 0
+  }
 });
