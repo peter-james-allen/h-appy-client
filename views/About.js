@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 export default function About() {
   const navigation = useNavigation();
@@ -13,7 +13,7 @@ export default function About() {
       <Text>This is the About page</Text>
       <Button
         title="Back to the Main Menu"
-        onPress={() => navigation.navigate('MainMenu')}
+        onPress={() => navigation.navigate('Menu')}
       />
     </View>
   );

@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 export default function IndividualActivity() {
   const navigation = useNavigation();
@@ -13,7 +13,7 @@ export default function IndividualActivity() {
       <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
       <Button
         title="Back to the Main Menu"
-        onPress={() => navigation.navigate('MainMenu')}
+        onPress={() => navigation.navigate('Menu')}
       />
     </View>
   );

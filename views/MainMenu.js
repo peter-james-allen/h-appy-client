@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import fetch from 'node-fetch';
-import Header from '../components/Header'
+import Header from '../components/Header';
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -41,8 +41,10 @@ function BuildMenuSection(props) {
   return (
 
     <CollapsibleView
-    title={<Text style={styles.menuSection}>{section}</Text>}
-    style={styles.menuCollapsible} noArrow>
+      title={<Text style={styles.menuSection}>{section}</Text>}
+      style={styles.menuCollapsible}
+      noArrow
+    >
       <FlatList
         ListHeaderComponent={<Text style={styles.menuSubText}>{subText}</Text>}
         data={userData}

@@ -1,14 +1,96 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import Slider from '@react-native-community/slider';
 import {
-  StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
+  Text, View, TextInput, StyleSheet,
 } from 'react-native';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 export default function AddActivity() {
+  const [text, setText] = useState('');
   return (
-    <View>
+    <View style={styles.container}>
+      <Header />
       <Text> This will be we can add activities as a user </Text>
+
+      <View style={styles.FormItem}>
+        <Text>Activity Type</Text>
+      </View>
+
+      <View style={styles.FormItem}>
+        <Text>Activity Name</Text>
+        <TextInput
+          style={{ height: 40 }}
+          placeholder="enter the name of the activity here"
+          onChangeText={(text) => setText(text)}
+          defaultValue={text}
+        />
+      </View>
+
+      <AccessibilitySlider />
+      <PriceSlider />
+
     </View>
   );
 }
+
+function AccessibilitySlider() {
+  const [accessibility, setAccessibility] = useState(0);
+  return (
+    <View>
+      <Text>
+        Accessibility:
+        {accessibility}
+      </Text>
+      <Slider
+        style={styles.slider}
+        minimumValue={0}
+        maximumValue={10}
+        minimumTrackTintColor="#FFFFFF"
+        maximumTrackTintColor="#000000"
+        onSlidingComplete={(value) => setAccessibility(Math.ceil(value))}
+      />
+    </View>
+  );
+}
+
+function PriceSlider() {
+  const [price, setPrice] = useState(0);
+  return (
+    <View>
+      <Text>
+        Price:
+        {price}
+      </Text>
+      <Slider
+        style={styles.slider}
+        minimumValue={0}
+        maximumValue={10}
+        minimumTrackTintColor="#FFFFFF"
+        maximumTrackTintColor="#000000"
+        onSlidingComplete={(value) => setPrice(Math.ceil(value))}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f8f9d4',
+    alignContent: 'flex-start',
+  },
+  FormItem: {
+    margin: 3,
+    borderWidth: 2,
+    width: '80%',
+  },
+  slider: {
+    width: 300,
+    opacity: 1,
+    height: 50,
+    marginTop: 50,
+  },
+});

@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
+  StyleSheet, Text, View, Button, FlatList,
 } from 'react-native';
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
 
-
 function buildItem(item) {
-  console.log(item)
+  console.log(item);
   return (
-    <View >
+    <View>
       <Text>{item.item.name}</Text>
     </View>
   );
 }
 
-export default function IndividualCourse() {
+export default function IndividualCourse(props) {
+  const { dataKey, header } = props;
+
   const navigation = useNavigation();
   const [isLoading, setLoading] = useState(true);
   const [apiData, setApiData] = useState([]);
@@ -31,19 +32,25 @@ export default function IndividualCourse() {
 
   return (
     <View style={styles.container}>
-      <Header />
-      <CourseHeader />
-      <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
+      <View style={styles.headerFlexbox}>
+        <Header />
+      </View>
+      <View>
+        <CourseHeader header={header} />
+      </View>
+      <View style={styles.courseDetails}>
+        <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
+      </View>
       <View style={styles.activityList}>
-        <FlatList 
-        data={apiData.nibbles}
-        renderItem={buildItem}
-        keyExtractor={(item) => item._id} 
+        <FlatList
+          data={apiData[dataKey]}
+          renderItem={buildItem}
+          keyExtractor={(item) => item._id}
         />
       </View>
       <Button
         title="Back to the Main Menu"
-        onPress={() => navigation.navigate('MainMenu')}
+        onPress={() => navigation.navigate('Menu')}
       />
     </View>
   );
@@ -52,10 +59,24 @@ export default function IndividualCourse() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f8f9d4',
+    alignContent: 'flex-start',
+  },
+  courseDetails: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+    width: '80%',
+    paddingTop: 10,
+    paddingBottom: 30,
+  },
+  headerFlexbox: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+    width: '100%',
   },
   menuCollapsible: {
     width: 250,
@@ -74,6 +95,6 @@ const styles = StyleSheet.create({
   activityList: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
-  }
+    flex: 6,
+  },
 });

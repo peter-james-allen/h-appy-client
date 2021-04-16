@@ -11,16 +11,18 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   header: {
+    // paddingTop: Platform.OS === 'android' ? 25 : 0,
     flex: 1,
     fontSize: 24,
     fontWeight: 'bold',
-    position: 'absolute',
     top: 10,
     backgroundColor: '#c7524a',
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    maxHeight: 60,
     height: 60,
+    position: 'absolute',
   },
   title: {
     fontSize: 25,
