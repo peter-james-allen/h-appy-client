@@ -34,40 +34,45 @@ export default function AddActivity() {
   );
 }
 
-
 function AccessibilitySlider() {
   const [accessibility, setAccessibility] = useState(0);
-  return(
-  <View>
-    <Text>Accessibility: {accessibility}</Text>
-    <Slider
-      style={styles.slider}
-      minimumValue={0}
-      maximumValue={10}
-      minimumTrackTintColor="#FFFFFF"
-      maximumTrackTintColor="#000000"
-      onSlidingComplete={value => setAccessibility(Math.ceil(value))}
-    />
-  </View>
+  return (
+    <View>
+      <Text>
+        Accessibility:
+        {accessibility}
+      </Text>
+      <Slider
+        style={styles.slider}
+        minimumValue={0}
+        maximumValue={10}
+        minimumTrackTintColor="#FFFFFF"
+        maximumTrackTintColor="#000000"
+        onSlidingComplete={(value) => setAccessibility(Math.ceil(value))}
+      />
+    </View>
   );
-};
+}
 
 function PriceSlider() {
   const [price, setPrice] = useState(0);
-  return(
-  <View>
-    <Text>Price: {price}</Text>
-    <Slider
-      style={styles.slider}
-      minimumValue={0}
-      maximumValue={10}
-      minimumTrackTintColor="#FFFFFF"
-      maximumTrackTintColor="#000000"
-      onSlidingComplete={value => setPrice(Math.ceil(value))}
-    />
-  </View>
+  return (
+    <View>
+      <Text>
+        Price:
+        {price}
+      </Text>
+      <Slider
+        style={styles.slider}
+        minimumValue={0}
+        maximumValue={10}
+        minimumTrackTintColor="#FFFFFF"
+        maximumTrackTintColor="#000000"
+        onSlidingComplete={(value) => setPrice(Math.ceil(value))}
+      />
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

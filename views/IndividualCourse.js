@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
+import {
+  StyleSheet, Text, View, Button, FlatList,
+} from 'react-native';
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
 
