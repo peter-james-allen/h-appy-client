@@ -23,7 +23,7 @@ export default function MainMenu() {
   );
 }
 
-function buildItem(item) {
+function Item(item) {
   return (
     <View style={styles.item}>
       <Text>{item.item.name}</Text>
@@ -31,7 +31,7 @@ function buildItem(item) {
   );
 }
 
-function BuildMenuSection(props) {
+function MenuSection(props) {
   const { section } = props;
   const { subText } = props;
   let { apiData } = props;
@@ -49,20 +49,14 @@ function BuildMenuSection(props) {
       <FlatList
         ListHeaderComponent={<Text style={styles.menuSubText}>{subText}</Text>}
         data={userData}
-        renderItem={buildItem}
+        renderItem={Item}
         keyExtractor={(item) => item._id}
       />
-      <View
-        style={{
-          height: 5,
-          borderBottomColor: 'black',
-          borderBottomWidth: 1,
-        }}
-      />
+      <View style={styles.border} />
       <FlatList
         ListHeaderComponent={<Text style={styles.menuSubText}>Chefs Specials</Text>}
         data={apiData}
-        renderItem={buildItem}
+        renderItem={Item}
         keyExtractor={(item) => item._id}
         navigation={props.navigation}
       />
@@ -70,7 +64,8 @@ function BuildMenuSection(props) {
   );
 }
 
-function FetchActivities() {
+function Menu(props) {
+  const { userData } = props;
   const [isLoading, setLoading] = useState(true);
   const [apiData, setApiData] = useState([]);
 
@@ -81,37 +76,31 @@ function FetchActivities() {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, []);
-}
-
-function Menu(props) {
-  const { userData } = props;
-  const [isLoading, setLoading] = useState(true);
-  const [apiData, setApiData] = useState([]);
 
   return (
     <View>
-      <BuildMenuSection
+      <MenuSection
         section="Nibbles"
         subText="Bitesized activities, for the short of time"
         apiData={apiData.nibbles}
         userData={userData.nibbles}
       />
 
-      <BuildMenuSection
+      <MenuSection
         section="Appetisers"
         subText="very tasty small things"
         apiData={apiData.appetisers}
         userData={userData.appetisers}
       />
 
-      <BuildMenuSection
+      <MenuSection
         section="Mains"
         subText="very tasty medium things"
         apiData={apiData.mains}
         userData={userData.mains}
       />
 
-      <BuildMenuSection
+      <MenuSection
         section="Desserts"
         subText="pudding"
         apiData={apiData.desserts}
@@ -156,5 +145,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     backgroundColor: '#ffff99',
     borderRadius: 20,
+  },
+  border: {
+    height: 5,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
   },
 });
