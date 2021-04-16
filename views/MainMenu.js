@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
   StyleSheet, Text, View, TouchableOpacity, FlatList,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import fetch from 'node-fetch';
 import Header from '../components/Header';
 import { badNetworkApiData, userData } from '../stockData';
+import FetchActivities from '../src/FetchActivities';
+
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -21,19 +22,6 @@ export default function MainMenu() {
       <StatusBar />
     </View>
   );
-}
-
-export function FetchActivities() {
-  const [apiData, setApiData] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3000/activities')
-      .then((response) => response.json())
-      .then((json) => setApiData(json))
-      .catch((error) => console.error(error));
-  }, []);
-
-  return apiData;
 }
 
 function Item(item) {

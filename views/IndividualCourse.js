@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Button, FlatList,
 } from 'react-native';
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
-import { FetchActivities } from './MainMenu';
+import FetchActivities from '../src/FetchActivities';
 
 function buildItem(item) {
   return (
@@ -19,7 +19,6 @@ export default function IndividualCourse(props) {
   const { dataKey, header } = props;
 
   const navigation = useNavigation();
-
   const apiData = FetchActivities();
 
   return (
