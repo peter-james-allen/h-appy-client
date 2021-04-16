@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+// import React, {useState} from 'react';
 
 const hardUserData = {
   nibbles: [
@@ -45,3 +45,7 @@ const hardUserData = {
     },
   ],
 };
+
+export default function HardUserData() {
+  return (hardUserData);
+}

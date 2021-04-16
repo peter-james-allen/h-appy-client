@@ -2,16 +2,15 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
-  StyleSheet, Text, View, Button, Image, TouchableOpacity, FlatList, ActivityIndicator,
+  StyleSheet, Text, View, TouchableOpacity, FlatList,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import fetch from 'node-fetch';
 import Header from '../components/Header';
-import hardUserData from '../components/UserData';
+import HardUserData from '../components/UserData';
 
 export default function MainMenu() {
-  const [userData, setUserData] = useState(hardUserData);
-  
+  const [userData, setUserData] = useState(HardUserData());
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -121,7 +120,6 @@ function Menu(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f8f9d4',
