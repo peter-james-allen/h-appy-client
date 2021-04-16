@@ -40,7 +40,6 @@ function MenuSection(props) {
   apiData = apiData || badNetworkApiData;
 
   return (
-
     <CollapsibleView
       title={<Text style={styles.menuSection}>{section}</Text>}
       style={styles.menuCollapsible}
