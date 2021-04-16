@@ -1,6 +1,8 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
+} from 'react-native';
 import Header from '../components/header';
 
 export default function IndividualActivity() {
@@ -23,21 +25,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9d4'
+    backgroundColor: '#f8f9d4',
   },
   menuCollapsible: {
     width: 250,
     fontSize: 50,
     borderRadius: 25,
-    borderColor: '#240037'
+    borderColor: '#240037',
   },
   menuSubText: {
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 20,
   },
   menuSection: {
     fontSize: 30,
-    fontFamily: 'Didot'
+    fontFamily: 'Didot',
   },
   header: {
     position: 'absolute',
@@ -46,19 +48,19 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 60
+    height: 60,
   },
   title: {
     fontSize: 25,
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Didot'
+    fontFamily: 'Didot',
   },
   homeImage: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 30,
     width: 200,
-    height: 200
-  }
+    height: 200,
+  },
 });

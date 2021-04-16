@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -85,9 +85,7 @@
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -96,11 +94,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -111,39 +108,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import MainMenu from "../views/MainMenu";
-import About from "../views/About";
-import IndividualCourse from "../views/IndividualCourse";
-import AddActivity from "../views/AddActivity";
-import IndividualActivity from "../views/IndividualActivity";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import MainMenu from '../views/MainMenu';
+import About from '../views/About';
+import IndividualCourse from '../views/IndividualCourse';
+import AddActivity from '../views/AddActivity';
+import IndividualActivity from '../views/IndividualActivity';
 &nbsp;
-const Drawer = <span class="cstat-no" title="statement not covered" >createDrawerNavigator();</span>
+const Drawer = createDrawerNavigator();
 &nbsp;
-const HomeNavigator = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;Drawer.Navigator&gt;
-      &lt;Drawer.Screen name="Menu" component={MainMenu} /&gt;
-      &lt;Drawer.Screen name="About" component={About} /&gt;
-      &lt;Drawer.Screen name="Nibbles" component={IndividualCourse} /&gt;
-      &lt;Drawer.Screen name="Starters" component={IndividualCourse} /&gt;
-      &lt;Drawer.Screen name="Mains" component={IndividualCourse} /&gt;
-      &lt;Drawer.Screen name="Desserts" component={IndividualCourse} /&gt;
-      &lt;Drawer.Screen name="Create a Recipe" component={AddActivity} /&gt;
-    &lt;/Drawer.Navigator&gt;
-  )
-}
+const HomeNavigator = () =&gt; (
+  &lt;Drawer.Navigator&gt;
+    &lt;Drawer.Screen name="Menu" component={MainMenu} /&gt;
+    &lt;Drawer.Screen name="About" component={About} /&gt;
+    &lt;Drawer.Screen name="Nibbles" component={IndividualCourse} /&gt;
+    &lt;Drawer.Screen name="Starters" component={IndividualCourse} /&gt;
+    &lt;Drawer.Screen name="Mains" component={IndividualCourse} /&gt;
+    &lt;Drawer.Screen name="Desserts" component={IndividualCourse} /&gt;
+    &lt;Drawer.Screen name="Create a Recipe" component={AddActivity} /&gt;
+  &lt;/Drawer.Navigator&gt;
+);
 &nbsp;
-export const DrawerNavigator = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >  &lt;NavigationContainer&gt;</span>
+export const DrawerNavigator = () =&gt; (
+  &lt;NavigationContainer&gt;
     &lt;HomeNavigator /&gt;
   &lt;/NavigationContainer&gt;
 );
@@ -154,7 +148,7 @@ export const DrawerNavigator = <span class="cstat-no" title="statement not cover
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Apr 15 2021 17:28:12 GMT+0100 (British Summer Time)
+                at Fri Apr 16 2021 10:07:26 GMT+0100 (British Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

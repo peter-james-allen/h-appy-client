@@ -5,7 +5,7 @@ import {
   StyleSheet, Text, View, Button, Image, TouchableOpacity, FlatList, ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-// import 'whatwg-fetch'
+import fetch from 'node-fetch';
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -22,6 +22,7 @@ export default function MainMenu() {
     </View>
   );
 }
+
 function buildItem(item) {
   return (
     <View style={styles.item}>
@@ -40,7 +41,9 @@ function BuildMenuSection(props) {
   apiData = apiData || badNetworkApiData;
   return (
 
-    <CollapsibleView title={<Text style={styles.menuSection}>{section}</Text>} style={styles.menuCollapsible} noArrow>
+    <CollapsibleView
+    title={<Text style={styles.menuSection}>{section}</Text>}
+    style={styles.menuCollapsible} noArrow>
       <FlatList
         ListHeaderComponent={<Text style={styles.menuSubText}>{subText}</Text>}
         data={userData}
@@ -82,7 +85,6 @@ function Menu(props) {
     <View>
       <BuildMenuSection
         section="Nibbles"
-
         subText="Bitesized activities, for the short of time"
         apiData={apiData.nibbles}
         userData={userData.nibbles}
@@ -174,43 +176,43 @@ const styles = StyleSheet.create({
 const userData = {
   nibbles: [
     {
-      id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
+      _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
       name: 'Go to the Cinema',
       ingredients: [],
     },
     {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      _id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
       name: 'Do a Puzzle',
       ingredients: ['a phone or computer or puzzle book'],
     },
     {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      _id: '58694a0f-3da1-471f-bd96-145571e29d72',
       name: 'Take a long awaited break',
       ingredients: [],
     },
   ],
   appetisers: [
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53dbb28ba',
+      _id: 'bd7acbea-c1b1-46c2-aed5-3ad53dbb28ba',
       name: 'Do a codewars kata',
       ingredients: ['computer'],
     },
     {
-      id: 'bd0acjea-c4b1-46c2-red5-3ad53abb28ba',
+      _id: 'bd0acjea-c4b1-46c2-red5-3ad53abb28ba',
       name: 'Play a piece of music',
       ingredients: ['an instrument', 'somewhere private'],
     },
   ],
   mains: [
     {
-      id: 'ai589cm1-oi5n-alf3-bd96-145571e29d72',
+      _id: 'ai589cm1-oi5n-alf3-bd96-145571e29d72',
       name: 'Learn a new song on the guitar',
       ingredients: ['a guitar'],
     },
   ],
   desserts: [
     {
-      id: '3ac68afc-dk30-3kf9-a4f8-fbd91aa9d07k',
+      _id: '3ac68afc-dk30-3kf9-a4f8-fbd91aa9d07k',
       name: 'Browse Reddit for 3 hours',
       ingredients: ['a phone', 'Ennui'],
     },
@@ -219,7 +221,7 @@ const userData = {
 
 const badNetworkApiData = [
   {
-    id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
+    _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
     name: "The chef isn't available for requests right now",
     ingredients: [],
   },
