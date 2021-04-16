@@ -10,7 +10,16 @@ import IndividualActivity from '../views/IndividualActivity';
 const Drawer = createDrawerNavigator();
 
 const HomeNavigator = () => (
-  <Drawer.Navigator>
+  <Drawer.Navigator  drawerStyle={{
+    backgroundColor: '#f8f9d4',
+    width: 240,
+  }} drawerContentOptions={{
+    activeTintColor: '#c7524a',
+    itemStyle: { marginVertical: 5 },
+    labelStyle: {
+      fontFamily: 'Didot'
+    }
+  }}>
     <Drawer.Screen name="Menu" component={MainMenu} />
     <Drawer.Screen name="About" component={About} />
     <Drawer.Screen name="Nibbles" component={IndividualCourse} />

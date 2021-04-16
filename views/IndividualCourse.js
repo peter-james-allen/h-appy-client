@@ -3,14 +3,44 @@ import { useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
-import Header from '../components/header';
+import Header from '../components/Header';
+import CourseHeader from '../components/CourseHeader';
+
+
+function buildItem(item) {
+  console.log(item)
+  return (
+    <View >
+      <Text>{item.item.name}</Text>
+    </View>
+  );
+}
 
 export default function IndividualCourse() {
   const navigation = useNavigation();
+  const [isLoading, setLoading] = useState(true);
+  const [apiData, setApiData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/activities')
+      .then((response) => response.json())
+      .then((json) => setApiData(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <View style={styles.container}>
       <Header />
+      <CourseHeader />
       <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
+      <View style={styles.activityList}>
+        <FlatList 
+        data={apiData.nibbles}
+        renderItem={buildItem}
+        keyExtractor={(item) => item._id} 
+        />
+      </View>
       <Button
         title="Back to the Main Menu"
         onPress={() => navigation.navigate('MainMenu')}
@@ -41,26 +71,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'Didot',
   },
-  header: {
-    position: 'absolute',
-    top: 0,
-    backgroundColor: '#c7524a',
-    width: '100%',
-    alignItems: 'center',
+  activityList: {
     justifyContent: 'center',
-    height: 60,
-  },
-  title: {
-    fontSize: 25,
-    fontWeight: 'bold',
     alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: 'Didot',
-  },
-  homeImage: {
-    position: 'absolute',
-    bottom: 30,
-    width: 200,
-    height: 200,
-  },
+    flex: 1,
+  }
 });
