@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Slider from '@react-native-community/slider';
+import { Tooltip } from 'react-native-elements';
 import {
   Text, View, TextInput, StyleSheet,
 } from 'react-native';
@@ -38,10 +39,11 @@ function AccessibilitySlider() {
   const [accessibility, setAccessibility] = useState(0);
   return (
     <View>
-      <Text>
-        Accessibility:
-        {accessibility}
-      </Text>
+      <Tooltip popover={<Text>
+        accessibility is an indication of how easy it is to set out to do this activity, with 0 being easy to 10 being hard.
+        </Text>} width={150} height={150} backgroundColor={'#c1c4c8'}>
+        <Text>Accessibility: {accessibility}</Text>
+      </Tooltip>
       <Slider
         style={styles.slider}
         minimumValue={0}
@@ -58,10 +60,11 @@ function PriceSlider() {
   const [price, setPrice] = useState(0);
   return (
     <View>
-      <Text>
-        Price:
-        {price}
-      </Text>
+      <Tooltip popover={<Text>
+        Price is an indication of how expensive this activity can be with 0 being free to 10 being very expensive.
+        </Text>} width={150} height={150} backgroundColor={'#c1c4c8'}>
+        <Text>Price: {price}</Text>
+      </Tooltip>
       <Slider
         style={styles.slider}
         minimumValue={0}
