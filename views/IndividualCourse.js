@@ -36,9 +36,9 @@ export default function IndividualCourse() {
       <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
       <View style={styles.activityList}>
         <FlatList 
-        data={apiData.nibbles}
-        renderItem={buildItem}
-        keyExtractor={(item) => item._id} 
+          data={apiData.nibbles}
+          renderItem={buildItem}
+          keyExtractor={(item) => item._id}
         />
       </View>
       <Button
@@ -75,5 +75,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-  }
+  },
 });

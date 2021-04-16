@@ -19,6 +19,7 @@ export default function App() {
 const styles = StyleSheet.create({
   contentWrapper: {
     flex: 1,
-    backgroundColor: '#f8f9d4'
+    backgroundColor: '#f8f9d4',
+    paddingTop: Platform.OS === 'android' ? 25 : 0,
   }
 })
