@@ -1,11 +1,10 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { AppNavigator } from '../routes/AppNavigator';
+import renderer from 'react-test-renderer'
+import DrawerNavigator from '../routes/DrawerNavigator'
 
-xdescribe('<AppNavigator />', () => {
-  it('has 1 child', () => {
-    const tree = renderer.create(<AppNavigator />).toJSON();
-    expect(tree.children).toHaveLength(1);
-    expect(tree.type).toBe('View');
-  });
-});
+xdescribe('DrawerNavigator', () => {
+  it('renders correctly', () => {
+    const tree = renderer.create(<DrawerNavigator />).toJSON()
+    expect(tree).toMatchSnapshot();
+  })
+})
