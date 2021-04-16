@@ -4,12 +4,14 @@ import {
   StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
 import Header from '../components/header';
+import CourseHeader from '../components/CourseHeader';
 
 export default function IndividualCourse() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Header />
+      <CourseHeader />
       <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
       <Button
         title="Back to the Main Menu"
