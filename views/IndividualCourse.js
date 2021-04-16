@@ -50,7 +50,7 @@ export default function IndividualCourse(props) {
       </View>
       <Button
         title="Back to the Main Menu"
-        onPress={() => navigation.navigate('MainMenu')}
+        onPress={() => navigation.navigate('Menu')}
       />
     </View>
   );
