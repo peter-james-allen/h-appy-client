@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
+import { FetchActivities } from './MainMenu';
 
 function buildItem(item) {
   return (
@@ -18,16 +19,8 @@ export default function IndividualCourse(props) {
   const { dataKey, header } = props;
 
   const navigation = useNavigation();
-  const [isLoading, setLoading] = useState(true);
-  const [apiData, setApiData] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:3000/activities')
-      .then((response) => response.json())
-      .then((json) => setApiData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+  const apiData = FetchActivities();
 
   return (
     <View style={styles.container}>

@@ -23,7 +23,7 @@ export default function MainMenu() {
   );
 }
 
-function FetchActivities() {
+export function FetchActivities() {
   const [apiData, setApiData] = useState([]);
 
   useEffect(() => {
