@@ -40,7 +40,7 @@ function AccessibilitySlider() {
   return (
     <View>
       <Tooltip popover={<Text>
-        accessibility is an indication of how easy it is to set out to do this activity, with 0 being easy to 10 being hard.
+        Accessibility is an indication of how easy it is to set out to do this activity, with 0 being easy to 10 being hard.
         </Text>} width={150} height={150} backgroundColor={'#c1c4c8'}>
         <Text>Accessibility: {accessibility}</Text>
       </Tooltip>
@@ -61,7 +61,7 @@ function PriceSlider() {
   return (
     <View>
       <Tooltip popover={<Text>
-        Price is an indication of how expensive this activity can be with 0 being free to 10 being very expensive.
+        Price is an indication of how expensive this activity can be, with 0 being free to 10 being very expensive.
         </Text>} width={150} height={150} backgroundColor={'#c1c4c8'}>
         <Text>Price: {price}</Text>
       </Tooltip>
