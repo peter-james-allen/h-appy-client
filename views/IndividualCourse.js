@@ -69,20 +69,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
   },
-  menuCollapsible: {
-    width: 250,
-    fontSize: 50,
-    borderRadius: 25,
-    borderColor: '#240037',
-  },
-  menuSubText: {
-    textAlign: 'center',
-    fontSize: 20,
-  },
-  menuSection: {
-    fontSize: 30,
-    fontFamily: 'Didot',
-  },
   activityList: {
     justifyContent: 'center',
     alignItems: 'center',
