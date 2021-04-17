@@ -9,7 +9,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import fetch from 'node-fetch';
 import Header from '../components/Header';
-import getUserData from '../components/UserData';
+import getUserData from '../src/UserData';
 
 export default function MainMenu() {
   const [userData] = useState(getUserData());

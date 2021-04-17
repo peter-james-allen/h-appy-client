@@ -4,7 +4,7 @@ import {
   Text, View, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import Header from '../components/Header';
-import { addToUserData } from '../components/UserData';
+import { addToUserData } from '../src/UserData';
 
 export default function AddActivity() {
   const [ActivityName, setActivityName] = useState('');
