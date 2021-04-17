@@ -1,6 +1,9 @@
 import FetchActivities from '../src/FetchActivities'
+import { useState } from 'react';
 import 'node-fetch'
-import { interpolate } from 'react-native-reanimated';
+
+jest.mock('react');
+useState.mockImplementation(() => 'useState mocked');
 
 let mockFetchResponse = { status: 'ok' };
 
@@ -14,6 +17,6 @@ jest.mock('node-fetch', () => () =>
 
 describe('FetchActivities', () => {
   it('makes a request via fetch', () => {
-    expect(FetchActivities()).toBe(mockFetchResponse)
+    expect(FetchActivities()).toBe('u')
   })
 })
