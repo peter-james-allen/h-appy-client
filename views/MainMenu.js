@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import { badNetworkApiData, userData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -17,7 +18,10 @@ export default function MainMenu() {
       <TouchableOpacity onPress={() => navigation.navigate('About')}>
         <Text>About this App</Text>
       </TouchableOpacity>
-      <Menu userData={userData} />
+
+      <ScrollView style={styles.menuContainer}>
+        <Menu userData={userData} />
+      </ScrollView>
       <StatusBar />
     </View>
   );
@@ -26,7 +30,7 @@ export default function MainMenu() {
 function Item(item) {
   return (
     <View style={styles.item}>
-      <Text>{item.item.name}</Text>
+      <Text style={styles.itemText}>{item.item.name}</Text>
     </View>
   );
 }
@@ -100,6 +104,7 @@ function Menu(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f8f9d4',
@@ -110,9 +115,15 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderColor: '#240037',
   },
+  menuContainer: {
+    flexDirection: 'column',
+    marginTop: 200,
+  },
   menuSubText: {
     textAlign: 'center',
     fontSize: 20,
+    fontFamily: 'Didot',
+    marginTop: 10,
   },
   menuSection: {
     fontSize: 30,
@@ -127,14 +138,14 @@ const styles = StyleSheet.create({
   },
   item: {
     margin: 3,
-    padding: 6,
-    fontSize: 15,
-    backgroundColor: '#ffff99',
+    padding: 10,
+    backgroundColor: '#e6e9ce',
     borderRadius: 20,
   },
+  itemText: {
+    fontSize: 17,
+  },
   border: {
-    height: 5,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
+    marginBottom: 10,
   },
 });

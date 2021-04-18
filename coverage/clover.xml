@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1618660070867" clover="3.2.0">
-  <project timestamp="1618660070868" name="All files">
+<coverage generated="1618741091627" clover="3.2.0">
+  <project timestamp="1618741091627" name="All files">
     <metrics statements="68" coveredstatements="47" conditionals="4" coveredconditionals="3" methods="34" coveredmethods="13" elements="106" coveredelements="63" complexity="0" loc="68" ncloc="68" packages="5" files="12" classes="12"/>
     <package name="h-appy-client">
       <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
@@ -102,23 +102,23 @@
       </file>
       <file name="MainMenu.js" path="/Users/adamjonas/Projects/makers/week-11/h-appy-client/views/MainMenu.js">
         <metrics statements="17" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="3"/>
-        <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="35" count="4" type="stmt"/>
-        <line num="36" count="4" type="stmt"/>
-        <line num="37" count="4" type="stmt"/>
-        <line num="38" count="4" type="stmt"/>
-        <line num="39" count="4" type="stmt"/>
-        <line num="40" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
         <line num="42" count="4" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
-        <line num="68" count="1" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="100" count="2" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="46" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="4" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="106" count="2" type="stmt"/>
       </file>
     </package>
   </project>
