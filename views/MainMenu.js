@@ -7,6 +7,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import fetch from 'node-fetch';
 import Header from '../components/Header';
+import IndividualActivityButton from '../components/IndividualActivityButton';
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -25,7 +26,7 @@ export default function MainMenu() {
 function buildItem(item) {
   return (
     <View style={styles.item}>
-      <Text>{item.item.name}</Text>
+      <Text>{item.item.name}<IndividualActivityButton id={item.item._id}/></Text>
     </View>
   );
 }
