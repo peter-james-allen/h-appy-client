@@ -3,10 +3,12 @@ import Slider from '@react-native-community/slider';
 import {
   Text, View, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import Header from '../components/Header';
 import { addToUserData } from '../src/UserData';
 
 export default function AddActivity() {
+  const [ActivityType, setActivityType] = useState();
   const [ActivityName, setActivityName] = useState('');
 
   return (
@@ -16,6 +18,15 @@ export default function AddActivity() {
 
       <View style={styles.FormItem}>
         <Text>Activity Type</Text>
+        <Picker
+          selectedValue={ActivityType}
+          onValueChange={(itemValue, itemIndex) => setActivityType(itemValue)}
+        >
+          <Picker.Item label="Nibbles" value="nibbles" />
+          <Picker.Item label="Appetisers" value="appetisers" />
+          <Picker.Item label="Mains" value="mains" />
+          <Picker.Item label="Desserts" value="desserts" />
+        </Picker>
       </View>
 
       <View style={styles.FormItem}>
@@ -37,7 +48,7 @@ export default function AddActivity() {
             marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
           }}
           onPress={() => {
-            addToUserData('nibbles', { _id: 'boo', name: ActivityName });
+            addToUserData(ActivityType, { _id: 'boo', name: ActivityName });
           }}
         >
           <Text style={{ color: '#fafafa' }}>Add</Text>
