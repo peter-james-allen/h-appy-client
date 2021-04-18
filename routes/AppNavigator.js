@@ -8,6 +8,8 @@ import AddActivity from '../views/AddActivity';
 import IndividualActivity from '../views/IndividualActivity';
 import DrawerNavigator from './DrawerNavigator';
 
+const { Navigator, Screen } = createStackNavigator();
+
 const HomeNavigator = () => (
   <Navigator headerMode="none">
     <Screen name="Drawer" component={DrawerNavigator} />
