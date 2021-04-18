@@ -9,7 +9,7 @@ import Header from '../components/Header';
 import { addToUserData } from '../src/UserData';
 
 export default function AddActivity() {
-  const [ActivityType, setActivityType] = useState();
+  const [ActivityType, setActivityType] = useState('default');
   const [ActivityName, setActivityName] = useState('');
   const [accessibility, setAccessibility] = useState(0);
   const [price, setPrice] = useState(0);
@@ -25,6 +25,7 @@ export default function AddActivity() {
           selectedValue={ActivityType}
           onValueChange={(itemValue, itemIndex) => setActivityType(itemValue)}
         >
+          <Picker.Item label="Select a Menu Section..." value="default" enabled={false} />
           <Picker.Item label="Nibbles" value="nibbles" />
           <Picker.Item label="Appetisers" value="appetisers" />
           <Picker.Item label="Mains" value="mains" />
@@ -101,9 +102,12 @@ function SubmitButton(props) {
           marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
         }}
         onPress={() => {
-          addToUserData(ActivityType, {
-            _id: ActivityName, name: ActivityName, accessibility, price,
-          });
+          console.log(ActivityType);
+          if (ActivityType !== 'default' && ActivityName !== '') {
+            addToUserData(ActivityType, {
+              _id: ActivityName, name: ActivityName, accessibility, price,
+            });
+          }
         }}
       >
         <Text style={{ color: '#fafafa' }}>Add</Text>
