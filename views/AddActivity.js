@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import Slider from '@react-native-community/slider';
 import {
@@ -10,6 +11,8 @@ import { addToUserData } from '../src/UserData';
 export default function AddActivity() {
   const [ActivityType, setActivityType] = useState();
   const [ActivityName, setActivityName] = useState('');
+  const [accessibility, setAccessibility] = useState(0);
+  const [price, setPrice] = useState(0);
 
   return (
     <View style={styles.container}>
@@ -39,8 +42,8 @@ export default function AddActivity() {
         />
       </View>
 
-      <AccessibilitySlider />
-      <PriceSlider />
+      <AccessibilitySlider accessibility={accessibility} setAccessibility={setAccessibility} />
+      <PriceSlider price={price} setPrice={setPrice} />
 
       <View style={styles.FormItem}>
         <TouchableOpacity
@@ -48,7 +51,9 @@ export default function AddActivity() {
             marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
           }}
           onPress={() => {
-            addToUserData(ActivityType, { _id: 'boo', name: ActivityName });
+            addToUserData(ActivityType, {
+              _id: ActivityName, name: ActivityName, accessibility, price,
+            });
           }}
         >
           <Text style={{ color: '#fafafa' }}>Add</Text>
@@ -59,8 +64,8 @@ export default function AddActivity() {
   );
 }
 
-function AccessibilitySlider() {
-  const [accessibility, setAccessibility] = useState(0);
+function AccessibilitySlider(props) {
+  const { accessibility, setAccessibility } = props;
   return (
     <View>
       <Text>
@@ -79,8 +84,8 @@ function AccessibilitySlider() {
   );
 }
 
-function PriceSlider() {
-  const [price, setPrice] = useState(0);
+function PriceSlider(props) {
+  const { price, setPrice } = props;
   return (
     <View>
       <Text>
