@@ -45,21 +45,7 @@ export default function AddActivity() {
       <AccessibilitySlider accessibility={accessibility} setAccessibility={setAccessibility} />
       <PriceSlider price={price} setPrice={setPrice} />
 
-      <View style={styles.FormItem}>
-        <TouchableOpacity
-          style={{
-            marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
-          }}
-          onPress={() => {
-            addToUserData(ActivityType, {
-              _id: ActivityName, name: ActivityName, accessibility, price,
-            });
-          }}
-        >
-          <Text style={{ color: '#fafafa' }}>Add</Text>
-        </TouchableOpacity>
-      </View>
-
+      <SubmitButton ActivityType={ActivityType} ActivityName={ActivityName} accessibility={accessibility} price={price} />
     </View>
   );
 }
@@ -104,6 +90,28 @@ function PriceSlider(props) {
   );
 }
 
+function SubmitButton(props) {
+  const {
+    ActivityType, ActivityName, accessibility, price,
+  } = props;
+  return (
+    <View style={{ width: '80%' }}>
+      <TouchableOpacity
+        style={{
+          marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
+        }}
+        onPress={() => {
+          addToUserData(ActivityType, {
+            _id: ActivityName, name: ActivityName, accessibility, price,
+          });
+        }}
+      >
+        <Text style={{ color: '#fafafa' }}>Add</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -113,8 +121,10 @@ const styles = StyleSheet.create({
     alignContent: 'flex-start',
   },
   FormItem: {
+    padding: 4,
     margin: 3,
     borderWidth: 2,
+    borderRadius: 5,
     width: '80%',
   },
   slider: {
