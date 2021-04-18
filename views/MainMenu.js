@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import { badNetworkApiData, userData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
+import IndividualActivityButton from '../components/IndividualActivityButton';
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -26,7 +27,10 @@ export default function MainMenu() {
 function Item(item) {
   return (
     <View style={styles.item}>
-      <Text>{item.item.name}</Text>
+      <Text>
+        {item.item.name}
+        <IndividualActivityButton id={item.item._id}/>
+      </Text>
     </View>
   );
 }

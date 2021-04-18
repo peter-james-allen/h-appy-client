@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
 import Header from '../components/Header';
 
-export default function IndividualActivity() {
+
+
+export default function IndividualActivity({ route }) {
   const navigation = useNavigation();
   return (
+    
     <View style={styles.container}>
       <Header />
-      <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
+      <Text>all the stuff you wanna know about your activity goes here</Text>
+      <Text>itemId: {route.params.itemID}</Text>
       <Button
         title="Back to the Main Menu"
         onPress={() => navigation.navigate('Menu')}
