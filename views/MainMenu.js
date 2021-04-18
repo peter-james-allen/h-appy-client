@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
-  StyleSheet, Text, View, Button, Image, TouchableOpacity, FlatList, ActivityIndicator,
+  StyleSheet, Text, View, Button, Image, TouchableOpacity, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import fetch from 'node-fetch';
 import Header from '../components/Header';
 import IndividualActivityButton from '../components/IndividualActivityButton';
+
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -23,12 +25,28 @@ export default function MainMenu() {
   );
 }
 
+
+
 function buildItem(item) {
+  const noConnectionAlert=()=>{
+    alert("We can't fetch suggestions. Please check your network connections.");
+  }
+  if (item.item._id != 'noConnection') {
   return (
     <View style={styles.item}>
-      <Text>{item.item.name}<IndividualActivityButton id={item.item._id}/></Text>
+      <Text>{item.item.name} </Text>
+      <IndividualActivityButton style={styles.individualButton} id={item.item._id}/>
     </View>
-  );
+  )} else {
+    return (
+      <View style={styles.item}>
+      <Text style={{textAlign: "center"}}>{item.item.name}.</Text>
+      <TouchableOpacity style={{paddingTop: 10}} onPress={()=>{
+    Alert.alert("No Network connection", "We can't fetch suggestions. Please try again later.")}}> 
+      <Ionicons name="help" size={15} color="black" /></TouchableOpacity>
+    </View>
+    )
+  };
 }
 
 function BuildMenuSection(props) {
@@ -60,7 +78,7 @@ function BuildMenuSection(props) {
         }}
       />
       <FlatList
-        ListHeaderComponent={<Text style={styles.menuSubText}>Chefs Specials</Text>}
+        ListHeaderComponent={<Text style={styles.menuSubText}>Chef's Specials</Text>}
         data={apiData}
         renderItem={buildItem}
         keyExtractor={(item) => item._id}
@@ -156,7 +174,13 @@ const styles = StyleSheet.create({
     fontSize: 15,
     backgroundColor: '#ffff99',
     borderRadius: 20,
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center'
   },
+  individualButton: {
+    alignSelf: 'flex-end'
+  }
 });
 
 const userData = {
@@ -207,7 +231,7 @@ const userData = {
 
 const badNetworkApiData = [
   {
-    _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
+    _id: 'noConnection',
     name: "The chef isn't available for requests right now",
     ingredients: [],
   },
