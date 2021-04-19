@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  styles={
+    Object {
+      "flex": 1,
+      "maxHeight": 50,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontFamily": "Didot",
+        "fontSize": 40,
+      }
+    }
+  />
+</View>
+`;

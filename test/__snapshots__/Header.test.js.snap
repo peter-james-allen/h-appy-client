@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#c7524a",
+      "flex": 1,
+      "fontSize": 24,
+      "fontWeight": "bold",
+      "height": 60,
+      "justifyContent": "center",
+      "maxHeight": 60,
+      "position": "absolute",
+      "top": 10,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "alignItems": "center",
+        "fontFamily": "Didot",
+        "fontSize": 25,
+        "fontWeight": "bold",
+        "justifyContent": "center",
+      }
+    }
+  >
+    H-Appy
+  </Text>
+</View>
+`;

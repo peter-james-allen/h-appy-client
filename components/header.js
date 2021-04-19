@@ -11,7 +11,6 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   header: {
-    // paddingTop: Platform.OS === 'android' ? 25 : 0,
     flex: 1,
     fontSize: 24,
     fontWeight: 'bold',

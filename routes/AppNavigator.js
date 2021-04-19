@@ -6,21 +6,21 @@ import About from '../views/About';
 import IndividualCourse from '../views/IndividualCourse';
 import AddActivity from '../views/AddActivity';
 import IndividualActivity from '../views/IndividualActivity';
+import DrawerNavigator from './DrawerNavigator';
 
 const { Navigator, Screen } = createStackNavigator();
 
 const HomeNavigator = () => (
   <Navigator headerMode="none">
-    <Screen name="MainMenu" component={MainMenu} />
-    <Screen name="About" component={About} />
-    <Screen name="IndividualCourse" component={IndividualCourse} />
-    <Screen name="AddActivity" component={AddActivity} />
+    <Screen name="Drawer" component={DrawerNavigator} />
     <Screen name="IndividualActivity" component={IndividualActivity} />
   </Navigator>
 );
 
-export const AppNavigator = () => (
+const AppNavigator = () => (
   <NavigationContainer>
     <HomeNavigator />
   </NavigationContainer>
 );
+
+export default AppNavigator;

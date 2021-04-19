@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#f8f9d4",
+      "flex": 1,
+      "paddingTop": 0,
+    }
+  }
+>
+  DrawerNavigator mocked
+</RCTSafeAreaView>
+`;

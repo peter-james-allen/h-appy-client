@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainMenu from '../views/MainMenu';
@@ -7,7 +8,6 @@ import IndividualCourse from '../views/IndividualCourse';
 import AddActivity from '../views/AddActivity';
 
 const Drawer = createDrawerNavigator();
-
 
 function Nibbles() {
   return (
@@ -35,16 +35,10 @@ function Desserts() {
 
 const DrawerNavigator = () => (
   <NavigationContainer>
-    <Drawer.Navigator drawerStyle={{
-    backgroundColor: '#f8f9d4',
-    width: 240,
-  }} drawerContentOptions={{
-    activeTintColor: '#c7524a',
-    itemStyle: { marginVertical: 5 },
-    labelStyle: {
-      fontFamily: 'Didot'
-    }
-  }}>
+    <Drawer.Navigator
+      drawerStyle={styles.drawer}
+      drawerContentOptions={drawerContentStyles}
+    >
       <Drawer.Screen name="Menu" component={MainMenu} />
       <Drawer.Screen name="About" component={About} />
       <Drawer.Screen name="Nibbles" component={Nibbles} />
@@ -53,7 +47,19 @@ const DrawerNavigator = () => (
       <Drawer.Screen name="Desserts" component={Desserts} />
       <Drawer.Screen name="Create a Recipe" component={AddActivity} />
     </Drawer.Navigator>
-  </NavigationContainer>
 );
 
 export default DrawerNavigator;
+
+const styles = StyleSheet.create({
+  drawer: {
+    backgroundColor: '#f8f9d4',
+    width: 240,
+  },
+});
+
+const drawerContentStyles = {
+  activeTintColor: '#c7524a',
+  itemStyle: { marginVertical: 5 },
+  labelStyle: { fontFamily: 'Didot', fontSize: 20, paddingTop: 10 },
+};

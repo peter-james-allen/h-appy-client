@@ -1,16 +1,14 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import { StyleSheet, Platform, SafeAreaView } from 'react-native';
+import { StyleSheet, Platform, SafeAreaView, ScrollView } from 'react-native';
+import AppNavigator from './routes/AppNavigator';
 import DrawerNavigator from './routes/DrawerNavigator';
-import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
   return (
-    <ErrorBoundary>
-      <SafeAreaView style={styles.contentWrapper}>
-        <DrawerNavigator />
-      </SafeAreaView>
-    </ErrorBoundary>
+    <SafeAreaView style={styles.contentWrapper}>
+      <AppNavigator />
+    </SafeAreaView>
   );
 }
 

@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignContent": "flex-start",
+      "alignItems": "center",
+      "backgroundColor": "#f8f9d4",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#c7524a",
+        "flex": 1,
+        "fontSize": 24,
+        "fontWeight": "bold",
+        "height": 60,
+        "justifyContent": "center",
+        "maxHeight": 60,
+        "position": "absolute",
+        "top": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "alignItems": "center",
+          "fontFamily": "Didot",
+          "fontSize": 25,
+          "fontWeight": "bold",
+          "justifyContent": "center",
+        }
+      }
+    >
+      H-Appy
+    </Text>
+  </View>
+  <Text>
+     This will be we can add activities as a user 
+  </Text>
+  <View
+    style={
+      Object {
+        "borderWidth": 2,
+        "margin": 3,
+        "width": "80%",
+      }
+    }
+  >
+    <Text>
+      Activity Type
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "borderWidth": 2,
+        "margin": 3,
+        "width": "80%",
+      }
+    }
+  >
+    <Text>
+      Activity Name
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      defaultValue=""
+      onChangeText={[Function]}
+      placeholder="enter the name of the activity here"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "height": 40,
+        }
+      }
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <View>
+    <Text>
+      Accessibility:
+      0
+    </Text>
+    <RNCSlider
+      disabled={false}
+      enabled={true}
+      inverted={false}
+      maximumTrackTintColor="#000000"
+      maximumValue={10}
+      minimumTrackTintColor="#FFFFFF"
+      minimumValue={0}
+      onChange={null}
+      onRNCSliderSlidingComplete={[Function]}
+      onRNCSliderSlidingStart={null}
+      onRNCSliderValueChange={null}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      step={0}
+      style={
+        Array [
+          Object {
+            "height": 40,
+          },
+          Object {
+            "height": 50,
+            "marginTop": 50,
+            "opacity": 1,
+            "width": 300,
+          },
+        ]
+      }
+      thumbImage={
+        Object {
+          "__packager_asset": true,
+          "height": 1,
+          "scale": 1,
+          "uri": "file://assets/full/path/to/directory/name.type",
+          "width": 1,
+        }
+      }
+      value={0}
+    />
+  </View>
+  <View>
+    <Text>
+      Price:
+      0
+    </Text>
+    <RNCSlider
+      disabled={false}
+      enabled={true}
+      inverted={false}
+      maximumTrackTintColor="#000000"
+      maximumValue={10}
+      minimumTrackTintColor="#FFFFFF"
+      minimumValue={0}
+      onChange={null}
+      onRNCSliderSlidingComplete={[Function]}
+      onRNCSliderSlidingStart={null}
+      onRNCSliderValueChange={null}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      step={0}
+      style={
+        Array [
+          Object {
+            "height": 40,
+          },
+          Object {
+            "height": 50,
+            "marginTop": 50,
+            "opacity": 1,
+            "width": 300,
+          },
+        ]
+      }
+      thumbImage={
+        Object {
+          "__packager_asset": true,
+          "height": 1,
+          "scale": 1,
+          "uri": "file://assets/full/path/to/directory/name.type",
+          "width": 1,
+        }
+      }
+      value={0}
+    />
+  </View>
+</View>
+`;

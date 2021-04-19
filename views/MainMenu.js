@@ -2,14 +2,17 @@
 /* eslint-disable react/prop-types */
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
-  StyleSheet, Text, View, TouchableOpacity, FlatList,
+  StyleSheet, Text, View, Button, Image, TouchableOpacity, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import fetch from 'node-fetch';
 import Header from '../components/Header';
 import getUserData from '../src/UserData';
+import { badNetworkApiData, userData } from '../stockData';
+import FetchActivities from '../src/FetchActivities';
+import IndividualActivityButton from '../components/IndividualActivityButton';
 
 export default function MainMenu() {
   const [userData] = useState(getUserData());
@@ -26,21 +29,35 @@ export default function MainMenu() {
   );
 }
 
-function buildItem(item) {
+function Item(item) {
+  const noConnectionAlert=()=>{
+    alert("We can't fetch suggestions. Please check your network connections.");
+  }
+  if (item.item._id != 'noConnection') {
   return (
     <View style={styles.item}>
-      <Text>{item.item.name}</Text>
+      <Text>{item.item.name} </Text>
+      <IndividualActivityButton style={styles.individualButton} id={item.item._id}/>
     </View>
-  );
+  )} else {
+    return (
+      <View style={styles.item}>
+      <Text style={{textAlign: "center"}}>{item.item.name}.</Text>
+      <TouchableOpacity style={{paddingTop: 10}} onPress={()=>{
+    Alert.alert("No Network connection", "We can't fetch suggestions. Please try again later.")}}> 
+      <Ionicons name="help" size={15} color="black" /></TouchableOpacity>
+    </View>
+    )
+  };
 }
 
-function BuildMenuSection(props) {
+function MenuSection(props) {
   const { section, subText, userData } = props;
   let { apiData } = props;
-
+  const navigation = useNavigation();
   apiData = apiData || badNetworkApiData;
-  return (
 
+  return (
     <CollapsibleView
       title={<Text style={styles.menuSection}>{section}</Text>}
       style={styles.menuCollapsible}
@@ -49,20 +66,14 @@ function BuildMenuSection(props) {
       <FlatList
         ListHeaderComponent={<Text style={styles.menuSubText}>{subText}</Text>}
         data={userData}
-        renderItem={buildItem}
+        renderItem={Item}
         keyExtractor={(item) => item._id}
       />
-      <View
-        style={{
-          height: 5,
-          borderBottomColor: 'black',
-          borderBottomWidth: 1,
-        }}
-      />
+      <View style={styles.border} />
       <FlatList
-        ListHeaderComponent={<Text style={styles.menuSubText}>Chefs Specials</Text>}
+        ListHeaderComponent={<Text style={styles.menuSubText}>Chef's Specials</Text>}
         data={apiData}
-        renderItem={buildItem}
+        renderItem={Item}
         keyExtractor={(item) => item._id}
         navigation={props.navigation}
       />
@@ -72,41 +83,29 @@ function BuildMenuSection(props) {
 
 function Menu(props) {
   const { userData } = props;
-  const [isLoading, setLoading] = useState(true);
-  const [apiData, setApiData] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3000/activities')
-      .then((response) => response.json())
-      .then((json) => setApiData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+  const apiData = FetchActivities();
 
   return (
     <View>
-      <BuildMenuSection
+      <MenuSection
         section="Nibbles"
         subText="Bitesized activities, for the short of time"
         apiData={apiData.nibbles}
         userData={userData.nibbles}
       />
-
-      <BuildMenuSection
+      <MenuSection
         section="Appetisers"
         subText="very tasty small things"
         apiData={apiData.appetisers}
         userData={userData.appetisers}
       />
-
-      <BuildMenuSection
+      <MenuSection
         section="Mains"
         subText="very tasty medium things"
         apiData={apiData.mains}
         userData={userData.mains}
       />
-
-      <BuildMenuSection
+      <MenuSection
         section="Desserts"
         subText="pudding"
         apiData={apiData.desserts}
@@ -144,24 +143,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     fontFamily: 'Didot',
   },
-  homeImage: {
-    bottom: 30,
-    width: 200,
-    height: 200,
-  },
   item: {
     margin: 3,
     padding: 6,
     fontSize: 15,
     backgroundColor: '#ffff99',
     borderRadius: 20,
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center'
+  },
+
+  border: {
+    height: 5,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+  individualButton: {
+    alignSelf: 'flex-end'
   },
 });
-
-const badNetworkApiData = [
-  {
-    _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
-    name: "The chef isn't available for requests right now",
-    ingredients: [],
-  },
-];
