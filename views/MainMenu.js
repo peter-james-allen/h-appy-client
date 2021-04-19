@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
-  StyleSheet, Text, View, TouchableOpacity, FlatList,
+  StyleSheet, Text, View, Button, Image, TouchableOpacity, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import { badNetworkApiData, userData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
+import IndividualActivityButton from '../components/IndividualActivityButton';
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -24,11 +26,25 @@ export default function MainMenu() {
 }
 
 function Item(item) {
+  const noConnectionAlert=()=>{
+    alert("We can't fetch suggestions. Please check your network connections.");
+  }
+  if (item.item._id != 'noConnection') {
   return (
     <View style={styles.item}>
-      <Text>{item.item.name}</Text>
+      <Text>{item.item.name} </Text>
+      <IndividualActivityButton style={styles.individualButton} id={item.item._id}/>
     </View>
-  );
+  )} else {
+    return (
+      <View style={styles.item}>
+      <Text style={{textAlign: "center"}}>{item.item.name}.</Text>
+      <TouchableOpacity style={{paddingTop: 10}} onPress={()=>{
+    Alert.alert("No Network connection", "We can't fetch suggestions. Please try again later.")}}> 
+      <Ionicons name="help" size={15} color="black" /></TouchableOpacity>
+    </View>
+    )
+  };
 }
 
 function MenuSection(props) {
@@ -53,7 +69,7 @@ function MenuSection(props) {
       />
       <View style={styles.border} />
       <FlatList
-        ListHeaderComponent={<Text style={styles.menuSubText}>Chefs Specials</Text>}
+        ListHeaderComponent={<Text style={styles.menuSubText}>Chef's Specials</Text>}
         data={apiData}
         renderItem={Item}
         keyExtractor={(item) => item._id}
@@ -131,10 +147,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     backgroundColor: '#ffff99',
     borderRadius: 20,
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center'
   },
   border: {
     height: 5,
     borderBottomColor: 'black',
     borderBottomWidth: 1,
+  individualButton: {
+    alignSelf: 'flex-end'
   },
 });

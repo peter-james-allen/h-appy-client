@@ -47,7 +47,6 @@ const DrawerNavigator = () => (
       <Drawer.Screen name="Desserts" component={Desserts} />
       <Drawer.Screen name="Create a Recipe" component={AddActivity} />
     </Drawer.Navigator>
-  </NavigationContainer>
 );
 
 export default DrawerNavigator;
