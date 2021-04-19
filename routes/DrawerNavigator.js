@@ -6,6 +6,8 @@ import MainMenu from '../views/MainMenu';
 import About from '../views/About';
 import IndividualCourse from '../views/IndividualCourse';
 import AddActivity from '../views/AddActivity';
+import SignUp from '../views/SignUp';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -45,6 +47,7 @@ const DrawerNavigator = () => (
     <Drawer.Screen name="Mains" component={Mains} />
     <Drawer.Screen name="Desserts" component={Desserts} />
     <Drawer.Screen name="Create a Recipe" component={AddActivity} />
+    <Drawer.Screen name="Sign up" component={SignUp} />
   </Drawer.Navigator>
 );
 
