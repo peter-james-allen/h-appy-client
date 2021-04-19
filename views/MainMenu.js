@@ -52,12 +52,14 @@ export default function MainMenu() {
 function Item(item) {
   if (item.item._id !== 'noConnection') {
     return (
-      <View style={styles.item}>
-        <Text style={styles.itemText}>
-          {item.item.name}
-          {' '}
-        </Text>
-        <IndividualActivityButton style={styles.individualButton} item={item.item} />
+      <View style={styles.itemContainer}>
+        <View style={styles.item}>
+          <Text style={styles.itemText}>
+            {item.item.name}
+            {' '}
+          </Text>
+          <IndividualActivityButton style={styles.individualButton} item={item.item} />
+        </View>
       </View>
     );
   }
@@ -182,12 +184,20 @@ const styles = StyleSheet.create({
   },
   item: {
     margin: 3,
-    padding: 6,
+    padding: 10,
     fontSize: 15,
     backgroundColor: '#363946',
     borderRadius: 5,
     flexDirection: 'column',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
   },
   itemText: {
     color: '#fff',
@@ -195,8 +205,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 17,
   },
+  itemContainer: {
+    borderRadius: 5,
+    overflow: 'hidden',
+    padding: 3
+  },
   border: {
-    paddingTop: 30
+    paddingTop: 30,
   },
   individualButton: {
     alignSelf: 'flex-end',

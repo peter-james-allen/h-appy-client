@@ -52,13 +52,20 @@ export default DrawerNavigator;
 
 const styles = StyleSheet.create({
   drawer: {
-    backgroundColor: '#f8f9d4',
+    backgroundColor: '#363946',
     width: 240,
   },
 });
 
 const drawerContentStyles = {
-  activeTintColor: '#c7524a',
-  itemStyle: { marginVertical: 5 },
-  labelStyle: { fontFamily: 'Didot', fontSize: 20, paddingTop: 10 },
+  activeTintColor: '#819595',
+  itemStyle: {
+    marginVertical: 5
+  },
+  labelStyle: {
+    fontFamily: 'Didot',
+    fontSize: 20,
+    paddingTop: 10,
+    color: '#B1B6A6'
+  },
 };

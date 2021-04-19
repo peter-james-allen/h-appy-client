@@ -9,11 +9,11 @@ import DrawerNavigator from './routes/DrawerNavigator';
 export default function App() {
   return (
     <>
-      <StatusBar barStyle="light-content" />
       <SafeAreaView style={styles.safeAreaTop} />
         <SafeAreaView style={styles.safeAreaBottom}>
           <AppNavigator />
       </SafeAreaView>
+      <StatusBar barStyle="light-content" />
     </>
   );
 }
@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
   },
   safeAreaBottom: {
     flex: 1,
-    backgroundColor: '#819595'
+    backgroundColor: '#819595',
   },
 });
