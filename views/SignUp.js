@@ -4,8 +4,10 @@ import {
 } from 'react-native';
 import Header from '../components/Header';
 import NewUserData from '../src/NewUserData';
+import { useNavigation } from '@react-navigation/native';
 
 function SubmitButton(props) {
+  const navigation = useNavigation();
   const {
     Name, Username, Email, Password,
   } = props;
@@ -17,6 +19,7 @@ function SubmitButton(props) {
         }}
         onPress={() => {
           NewUserData(Name, Username, Email, Password)
+          navigation.navigate('Menu')
           }
         }
 
