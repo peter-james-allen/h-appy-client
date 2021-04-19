@@ -22,10 +22,10 @@ export default function MainMenu() {
       <Header />
       <Image
       style={styles.logo}
-      source={require('../assets/logo.png')}/>
-      <TouchableOpacity onPress={() => navigation.navigate('About')}>
-        <Text>About this App</Text>
-      </TouchableOpacity>
+      source={require('../assets/logo4.png')}/>
+      <View style={styles.aboutFlex}><TouchableOpacity onPress={() => navigation.navigate('About')}>
+        <Text style={styles.about}>About H-Appy</Text>
+      </TouchableOpacity></View>
       <Menu userData={userData} />
       <StatusBar />
     </View>
@@ -175,5 +175,29 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 200,
-    height: 100,  },
+    height: 100,  
+  },
+  aboutFlex: {
+    margin: 20,
+    width: "50%",
+    minHeight: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "black",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
+  },
+  about: {
+    fontSize: 18,
+    textAlign: "center",
+    maxWidth: "90%",
+    fontFamily: "Chalkduster",
+    color: "white",
+  },
 });
