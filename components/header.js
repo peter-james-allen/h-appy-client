@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 24,
     fontWeight: 'bold',
-    top: 10,
-    backgroundColor: '#c7524a',
+    top: 0,
+    backgroundColor: '#363946',
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -24,10 +24,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   title: {
-    fontSize: 25,
+    fontSize: 32,
+    marginBottom: 20,
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Didot',
+    fontFamily: 'Courier-Bold',
+    color: '#B1B6A6'
   },
 });

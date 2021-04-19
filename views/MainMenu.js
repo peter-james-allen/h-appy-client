@@ -15,19 +15,13 @@ import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
 import AboutButton from '../components/AboutButton';
+import MenuTitle from '../components/MenuTitle'
+
+const windowWidth = Dimensions.get('window').width;
+
 
 function pressHandler() {
   Alert.alert('No Network connection', "We can't fetch suggestions. Please try again later.");
-}
-
-function MenuTitle() {
-  return (
-    <View style={styles.titleContainer}>
-      <Text style={styles.menuTitle}>
-        Acitivity Menu
-      </Text>
-    </View>
-  )
 }
 
 export default function MainMenu() {
@@ -152,30 +146,22 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9d4',
+    backgroundColor: '#696773',
+    width: windowWidth,
   },
   menu: {
-  },
-  titleContainer: {
-    flex: 0.1,
-    marginTop: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  menuTitle: {
-
   },
   menuContainer: {
     overflow: 'scroll',
     flex: 0.8,
     alignItems: 'center',
     justifyContent: 'center',
+    width: windowWidth,
   },
   menuCollapsible: {
-    width: 250,
     fontSize: 50,
-    borderRadius: 25,
-    borderColor: '#240037',
+    borderRadius: 10,
+    backgroundColor: '#B1B6A6',
   },
   menuSubText: {
     textAlign: 'center',
@@ -184,6 +170,9 @@ const styles = StyleSheet.create({
   menuSection: {
     fontSize: 30,
     fontFamily: 'Didot',
+    fontWeight: 'bold',
+    color: '#363946',
+    padding: 15
   },
   name: {
     fontSize: 25,
@@ -196,7 +185,7 @@ const styles = StyleSheet.create({
     margin: 3,
     padding: 6,
     fontSize: 15,
-    backgroundColor: 'black',
+    backgroundColor: '#363946',
     borderRadius: 5,
     flexDirection: 'column',
     alignItems: 'center',
@@ -208,9 +197,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   border: {
-    height: 5,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
+    paddingTop: 30
   },
   individualButton: {
     alignSelf: 'flex-end',

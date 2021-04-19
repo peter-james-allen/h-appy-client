@@ -8,7 +8,9 @@ export default function AboutButton() {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('About')}>
-        <Text>About this App</Text>
+        <Text style={styles.aboutText}>
+          About this App
+        </Text>
       </TouchableOpacity>
     </View>
   )
@@ -17,6 +19,16 @@ export default function AboutButton() {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 0
-  }
+    bottom: 0,
+    backgroundColor: '#819595',
+    flex: 0.2,
+    height: '8%',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  aboutText: {
+    fontFamily: 'Courier',
+    color: '#363946'
+  },
 })
