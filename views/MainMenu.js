@@ -31,21 +31,32 @@ export default function MainMenu() {
 
 function Item(item) {
   if (item.item._id != 'noConnection') {
-  return (
-    <View style={styles.item}>
-      <Text>{item.item.name} </Text>
-      <IndividualActivityButton style={styles.individualButton} id={item.item._id}/>
-    </View>
-  )} else {
     return (
       <View style={styles.item}>
-      <Text style={{textAlign: "center"}}>{item.item.name}.</Text>
-      <TouchableOpacity style={{paddingTop: 10}} onPress={()=>{
-    Alert.alert("No Network connection", "We can't fetch suggestions. Please try again later.")}}>
-      <Ionicons name="help" size={15} color="black" /></TouchableOpacity>
+        <Text>
+          {item.item.name}
+          {' '}
+        </Text>
+        <IndividualActivityButton style={styles.individualButton} item={item.item} />
+      </View>
+    );
+  }
+  return (
+    <View style={styles.item}>
+      <Text style={{ textAlign: 'center' }}>
+        {item.item.name}
+        .
+      </Text>
+      <TouchableOpacity
+        style={{ paddingTop: 10 }}
+        onPress={() => {
+          Alert.alert('No Network connection', "We can't fetch suggestions. Please try again later.");
+        }}
+      >
+        <Ionicons name="help" size={15} color="black" />
+      </TouchableOpacity>
     </View>
-    )
-  };
+  );
 }
 
 function MenuSection(props) {
@@ -148,7 +159,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     flexDirection: 'column',
     alignItems: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 
   border: {
@@ -157,6 +168,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   individualButton: {
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
   },
 });
