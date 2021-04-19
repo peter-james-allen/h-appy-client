@@ -1,5 +1,5 @@
 // eslint-disable-next-line prefer-const
-let globalUserData = {
+let userData = {
   nibbles: [
     {
       _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -45,12 +45,10 @@ let globalUserData = {
   ],
 };
 
-// const { globalUserData } = createGlobalState(initialUserData);
-
 export function addToUserData(menuSection, item) {
-  globalUserData[menuSection].push(item);
+  userData[menuSection].push(item);
 }
 
 export default function getUserData() {
-  return globalUserData;
+  return userData;
 }
