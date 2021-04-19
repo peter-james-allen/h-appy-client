@@ -13,27 +13,32 @@ import react from 'react';
 import Header from '../components/Header';
 import Grid from '../components/Grid';
 
+const windowWidth = Dimensions.get('window').width
+
 export default function IndividualActivity({ route }) {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <Header />
-      <View style={styles.nameFlex}>
-        <Text style={styles.name}>{route.params.item.name}</Text>
-      </View>
 
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.description}>
-          Being with animals improves mood and takes away stress. Just half an
-          hour with your furry friend per day can change your outlook and enable
-          you to be more productive.
-        </Text>
-      </View>
+      {/* <View style={styles.contentWrapper}> */}
+        <View style={styles.nameContainer}>
+          <Text style={styles.name}>{route.params.item.name}</Text>
+        </View>
 
-      <View style={styles.grid}>
-        <Grid activity={route.params.item} />
-      </View>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.description}>
+            Being with animals improves mood and takes away stress. Just half an
+            hour with your furry friend per day can change your outlook and enable
+            you to be more productive.
+          </Text>
+
+        <View style={styles.grid}>
+          <Grid activity={route.params.item} />
+        </View>
+        </View>
+      {/* </View> */}
 
       {/* <Button
         style={styles.menuButton}
@@ -45,26 +50,39 @@ export default function IndividualActivity({ route }) {
 }
 
 const styles = StyleSheet.create({
+  // contentWrapper: {
+  //   flex: 1,
+  //   maxWidth: windowWidth * 0.95,
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   backgroundColor: '#B1B6A6',
+  // },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9d4',
+    backgroundColor: '#696773',
     height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width,
+    width: windowWidth,
   },
   description: {
-    fontSize: 20,
+    fontSize: 18,
     lineHeight: 25,
     textAlign: 'center',
+    padding: 10,
+    position: 'absolute',
+    top: 5,
+    color: '#23252E',
+    fontFamily: 'Courier'
   },
   descriptionContainer: {
-    width: '80%',
-    flex: 0.1,
-    marginTop: 100,
-    position: 'absolute',
-    paddingBottom: 50,
+    flex: 0.95,
+    marginTop: '70%',
+    width: windowWidth * 0.9,
+    backgroundColor: '#B1B6A6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
   },
   individualDetail: {
     fontSize: 25,
@@ -77,15 +95,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Chalkduster',
     color: 'white',
   },
-  nameFlex: {
+  nameContainer: {
     flex: 0.3,
-    top: 100,
-    width: '80%',
+    top: 80,
+    width: windowWidth * 0.9,
     minHeight: 160,
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#363946',
+    borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -95,7 +114,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     elevation: 16,
   },
-  detailsFlex: {
+  detailsContainer: {
     flex: 0.4,
     marginTop: 40,
     position: 'absolute',
@@ -105,6 +124,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     flex: 0.3,
+    paddingBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
   },
   // menuButton: {
   //   position: 'absolute',

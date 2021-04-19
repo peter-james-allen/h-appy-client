@@ -3,9 +3,10 @@ import {
 } from 'react-native';
 import React from 'react';
 
+const windowWidth = Dimensions.get('window').width
 const numColumns = 2;
-const size = Dimensions.get('window').width / numColumns - 40;
-const height = size / 1.3;
+const gridWidth = windowWidth / numColumns - 35;
+const gridHeight = gridWidth / 2;
 
 export default function Grid(props) {
   const { activity } = props;
@@ -37,14 +38,14 @@ export default function Grid(props) {
 
 function containerStyle(item) {
   const itemContainer = {
-    width: size,
-    height,
+    width: gridWidth,
+    height: gridHeight,
   };
 
   if (item.id.includes('header')) {
     return {
-      width: size,
-      height: size / 4,
+      width: gridWidth,
+      height: gridWidth / 4,
     };
   }
   return itemContainer;
@@ -62,16 +63,20 @@ function itemStyle(item) {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    width: size,
-    height: size,
+    width: gridWidth,
+    height: gridWidth,
     flexDirection: 'row',
+    borderRadius: 10
   },
   item: {
     flex: 1,
     margin: 1,
-    fontSize: 25,
-    backgroundColor: '#cc3d3d',
+    fontSize: 18,
+    backgroundColor: '#353746',
     textAlign: 'center',
     color: '#fff',
+    borderRadius: 4,
+    overflow: 'hidden',
+    fontFamily: 'Chalkduster',
   },
 });
