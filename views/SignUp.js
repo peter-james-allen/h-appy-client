@@ -3,6 +3,7 @@ import {
   Text, View, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import Header from '../components/Header';
+import NewUserData from '../src/NewUserData';
 
 function SubmitButton(props) {
   const {
@@ -15,7 +16,7 @@ function SubmitButton(props) {
           marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
         }}
         onPress={() => {
-          console.log(Name);
+          NewUserData(Name, Username, Email, Password);
         }}
       >
         <Text style={{ color: '#fafafa' }}>Sign Up</Text>
