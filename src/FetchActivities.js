@@ -5,7 +5,7 @@ export default function FetchActivities() {
   const [apiData, setApiData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/activities')
+    fetch('https://happy-haddocks.herokuapp.com/activities')
       .then((response) => response.json())
       .then((json) => setApiData(json))
       .catch((error) => console.error(error));
