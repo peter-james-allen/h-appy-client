@@ -5,14 +5,18 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-
 const IndividualActivityButton = ({ item }) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity style={{paddingTop: 5}} onPress={() => navigation.navigate('IndividualActivity', { item })}>
-        <Text><Ionicons name="ellipsis-horizontal" size={15} color="black" /></Text>
-      </TouchableOpacity>
-  )
-}
+    <TouchableOpacity
+      style={{ paddingTop: 5 }}
+      onPress={() => navigation.navigate('IndividualActivity', { item })}
+    >
+      <Text>
+        <Ionicons name="ellipsis-horizontal" size={15} color="black" />
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 export default IndividualActivityButton;

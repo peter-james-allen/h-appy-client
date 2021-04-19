@@ -23,7 +23,7 @@ export default function IndividualActivity({ route }) {
       }
       const location = await Location.getCurrentPositionAsync({});
       setLocation(location);
-      console.log(location)
+      console.log(location);
     })();
   }, []);
 
