@@ -1,18 +1,22 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
-  StyleSheet, Text, View, Button, Image, TouchableOpacity, Alert, FlatList, ActivityIndicator,
+  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList, Dimensions,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import getUserData from '../src/UserData';
-import { badNetworkApiData, userData } from '../stockData';
+import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
+
+function pressHandler() {
+  Alert.alert('No Network connection', "We can't fetch suggestions. Please try again later.");
+}
 
 export default function MainMenu() {
   const [userData] = useState(getUserData());
@@ -30,10 +34,10 @@ export default function MainMenu() {
 }
 
 function Item(item) {
-  if (item.item._id != 'noConnection') {
+  if (item.item._id !== 'noConnection') {
     return (
       <View style={styles.item}>
-        <Text>
+        <Text style={styles.itemText}>
           {item.item.name}
           {' '}
         </Text>
@@ -43,15 +47,13 @@ function Item(item) {
   }
   return (
     <View style={styles.item}>
-      <Text style={{ textAlign: 'center' }}>
+      <Text style={styles.itemText}>
         {item.item.name}
         .
       </Text>
       <TouchableOpacity
         style={{ paddingTop: 10 }}
-        onPress={() => {
-          Alert.alert('No Network connection', "We can't fetch suggestions. Please try again later.");
-        }}
+        onPress={pressHandler}
       >
         <Ionicons name="help" size={15} color="black" />
       </TouchableOpacity>
@@ -155,13 +157,17 @@ const styles = StyleSheet.create({
     margin: 3,
     padding: 6,
     fontSize: 15,
-    backgroundColor: '#ffff99',
-    borderRadius: 20,
+    backgroundColor: 'black',
+    borderRadius: 5,
     flexDirection: 'column',
     alignItems: 'center',
-    textAlign: 'center',
   },
-
+  itemText: {
+    color: '#fff',
+    fontFamily: 'Chalkduster',
+    textAlign: 'center',
+    fontSize: 17
+  },
   border: {
     height: 5,
     borderBottomColor: 'black',
