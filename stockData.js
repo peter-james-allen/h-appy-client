@@ -46,7 +46,7 @@ const userData = {
 
 const badNetworkApiData = [
   {
-    _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
+    _id: 'noConnection',
     name: "The chef isn't available for requests right now",
     ingredients: [],
   },

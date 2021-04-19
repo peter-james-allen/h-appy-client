@@ -30,9 +30,6 @@ export default function MainMenu() {
 }
 
 function Item(item) {
-  const noConnectionAlert=()=>{
-    alert("We can't fetch suggestions. Please check your network connections.");
-  }
   if (item.item._id != 'noConnection') {
   return (
     <View style={styles.item}>
