@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import { FlatList } from 'react-native'
 
 import MapView from 'react-native-maps';
 import {
@@ -9,6 +10,32 @@ import {
 import { abs } from 'react-native-reanimated';
 import * as Location from 'expo-location';
 import Header from '../components/Header';
+import react from 'react';
+
+const numColumns = 2;
+const size = Dimensions.get('window').width / numColumns - 40;
+
+function Grid(props) {
+  const { activity } = props;
+  const data = [
+    { id: 'size', value: activity.size },
+    { id: 'categories', value: activity.categories },
+    { id: 'cost', value: `${activity.cost}/10\ncost` },
+    { id: 'accessibility', value: `${activity.accessibility}/10\naccessibility` },
+  ];
+
+  return (
+    <FlatList
+      data={data}
+      renderItem={({item}) => (
+        <View style={styles.itemContainer}>
+          <Text style={styles.item}>{item.value}</Text>
+        </View>
+      )}
+      keyExtractor={item => item.id}
+      numColumns={numColumns} />
+  );
+}
 
 export default function IndividualActivity({ route }) {
   const navigation = useNavigation();
@@ -28,7 +55,11 @@ export default function IndividualActivity({ route }) {
         </Text>
       </View>
 
-      <View style={styles.detailsFlex}>
+      <View style={styles.grid} >
+        <Grid activity={route.params.item} />
+      </View>
+
+      {/* <View style={styles.detailsFlex}>
         <Text style={styles.individualDetail}>
           {route.params.item.size}
         </Text>
@@ -44,7 +75,7 @@ export default function IndividualActivity({ route }) {
         <Text style={styles.individualDetail}>
           {route.params.item.categories}
         </Text>
-      </View>
+      </View> */}
 
       {/* <Button
         style={styles.menuButton}
@@ -74,7 +105,8 @@ const styles = StyleSheet.create({
     width: '80%',
     flex: 0.1,
     marginTop: 100,
-    position: 'absolute'
+    position: 'absolute',
+    paddingBottom: 50,
   },
   individualDetail: {
     fontSize: 25,
@@ -88,10 +120,10 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   nameFlex: {
-    flex: 0.2,
+    flex: 0.3,
     top: 100,
     width: '80%',
-    minHeight: 100,
+    minHeight: 160,
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
@@ -106,11 +138,28 @@ const styles = StyleSheet.create({
     elevation: 16,
   },
   detailsFlex: {
-    flex: 0.2,
+    flex: 0.4,
     marginTop: 40,
     position: 'absolute',
     bottom: 70,
   },
+  itemContainer: {
+    width: size,
+    height: size,
+
+  },
+  item: {
+    flex: 1,
+    margin: 3,
+    backgroundColor: 'lightblue',
+    textAlign: 'center',
+    paddingTop: '40%'
+  },
+  grid: {
+    position: 'absolute',
+    bottom: 0,
+    flex: 0.3,
+  }
   // menuButton: {
   //   position: 'absolute',
   //   bottom: 0,
