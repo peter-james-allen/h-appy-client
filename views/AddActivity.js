@@ -2,11 +2,11 @@
 import React, { useState } from 'react';
 import Slider from '@react-native-community/slider';
 import {
-  Text, View, TextInput, StyleSheet, TouchableOpacity,
+  Text, View, TextInput, StyleSheet, TouchableOpacity, Picker,
 } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+// import { Picker } from '@react-native-picker/picker';
 import Header from '../components/Header';
-import { addToUserData } from '../src/UserData';
+import { storeData } from '../src/UserData';
 
 export default function AddActivity() {
   const [ActivityType, setActivityType] = useState('default');
@@ -104,7 +104,7 @@ function SubmitButton(props) {
         onPress={() => {
           console.log(ActivityType);
           if (ActivityType !== 'default' && ActivityName !== '') {
-            addToUserData(ActivityType, {
+            storeData(ActivityType, {
               _id: ActivityName, name: ActivityName, accessibility, price,
             });
           }

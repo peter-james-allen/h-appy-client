@@ -1,7 +1,13 @@
 // eslint-disable-next-line prefer-const
+import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-let userData = {}
+const userData = {
+  nibbles: [], appetisers: [], mains: [], desserts: [],
+};
+
+export const emptyUserData = userData;
+
 const defaultData = {
   nibbles: [
     {
@@ -48,35 +54,36 @@ const defaultData = {
   ],
 };
 
-const storeData = async (value) => {
+const getData = async (key) => {
   try {
-    const jsonValue = JSON.stringify(value)
-    await AsyncStorage.setItem('@storage_Key', jsonValue)
-    alert('Activity successfully saved')
+    return AsyncStorage.getItem(key);
   } catch (e) {
-    alert('Failed to save the data to the storage')
+    alert('Failed to retrieve data');
   }
-}
+};
 
-const getData = async () => {
+const storeData = async (key, value) => {
   try {
-    const jsonValue = await AsyncStorage.getItem('@storage_Key')
-    console.log(JSON.parse(jsonValue))
-    return jsonValue != null ? JSON.parse(jsonValue) : defaultData;
-  } catch(e) {
-    // error
+    const jsonValue = JSON.stringify(value);
+    await AsyncStorage.setItem(key, jsonValue);
+    alert('Activity successfully saved');
+  } catch (e) {
+    alert('Failed to save the data to the storage');
   }
-}
+};
 
-export function addToUserData(menuSection, item) {
-  console.log(menuSection)
-  console.log(item)
-  console.log(userData)
-  userData[menuSection].push(item);
-  storeData(userData)
-}
+const getAllUserData = async () => {
+  const nibbles = await getData('nibbles');
+  const appetisers = await getData('appetisers');
+  const mains = await getData('mains');
+  const desserts = await getData('desserts');
+  
+  return {
+    nibbles: JSON.parse(nibbles),
+    appetisers: JSON.parse(appetisers),
+    mains: JSON.parse(mains),
+    desserts: JSON.parse(desserts),
+  };
+};
 
-export default function getUserData() {
-  getData().then((response) => userData = response)
-  return userData;
-}
+export storeData, getAllUserData

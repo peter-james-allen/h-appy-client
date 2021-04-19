@@ -9,13 +9,26 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
-import getUserData from '../src/UserData';
-import { badNetworkApiData, userData } from '../stockData';
+import getAllUserData, { emptyUserData } from '../src/UserData';
+import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
 
 export default function MainMenu() {
-  const [userData] = useState(getUserData());
+  const [userData, setUserData] = useState(emptyUserData);
+  useEffect(() => {
+    const fetchStuff = async () => {
+      const awaitedUserData = await getAllUserData();
+      setUserData(awaitedUserData);
+    };
+    fetchStuff();
+  }, []);
+  // console.log('MainMenu');
+  // console.log(userData);
+  // setTimeout(() => {
+  //   console.log('MainMenu timeout');
+  //   console.log(userData);
+  // }, 1000);
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
