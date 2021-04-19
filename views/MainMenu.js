@@ -1,33 +1,55 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
-  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList, Dimensions,
+  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList, Dimensions, LogBox,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 import Header from '../components/Header';
 import getUserData from '../src/UserData';
 import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
+import AboutButton from '../components/AboutButton';
 
 function pressHandler() {
   Alert.alert('No Network connection', "We can't fetch suggestions. Please try again later.");
 }
 
+function MenuTitle() {
+  return (
+    <View style={styles.titleContainer}>
+      <Text style={styles.menuTitle}>
+        Acitivity Menu
+      </Text>
+    </View>
+  )
+}
+
 export default function MainMenu() {
   const [userData] = useState(getUserData());
   const navigation = useNavigation();
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Header />
-      <TouchableOpacity onPress={() => navigation.navigate('About')}>
-        <Text>About this App</Text>
-      </TouchableOpacity>
-      <Menu userData={userData} />
+      <MenuTitle />
+
+      <View style={styles.menuContainer}>
+        <ScrollView>
+          <Menu userData={userData} style={styles.menu} />
+        </ScrollView>
+      </View>
+
+      <AboutButton />
       <StatusBar />
     </View>
   );
@@ -132,6 +154,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#f8f9d4',
   },
+  menu: {
+  },
+  titleContainer: {
+    flex: 0.1,
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  menuTitle: {
+
+  },
+  menuContainer: {
+    overflow: 'scroll',
+    flex: 0.8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   menuCollapsible: {
     width: 250,
     fontSize: 50,
@@ -166,7 +205,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontFamily: 'Chalkduster',
     textAlign: 'center',
-    fontSize: 17
+    fontSize: 17,
   },
   border: {
     height: 5,

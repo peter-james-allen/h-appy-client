@@ -1,5 +1,5 @@
-import React, { Component, useEffect, useState } from "react";
-import { DrawerActions, useNavigation } from "@react-navigation/native";
+import React, { Component, useEffect, useState } from 'react';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 import {
   Platform,
   StyleSheet,
@@ -8,10 +8,10 @@ import {
   Button,
   Dimensions,
   TextInput,
-} from "react-native";
-import Header from "../components/Header";
-import Grid from "../components/Grid";
-import react from "react";
+} from 'react-native';
+import react from 'react';
+import Header from '../components/Header';
+import Grid from '../components/Grid';
 
 export default function IndividualActivity({ route }) {
   const navigation = useNavigation();
@@ -47,23 +47,23 @@ export default function IndividualActivity({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#f8f9d4",
-    height: Dimensions.get("window").height,
-    width: Dimensions.get("window").width,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f8f9d4',
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
   },
   description: {
     fontSize: 20,
     lineHeight: 25,
-    textAlign: "center",
+    textAlign: 'center',
   },
   descriptionContainer: {
-    width: "80%",
+    width: '80%',
     flex: 0.1,
     marginTop: 100,
-    position: "absolute",
+    position: 'absolute',
     paddingBottom: 50,
   },
   individualDetail: {
@@ -72,21 +72,21 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 25,
-    textAlign: "center",
-    maxWidth: "90%",
-    fontFamily: "Chalkduster",
-    color: "white",
+    textAlign: 'center',
+    maxWidth: '90%',
+    fontFamily: 'Chalkduster',
+    color: 'white',
   },
   nameFlex: {
     flex: 0.3,
     top: 100,
-    width: "80%",
+    width: '80%',
     minHeight: 160,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "black",
-    shadowColor: "#000",
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'black',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 8,
@@ -98,11 +98,11 @@ const styles = StyleSheet.create({
   detailsFlex: {
     flex: 0.4,
     marginTop: 40,
-    position: "absolute",
+    position: 'absolute',
     bottom: 70,
   },
   grid: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     flex: 0.3,
   },
