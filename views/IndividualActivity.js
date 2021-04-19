@@ -53,8 +53,8 @@ export default function IndividualActivity({ route }) {
         <MapView
           style={styles.map}
           initialRegion={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
+            latitude: 20,
+            longitude: 20,
             latitudeDelta: 0.024,
             longitudeDelta: 0.789,
           }}

@@ -3,14 +3,16 @@ import { useNavigation } from '@react-navigation/native';
 import {
   Text, TouchableOpacity, ActivityIndicator,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
 
 const IndividualActivityButton = ({ item }) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('IndividualActivity', { item })}>
-      <Text>...</Text>
-    </TouchableOpacity>
-  );
-};
+    <TouchableOpacity style={{paddingTop: 5}} onPress={() => navigation.navigate('IndividualActivity', { item })}>
+        <Text><Ionicons name="ellipsis-horizontal" size={15} color="black" /></Text>
+      </TouchableOpacity>
+  )
+}
 
 export default IndividualActivityButton;

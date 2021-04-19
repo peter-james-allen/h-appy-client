@@ -1,4 +1,5 @@
-const userData = {
+// eslint-disable-next-line prefer-const
+let userData = {
   nibbles: [
     {
       _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -44,12 +45,10 @@ const userData = {
   ],
 };
 
-const badNetworkApiData = [
-  {
-    _id: 'noConnection',
-    name: "The chef isn't available for requests right now",
-    ingredients: [],
-  },
-];
+export function addToUserData(menuSection, item) {
+  userData[menuSection].push(item);
+}
 
-export { userData, badNetworkApiData };
+export default function getUserData() {
+  return userData;
+}

@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 import Slider from '@react-native-community/slider';
 import {
-  Text, View, TextInput, StyleSheet,
+  Text, View, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import Header from '../components/Header';
+import { addToUserData } from '../src/UserData';
 
 export default function AddActivity() {
-  const [text, setText] = useState('');
+  const [ActivityType, setActivityType] = useState('default');
+  const [ActivityName, setActivityName] = useState('');
+  const [accessibility, setAccessibility] = useState(0);
+  const [price, setPrice] = useState(0);
+
   return (
     <View style={styles.container}>
       <Header />
@@ -15,6 +21,16 @@ export default function AddActivity() {
 
       <View style={styles.FormItem}>
         <Text>Activity Type</Text>
+        <Picker
+          selectedValue={ActivityType}
+          onValueChange={(itemValue, itemIndex) => setActivityType(itemValue)}
+        >
+          <Picker.Item label="Select a Menu Section..." value="default" enabled={false} />
+          <Picker.Item label="Nibbles" value="nibbles" />
+          <Picker.Item label="Appetisers" value="appetisers" />
+          <Picker.Item label="Mains" value="mains" />
+          <Picker.Item label="Desserts" value="desserts" />
+        </Picker>
       </View>
 
       <View style={styles.FormItem}>
@@ -22,20 +38,21 @@ export default function AddActivity() {
         <TextInput
           style={{ height: 40 }}
           placeholder="enter the name of the activity here"
-          onChangeText={(text) => setText(text)}
-          defaultValue={text}
+          onChangeText={(newActivityName) => setActivityName(newActivityName)}
+          defaultValue={ActivityName}
         />
       </View>
 
-      <AccessibilitySlider />
-      <PriceSlider />
+      <AccessibilitySlider accessibility={accessibility} setAccessibility={setAccessibility} />
+      <PriceSlider price={price} setPrice={setPrice} />
 
+      <SubmitButton ActivityType={ActivityType} ActivityName={ActivityName} accessibility={accessibility} price={price} />
     </View>
   );
 }
 
-function AccessibilitySlider() {
-  const [accessibility, setAccessibility] = useState(0);
+function AccessibilitySlider(props) {
+  const { accessibility, setAccessibility } = props;
   return (
     <View>
       <Text>
@@ -54,8 +71,8 @@ function AccessibilitySlider() {
   );
 }
 
-function PriceSlider() {
-  const [price, setPrice] = useState(0);
+function PriceSlider(props) {
+  const { price, setPrice } = props;
   return (
     <View>
       <Text>
@@ -74,6 +91,31 @@ function PriceSlider() {
   );
 }
 
+function SubmitButton(props) {
+  const {
+    ActivityType, ActivityName, accessibility, price,
+  } = props;
+  return (
+    <View style={{ width: '80%' }}>
+      <TouchableOpacity
+        style={{
+          marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
+        }}
+        onPress={() => {
+          console.log(ActivityType);
+          if (ActivityType !== 'default' && ActivityName !== '') {
+            addToUserData(ActivityType, {
+              _id: ActivityName, name: ActivityName, accessibility, price,
+            });
+          }
+        }}
+      >
+        <Text style={{ color: '#fafafa' }}>Add</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -83,8 +125,10 @@ const styles = StyleSheet.create({
     alignContent: 'flex-start',
   },
   FormItem: {
+    padding: 4,
     margin: 3,
     borderWidth: 2,
+    borderRadius: 5,
     width: '80%',
   },
   slider: {

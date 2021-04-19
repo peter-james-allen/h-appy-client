@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import { StyleSheet, Platform, SafeAreaView } from 'react-native';
+import { StyleSheet, Platform, SafeAreaView, ScrollView } from 'react-native';
 import AppNavigator from './routes/AppNavigator';
 import DrawerNavigator from './routes/DrawerNavigator';
 
