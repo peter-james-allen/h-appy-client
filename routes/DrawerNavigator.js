@@ -34,7 +34,6 @@ function Desserts() {
 }
 
 const DrawerNavigator = () => (
-  <NavigationContainer>
     <Drawer.Navigator drawerStyle={{
     backgroundColor: '#f8f9d4',
     width: 240,
@@ -53,7 +52,6 @@ const DrawerNavigator = () => (
       <Drawer.Screen name="Desserts" component={Desserts} />
       <Drawer.Screen name="Create a Recipe" component={AddActivity} />
     </Drawer.Navigator>
-  </NavigationContainer>
 );
 
 export default DrawerNavigator;
