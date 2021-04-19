@@ -90,14 +90,14 @@ function MenuSection(props) {
       noArrow
     >
       <FlatList
-        ListHeaderComponent={<Text style={styles.menuSubText}>{subText}</Text>}
+        ListHeaderComponent={<Text style={styles.menuSubText}>Favourites</Text>}
         data={userData}
         renderItem={Item}
         keyExtractor={(item) => item._id}
       />
       <View style={styles.border} />
       <FlatList
-        ListHeaderComponent={<Text style={styles.menuSubText}>Chef's Specials</Text>}
+        ListHeaderComponent={<Text style={styles.menuSubText}>Specials</Text>}
         data={apiData}
         renderItem={Item}
         keyExtractor={(item) => item._id}
@@ -115,25 +115,21 @@ function Menu(props) {
     <View>
       <MenuSection
         section="Nibbles"
-        subText="Bitesized activities, for the short of time"
         apiData={apiData.nibbles}
         userData={userData.nibbles}
       />
       <MenuSection
         section="Appetisers"
-        subText="very tasty small things"
         apiData={apiData.appetisers}
         userData={userData.appetisers}
       />
       <MenuSection
         section="Mains"
-        subText="very tasty medium things"
         apiData={apiData.mains}
         userData={userData.mains}
       />
       <MenuSection
         section="Desserts"
-        subText="pudding"
         apiData={apiData.desserts}
         userData={userData.desserts}
       />
@@ -162,17 +158,20 @@ const styles = StyleSheet.create({
     fontSize: 50,
     borderRadius: 10,
     backgroundColor: '#B1B6A6',
+    width: windowWidth * 0.95,
   },
   menuSubText: {
     textAlign: 'center',
+    fontFamily: 'Chalkboard SE',
     fontSize: 20,
+    color: '#363946',
   },
   menuSection: {
     fontSize: 30,
     fontFamily: 'Didot',
     fontWeight: 'bold',
     color: '#363946',
-    padding: 15
+    padding: 25
   },
   name: {
     fontSize: 25,
