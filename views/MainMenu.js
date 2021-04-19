@@ -20,6 +20,9 @@ export default function MainMenu() {
   return (
     <View style={styles.container}>
       <Header />
+      <Image
+      style={styles.logo}
+      source={require('../assets/logo.png')}/>
       <TouchableOpacity onPress={() => navigation.navigate('About')}>
         <Text>About this App</Text>
       </TouchableOpacity>
@@ -170,4 +173,7 @@ const styles = StyleSheet.create({
   individualButton: {
     alignSelf: 'flex-end',
   },
+  logo: {
+    width: 200,
+    height: 100,  },
 });
