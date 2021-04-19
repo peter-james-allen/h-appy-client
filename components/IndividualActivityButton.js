@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
-  Text, TouchableOpacity, ActivityIndicator
+  Text, TouchableOpacity, ActivityIndicator,
 } from 'react-native';
 
-const IndividualActivityButton = ({id}) => {
+const IndividualActivityButton = ({ item }) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('IndividualActivity', {itemID: id})}>
-        <Text>...</Text>
-      </TouchableOpacity>
-  )
-}
+    <TouchableOpacity onPress={() => navigation.navigate('IndividualActivity', { item })}>
+      <Text>...</Text>
+    </TouchableOpacity>
+  );
+};
 
-export default IndividualActivityButton
+export default IndividualActivityButton;

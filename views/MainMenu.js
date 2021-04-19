@@ -29,7 +29,7 @@ function Item(item) {
     <View style={styles.item}>
       <Text>
         {item.item.name}
-        <IndividualActivityButton id={item.item._id}/>
+        <IndividualActivityButton item={item.item} />
       </Text>
     </View>
   );
