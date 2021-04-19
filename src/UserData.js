@@ -1,5 +1,8 @@
 // eslint-disable-next-line prefer-const
-let userData = {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+let userData = {}
+const defaultData = {
   nibbles: [
     {
       _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -45,10 +48,35 @@ let userData = {
   ],
 };
 
+const storeData = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem('@storage_Key', jsonValue)
+    alert('Activity successfully saved')
+  } catch (e) {
+    alert('Failed to save the data to the storage')
+  }
+}
+
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('@storage_Key')
+    console.log(JSON.parse(jsonValue))
+    return jsonValue != null ? JSON.parse(jsonValue) : defaultData;
+  } catch(e) {
+    // error
+  }
+}
+
 export function addToUserData(menuSection, item) {
+  console.log(menuSection)
+  console.log(item)
+  console.log(userData)
   userData[menuSection].push(item);
+  storeData(userData)
 }
 
 export default function getUserData() {
+  getData().then((response) => userData = response)
   return userData;
 }
