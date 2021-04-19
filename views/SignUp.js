@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text, View, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
@@ -16,8 +16,10 @@ function SubmitButton(props) {
           marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
         }}
         onPress={() => {
-          NewUserData(Name, Username, Email, Password);
-        }}
+          NewUserData(Name, Username, Email, Password)
+          }
+        }
+
       >
         <Text style={{ color: '#fafafa' }}>Sign Up</Text>
       </TouchableOpacity>
@@ -25,7 +27,7 @@ function SubmitButton(props) {
   );
 }
 
-export default function AddActivity() {
+export default function SignUp() {
   const [Name, setName] = useState('');
   const [Username, setUsername] = useState('');
   const [Email, setEmail] = useState('');
@@ -71,9 +73,9 @@ export default function AddActivity() {
         </View>
         <SubmitButton Name={Name} Username={Username} Email={Email} Password={Password} />
     </View>
-    
-  )};
 
+  )};
+    
   const styles = StyleSheet.create({
     container: {
       flex: 1,
