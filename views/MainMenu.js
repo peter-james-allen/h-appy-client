@@ -6,10 +6,10 @@ import {
   StyleSheet, Text, View, Button, Image, TouchableOpacity, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import fetch from 'node-fetch';
 import Header from '../components/Header';
+import { badNetworkApiData, userData } from '../stockData';
+import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
-
 
 export default function MainMenu() {
   const navigation = useNavigation();
@@ -25,9 +25,7 @@ export default function MainMenu() {
   );
 }
 
-
-
-function buildItem(item) {
+function Item(item) {
   const noConnectionAlert=()=>{
     alert("We can't fetch suggestions. Please check your network connections.");
   }
@@ -49,16 +47,15 @@ function buildItem(item) {
   };
 }
 
-function BuildMenuSection(props) {
+function MenuSection(props) {
   const { section } = props;
   const { subText } = props;
   let { apiData } = props;
   const { userData } = props;
   const navigation = useNavigation();
-
   apiData = apiData || badNetworkApiData;
-  return (
 
+  return (
     <CollapsibleView
       title={<Text style={styles.menuSection}>{section}</Text>}
       style={styles.menuCollapsible}
@@ -67,20 +64,14 @@ function BuildMenuSection(props) {
       <FlatList
         ListHeaderComponent={<Text style={styles.menuSubText}>{subText}</Text>}
         data={userData}
-        renderItem={buildItem}
+        renderItem={Item}
         keyExtractor={(item) => item._id}
       />
-      <View
-        style={{
-          height: 5,
-          borderBottomColor: 'black',
-          borderBottomWidth: 1,
-        }}
-      />
+      <View style={styles.border} />
       <FlatList
         ListHeaderComponent={<Text style={styles.menuSubText}>Chef's Specials</Text>}
         data={apiData}
-        renderItem={buildItem}
+        renderItem={Item}
         keyExtractor={(item) => item._id}
         navigation={props.navigation}
       />
@@ -90,41 +81,29 @@ function BuildMenuSection(props) {
 
 function Menu(props) {
   const { userData } = props;
-  const [isLoading, setLoading] = useState(true);
-  const [apiData, setApiData] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3000/activities')
-      .then((response) => response.json())
-      .then((json) => setApiData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+  const apiData = FetchActivities();
 
   return (
     <View>
-      <BuildMenuSection
+      <MenuSection
         section="Nibbles"
         subText="Bitesized activities, for the short of time"
         apiData={apiData.nibbles}
         userData={userData.nibbles}
       />
-
-      <BuildMenuSection
+      <MenuSection
         section="Appetisers"
         subText="very tasty small things"
         apiData={apiData.appetisers}
         userData={userData.appetisers}
       />
-
-      <BuildMenuSection
+      <MenuSection
         section="Mains"
         subText="very tasty medium things"
         apiData={apiData.mains}
         userData={userData.mains}
       />
-
-      <BuildMenuSection
+      <MenuSection
         section="Desserts"
         subText="pudding"
         apiData={apiData.desserts}
@@ -137,7 +116,6 @@ function Menu(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f8f9d4',
@@ -163,11 +141,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     fontFamily: 'Didot',
   },
-  homeImage: {
-    bottom: 30,
-    width: 200,
-    height: 200,
-  },
   item: {
     margin: 3,
     padding: 6,
@@ -178,61 +151,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center'
   },
+  border: {
+    height: 5,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
   individualButton: {
     alignSelf: 'flex-end'
-  }
-});
-
-const userData = {
-  nibbles: [
-    {
-      _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
-      name: 'Go to the Cinema',
-      ingredients: [],
-    },
-    {
-      _id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      name: 'Do a Puzzle',
-      ingredients: ['a phone or computer or puzzle book'],
-    },
-    {
-      _id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      name: 'Take a long awaited break',
-      ingredients: [],
-    },
-  ],
-  appetisers: [
-    {
-      _id: 'bd7acbea-c1b1-46c2-aed5-3ad53dbb28ba',
-      name: 'Do a codewars kata',
-      ingredients: ['computer'],
-    },
-    {
-      _id: 'bd0acjea-c4b1-46c2-red5-3ad53abb28ba',
-      name: 'Play a piece of music',
-      ingredients: ['an instrument', 'somewhere private'],
-    },
-  ],
-  mains: [
-    {
-      _id: 'ai589cm1-oi5n-alf3-bd96-145571e29d72',
-      name: 'Learn a new song on the guitar',
-      ingredients: ['a guitar'],
-    },
-  ],
-  desserts: [
-    {
-      _id: '3ac68afc-dk30-3kf9-a4f8-fbd91aa9d07k',
-      name: 'Browse Reddit for 3 hours',
-      ingredients: ['a phone', 'Ennui'],
-    },
-  ],
-};
-
-const badNetworkApiData = [
-  {
-    _id: 'noConnection',
-    name: "The chef isn't available for requests right now",
-    ingredients: [],
   },
-];
+});

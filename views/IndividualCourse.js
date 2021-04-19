@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Button, FlatList,
 } from 'react-native';
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
+import FetchActivities from '../src/FetchActivities';
 
 function buildItem(item) {
-  console.log(item);
   return (
     <View>
       <Text>{item.item.name}</Text>
@@ -19,16 +19,7 @@ export default function IndividualCourse(props) {
   const { dataKey, header } = props;
 
   const navigation = useNavigation();
-  const [isLoading, setLoading] = useState(true);
-  const [apiData, setApiData] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3000/activities')
-      .then((response) => response.json())
-      .then((json) => setApiData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+  const apiData = FetchActivities();
 
   return (
     <View style={styles.container}>
@@ -77,20 +68,6 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     width: '100%',
-  },
-  menuCollapsible: {
-    width: 250,
-    fontSize: 50,
-    borderRadius: 25,
-    borderColor: '#240037',
-  },
-  menuSubText: {
-    textAlign: 'center',
-    fontSize: 20,
-  },
-  menuSection: {
-    fontSize: 30,
-    fontFamily: 'Didot',
   },
   activityList: {
     justifyContent: 'center',
