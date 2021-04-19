@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,11 +9,13 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
+import getUserData from '../src/UserData';
 import { badNetworkApiData, userData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
 
 export default function MainMenu() {
+  const [userData] = useState(getUserData());
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -48,10 +52,8 @@ function Item(item) {
 }
 
 function MenuSection(props) {
-  const { section } = props;
-  const { subText } = props;
+  const { section, subText, userData } = props;
   let { apiData } = props;
-  const { userData } = props;
   const navigation = useNavigation();
   apiData = apiData || badNetworkApiData;
 
@@ -151,6 +153,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center'
   },
+
   border: {
     height: 5,
     borderBottomColor: 'black',
