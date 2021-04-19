@@ -44,7 +44,7 @@ function Item(item) {
       <View style={styles.item}>
       <Text style={{textAlign: "center"}}>{item.item.name}.</Text>
       <TouchableOpacity style={{paddingTop: 10}} onPress={()=>{
-    Alert.alert("No Network connection", "We can't fetch suggestions. Please try again later.")}}> 
+    Alert.alert("No Network connection", "We can't fetch suggestions. Please try again later.")}}>
       <Ionicons name="help" size={15} color="black" /></TouchableOpacity>
     </View>
     )
@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
     height: 5,
     borderBottomColor: 'black',
     borderBottomWidth: 1,
+  },
   individualButton: {
     alignSelf: 'flex-end'
   },
