@@ -12,6 +12,20 @@ import GetLocation from '../src/GetLocation';
 
 export default function IndividualActivity({ route }) {
   const navigation = useNavigation();
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+      const location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      console.log(location)
+    })();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -39,8 +53,8 @@ export default function IndividualActivity({ route }) {
         <MapView
           style={styles.map}
           initialRegion={{
-            latitude: 51.5074,
-            longitude: 0.1278,
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
             latitudeDelta: 0.024,
             longitudeDelta: 0.789,
           }}

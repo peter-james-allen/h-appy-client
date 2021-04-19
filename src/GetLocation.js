@@ -17,5 +17,7 @@ export default function GetLocation() {
     })();
   }, []);
 
+  console.log(location)
+
   return location;
 }
