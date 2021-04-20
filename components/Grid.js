@@ -20,7 +20,7 @@ export default function Grid(props) {
     { id: 'categories', value: categories },
     { id: 'header2', value: 'Cost' },
     { id: 'header3', value: 'Acccessibility' },
-    { id: 'cost', value: `${activity.cost}/10` },
+    { id: 'cost', value: '£ '.repeat(activity.cost) || 'Free :)' },
     { id: 'accessibility', value: `${activity.accessibility}/10` },
   ];
 

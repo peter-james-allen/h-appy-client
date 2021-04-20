@@ -1,5 +1,7 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  Text, View, StyleSheet, TouchableOpacity,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function MenuButton() {
