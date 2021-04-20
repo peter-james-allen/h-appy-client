@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton.js';
+import MenuButton from '../components/MenuButton';
 
 function buildItem(item) {
   return (
@@ -25,8 +26,6 @@ const windowWidth = Dimensions.get('window').width;
 
 export default function IndividualCourse(props) {
   const { dataKey, header, description } = props;
-
-  const navigation = useNavigation();
   const apiData = FetchActivities();
 
   return (
@@ -51,16 +50,7 @@ export default function IndividualCourse(props) {
           />
         </View>
       </View>
-      <View style={styles.menuButtonContainer}>
-        <TouchableOpacity>
-          <Text
-            style={styles.menuButton}
-            onPress={() => navigation.navigate('Menu')}
-          >
-            Back to the Main Menu
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <MenuButton />
     </View>
   );
 }
@@ -139,19 +129,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
-  },
-  menuButtonContainer: {
-    position: 'absolute',
-    bottom: 0,
-    backgroundColor: '#819595',
-    flex: 0.2,
-    height: '4%',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  menuButton: {
-    fontFamily: 'Courier',
-    color: '#363946',
   },
 });
