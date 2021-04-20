@@ -5,12 +5,15 @@ import {
 } from 'react-native';
 import AppNavigator from './routes/AppNavigator';
 import DrawerNavigator from './routes/DrawerNavigator';
+import FlashMessage from 'react-native-flash-message';
+
 
 export default function App() {
   return (
     <>
       <SafeAreaView style={styles.safeAreaTop} />
       <SafeAreaView style={styles.safeAreaBottom}>
+        <FlashMessage position="top" />
         <AppNavigator />
       </SafeAreaView>
       <StatusBar barStyle="light-content" />
