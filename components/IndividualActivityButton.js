@@ -11,7 +11,7 @@ const IndividualActivityButton = ({id}) => {
   return (
     <TouchableOpacity style={{paddingTop: 5}} onPress={() => navigation.navigate('IndividualActivity', {itemID: id})}>
         <Text><Ionicons name="ellipsis-horizontal" size={15} color="black" /></Text>
-      </TouchableOpacity>
+    </TouchableOpacity>
   )
 }
 

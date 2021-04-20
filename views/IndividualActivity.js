@@ -5,6 +5,7 @@ import {
   StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
 import Header from '../components/Header';
+import deleteData from '../src/UserData';
 
 
 
@@ -16,6 +17,10 @@ export default function IndividualActivity({ route }) {
       <Header />
       <Text>all the stuff you wanna know about your activity goes here</Text>
       <Text>itemId: {route.params.itemID}</Text>
+      <Button
+      title = "Delete this activity"
+      // onPress = {deleteDate(key, item.id)}
+      />
       <Button
         title="Back to the Main Menu"
         onPress={() => navigation.navigate('Menu')}
