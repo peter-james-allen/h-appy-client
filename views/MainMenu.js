@@ -19,7 +19,6 @@ import MenuTitle from '../components/MenuTitle'
 
 const windowWidth = Dimensions.get('window').width;
 
-
 function pressHandler() {
   Alert.alert('No Network connection', "We can't fetch suggestions. Please try again later.");
 }
@@ -164,7 +163,7 @@ const styles = StyleSheet.create({
   },
   menuSubText: {
     textAlign: 'center',
-    fontFamily: 'Chalkboard SE',
+    fontFamily: 'Courier',
     fontSize: 20,
     color: '#363946',
   },

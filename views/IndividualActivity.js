@@ -1,14 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Dimensions,
-  TextInput,
-} from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import react from 'react';
 import Header from '../components/Header';
 import Grid from '../components/Grid';
@@ -21,8 +13,6 @@ export default function IndividualActivity({ route }) {
   return (
     <View style={styles.container}>
       <Header />
-
-      {/* <View style={styles.contentWrapper}> */}
         <View style={styles.nameContainer}>
           <Text style={styles.name}>{route.params.item.name}</Text>
         </View>
@@ -38,7 +28,6 @@ export default function IndividualActivity({ route }) {
           <Grid activity={route.params.item} />
         </View>
         </View>
-      {/* </View> */}
 
       {/* <Button
         style={styles.menuButton}
@@ -50,13 +39,6 @@ export default function IndividualActivity({ route }) {
 }
 
 const styles = StyleSheet.create({
-  // contentWrapper: {
-  //   flex: 1,
-  //   maxWidth: windowWidth * 0.95,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   backgroundColor: '#B1B6A6',
-  // },
   container: {
     flex: 1,
     alignItems: 'center',

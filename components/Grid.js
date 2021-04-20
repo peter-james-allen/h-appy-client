@@ -10,6 +10,8 @@ const gridHeight = gridWidth / 2;
 
 export default function Grid(props) {
   const { activity } = props;
+
+  if (!activity.categories) { activity.categories = [] }
   const categories = activity.categories.join('\n');
   const data = [
     { id: 'header0', value: 'Size' },
