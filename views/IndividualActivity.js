@@ -6,6 +6,7 @@ import {
 import react from 'react';
 import Header from '../components/Header';
 import Grid from '../components/Grid';
+import MenuButton from '../components/MenuButton';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -31,11 +32,7 @@ export default function IndividualActivity({ route }) {
         </View>
       </View>
 
-      {/* <Button
-        style={styles.menuButton}
-        title="Back to the Main Menu"
-        onPress={() => navigation.navigate('Menu')}
-      /> */}
+      <MenuButton />
     </View>
   );
 }
@@ -61,7 +58,8 @@ const styles = StyleSheet.create({
   },
   descriptionContainer: {
     flex: 0.95,
-    marginTop: '70%',
+    marginTop: '65%',
+    marginBottom: '10%',
     width: windowWidth * 0.9,
     backgroundColor: '#B1B6A6',
     alignItems: 'center',
@@ -118,9 +116,4 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     elevation: 16,
   },
-  // menuButton: {
-  //   position: 'absolute',
-  //   bottom: 0,
-  //   flex: 0.1
-  // },
 });
