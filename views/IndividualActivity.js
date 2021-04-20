@@ -1,10 +1,11 @@
 import React, { Component, useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Dimensions,
+  StyleSheet, Text, View, Dimensions, Button,
 } from 'react-native';
 import react from 'react';
 import Header from '../components/Header';
+import { deleteDataByID } from '../src/UserData';
 import Grid from '../components/Grid';
 import MenuButton from '../components/MenuButton';
 
@@ -31,6 +32,12 @@ export default function IndividualActivity({ route }) {
           <Grid activity={route.params.item} />
         </View>
       </View>
+
+      <Button
+        title="Delete this activity"
+        onPress={() => { deleteDataByID(route.params.item._id); navigation.navigate('Menu'); }}
+      // onPress = {deleteDate(key, item.id)}
+      />
 
       <MenuButton />
     </View>

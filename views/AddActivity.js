@@ -2,18 +2,13 @@
 import React, { useState } from "react";
 import Slider from "@react-native-community/slider";
 import {
-  Text,
-  View,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import { Picker } from "@react-native-picker/picker";
-import MultiSelect from "react-native-multiple-select";
-import Header from "../components/Header";
-import { addToUserData } from "../src/UserData";
+  Text, View, TextInput, StyleSheet, TouchableOpacity, Picker,
+} from 'react-native';
+// import { Picker } from '@react-native-picker/picker';
+import { useNavigation } from '@react-navigation/native';
+import Header from '../components/Header';
+import { storeData, doesActivityNameExist, addToUserData } from '../src/UserData';
 import { FetchCategories } from "../src/FetchActivities";
-// import CategorySelect from "../components/CategorySelect";
 
 export default function AddActivity() {
   const [ActivityType, setActivityType] = useState("default");
@@ -128,6 +123,7 @@ function PriceSlider(props) {
 }
 
 function SubmitButton(props) {
+  const navigation = useNavigation();
   const {
     ActivityType,
     ActivityName,
@@ -147,15 +143,17 @@ function SubmitButton(props) {
           borderRadius: 8,
         }}
         onPress={() => {
-          if (ActivityType !== "default" && ActivityName !== "") {
-            addToUserData(ActivityType, {
-              _id: ActivityName,
-              name: ActivityName,
-              accessibility: accessibility,
-              cost: price,
-              categories: categories,
-              size: ActivityType,
+          if (ActivityType === 'default') {
+            alert('Please select an activity type');
+          } else if (ActivityName === '') {
+            alert('Please enter an activity name!');
+          } else if (doesActivityNameExist(ActivityType, ActivityName)) {
+            alert('Activity name already exists!');
+          } else {
+            storeData(ActivityType, {
+              _id: ActivityName, name: ActivityName, accessibility, price,
             });
+            navigation.navigate('Menu');
           }
         }}
       >

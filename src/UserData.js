@@ -1,5 +1,13 @@
 // eslint-disable-next-line prefer-const
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 let userData = {
+  nibbles: [], appetisers: [], mains: [], desserts: [],
+};
+
+export const emptyUserData = userData;
+
+const defaultData = {
   nibbles: [
     {
       _id: 'bd7dcbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -45,10 +53,66 @@ let userData = {
   ],
 };
 
-export function addToUserData(menuSection, item) {
-  userData[menuSection].push(item);
+const getData = async (key) => {
+  try {
+    const data = await AsyncStorage.getItem(key);
+    return data != null ? JSON.parse(data) : defaultData[key];
+  } catch (e) {
+    alert('Failed to retrieve data');
+  }
+};
+
+export const storeData = async (key, value) => {
+  try {
+    userData[key].push(value);
+    const jsonValue = JSON.stringify(userData[key]);
+    await AsyncStorage.setItem(key, jsonValue);
+    alert('Activity successfully saved');
+  } catch (e) {
+    alert('Failed to save the data to the storage');
+  }
+};
+
+export const deleteDataByID = async (ID) => {
+  let key;
+  // eslint-disable-next-line no-restricted-syntax
+  for (key of Object.keys(userData)) {
+    const filterLength = userData[key].filter((item) => item._id === ID).length;
+    if (filterLength > 0) {
+      deleteData(key, ID);
+      break;
+    }
+  }
+};
+
+export const deleteData = async (key, value) => {
+  try {
+    userData[key] = userData[key].filter((item) => item._id !== value);
+    const jsonValue = JSON.stringify(userData[key]);
+    await AsyncStorage.setItem(key, jsonValue);
+    alert('Activity successfully deleted');
+  } catch (e) {
+    alert('Failed to save the data to the storage');
+  }
+};
+
+const getAllUserData = async () => {
+  const nibbles = await getData('nibbles');
+  const appetisers = await getData('appetisers');
+  const mains = await getData('mains');
+  const desserts = await getData('desserts');
+  userData = {
+    nibbles,
+    appetisers,
+    mains,
+    desserts,
+  };
+  return userData;
+};
+
+export function doesActivityNameExist(key, name) {
+  const existingName = userData[key].filter((item) => item.name === name);
+  return existingName.length !== 0;
 }
 
-export default function getUserData() {
-  return userData;
-}
+export default getAllUserData;

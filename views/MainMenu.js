@@ -7,10 +7,10 @@ import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
   StyleSheet, Text, View, TouchableOpacity, Alert, FlatList, Dimensions, LogBox,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Header from '../components/Header';
-import getUserData from '../src/UserData';
+import getAllUserData, { emptyUserData } from '../src/UserData';
 import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
@@ -24,7 +24,17 @@ function pressHandler() {
 }
 
 export default function MainMenu() {
-  const [userData] = useState(getUserData());
+  const [userData, setUserData] = useState(emptyUserData);
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    const fetchStuff = async () => {
+      const awaitedUserData = await getAllUserData();
+      setUserData(awaitedUserData);
+    };
+    fetchStuff();
+  }, [isFocused]);
+
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -78,7 +88,9 @@ function Item(item) {
 }
 
 function MenuSection(props) {
-  const { section, subText, userData } = props;
+  const {
+    section, subText, userData,
+  } = props;
   let { apiData } = props;
   const navigation = useNavigation();
   apiData = apiData || badNetworkApiData;
