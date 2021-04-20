@@ -81,6 +81,19 @@ export const storeData = async (key, value) => {
   }
 };
 
+export const deleteData = async (key, value) => {
+  try {
+    userData[key] = userData[key].filter(item => item.id !== value)
+    const jsonValue = JSON.stringify(userData[key]);
+    await AsyncStorage.setItem(key, jsonValue);
+    dataChange = true;
+    alert('Activity successfully saved');
+  } catch (e) {
+    alert('Failed to save the data to the storage');
+  }
+};
+
+
 const getAllUserData = async () => {
   const nibbles = await getData('nibbles');
   const appetisers = await getData('appetisers');
