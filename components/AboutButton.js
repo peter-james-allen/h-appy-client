@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import {
+  View, Text, StyleSheet, TouchableOpacity,
+} from 'react-native';
 
 export default function AboutButton() {
   const navigation = useNavigation();
@@ -13,7 +15,7 @@ export default function AboutButton() {
         </Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -29,6 +31,6 @@ const styles = StyleSheet.create({
   },
   aboutText: {
     fontFamily: 'Courier',
-    color: '#363946'
+    color: '#363946',
   },
-})
+});

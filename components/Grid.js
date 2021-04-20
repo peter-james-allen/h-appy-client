@@ -3,7 +3,7 @@ import {
 } from 'react-native';
 import React from 'react';
 
-const windowWidth = Dimensions.get('window').width
+const windowWidth = Dimensions.get('window').width;
 const numColumns = 2;
 const gridWidth = windowWidth / numColumns - 35;
 const gridHeight = gridWidth / 2;
@@ -11,7 +11,7 @@ const gridHeight = gridWidth / 2;
 export default function Grid(props) {
   const { activity } = props;
 
-  if (!activity.categories) { activity.categories = [] }
+  if (!activity.categories) { activity.categories = []; }
   const categories = activity.categories.join('\n');
   const data = [
     { id: 'header0', value: 'Size' },
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     width: gridWidth,
     height: gridWidth,
     flexDirection: 'row',
-    borderRadius: 10
+    borderRadius: 10,
   },
   item: {
     flex: 1,

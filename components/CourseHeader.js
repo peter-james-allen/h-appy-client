@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontFamily: 'Didot',
     textAlign: 'center',
-    color: '#353746'
+    color: '#353746',
   },
   courseHeaderContainer: {
     flex: 1,

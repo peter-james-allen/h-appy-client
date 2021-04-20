@@ -15,7 +15,7 @@ import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
 import AboutButton from '../components/AboutButton';
-import MenuTitle from '../components/MenuTitle'
+import MenuTitle from '../components/MenuTitle';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Didot',
     fontWeight: 'bold',
     color: '#363946',
-    padding: 25
+    padding: 25,
   },
   name: {
     fontSize: 25,
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     borderRadius: 5,
     overflow: 'hidden',
-    padding: 3
+    padding: 3,
   },
   border: {
     paddingTop: 30,

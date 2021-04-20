@@ -5,8 +5,10 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainMenu from '../views/MainMenu';
 import About from '../views/About';
 import IndividualCourse from '../views/IndividualCourse';
-import AddActivity from '../views/AddActivity'
-import { NIBBLES, APPETISERS, MAINS, DESSERTS } from '../src/CourseDescriptions'
+import AddActivity from '../views/AddActivity';
+import {
+  NIBBLES, APPETISERS, MAINS, DESSERTS,
+} from '../src/CourseDescriptions';
 
 const Drawer = createDrawerNavigator();
 
@@ -77,12 +79,12 @@ const styles = StyleSheet.create({
 const drawerContentStyles = {
   activeTintColor: '#819595',
   itemStyle: {
-    marginVertical: 5
+    marginVertical: 5,
   },
   labelStyle: {
     fontFamily: 'Didot',
     fontSize: 20,
     paddingTop: 10,
-    color: '#B1B6A6'
+    color: '#B1B6A6',
   },
 };

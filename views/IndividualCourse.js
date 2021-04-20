@@ -6,18 +6,18 @@ import {
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
 import FetchActivities from '../src/FetchActivities';
-import IndividualActivityButton from '../components/IndividualActivityButton.js'
+import IndividualActivityButton from '../components/IndividualActivityButton.js';
 
 function buildItem(item) {
   return (
     <View style={styles.itemContainer}>
-    <View style={styles.item}>
-      <Text style={styles.itemText}>
-        {item.item.name}
-      </Text>
-      <IndividualActivityButton style={styles.individualButton} item={item.item} />
+      <View style={styles.item}>
+        <Text style={styles.itemText}>
+          {item.item.name}
+        </Text>
+        <IndividualActivityButton style={styles.individualButton} item={item.item} />
+      </View>
     </View>
-  </View>
   );
 }
 
@@ -48,7 +48,7 @@ export default function IndividualCourse(props) {
             data={apiData[dataKey]}
             renderItem={buildItem}
             keyExtractor={(item) => item._id}
-            />
+          />
         </View>
       </View>
       <View style={styles.menuButtonContainer}>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Courier',
     textAlign: 'center',
     fontSize: 17,
-    color: '#353746'
+    color: '#353746',
   },
   headerContainer: {
     flex: 0.08,
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.9,
     padding: 15,
     top: '10%',
-    borderRadius: 5
+    borderRadius: 5,
   },
   activityList: {
     justifyContent: 'center',
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     borderRadius: 5,
     overflow: 'hidden',
-    padding: 3
+    padding: 3,
   },
   activitiesContainer: {
     flex: 0.95,
@@ -152,6 +152,6 @@ const styles = StyleSheet.create({
   },
   menuButton: {
     fontFamily: 'Courier',
-    color: '#363946'
+    color: '#363946',
   },
 });

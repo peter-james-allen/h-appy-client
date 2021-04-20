@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
 
 export default function MenuTitle() {
   return (
@@ -8,7 +8,7 @@ export default function MenuTitle() {
         {/* Acitivity Menu */}
       </Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     color: '#B1B6A6',
     fontSize: 18,
   },
-})
+});

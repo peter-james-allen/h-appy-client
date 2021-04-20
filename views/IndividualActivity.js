@@ -1,6 +1,8 @@
 import React, { Component, useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import {
+  StyleSheet, Text, View, Dimensions,
+} from 'react-native';
 import react from 'react';
 import Header from '../components/Header';
 import Grid from '../components/Grid';
@@ -13,21 +15,21 @@ export default function IndividualActivity({ route }) {
   return (
     <View style={styles.container}>
       <Header />
-        <View style={styles.nameContainer}>
-          <Text style={styles.name}>{route.params.item.name}</Text>
-        </View>
+      <View style={styles.nameContainer}>
+        <Text style={styles.name}>{route.params.item.name}</Text>
+      </View>
 
-        <View style={styles.descriptionContainer}>
-          <Text style={styles.description}>
-            Being with animals improves mood and takes away stress. Just half an
-            hour with your furry friend per day can change your outlook and enable
-            you to be more productive.
-          </Text>
+      <View style={styles.descriptionContainer}>
+        <Text style={styles.description}>
+          Being with animals improves mood and takes away stress. Just half an
+          hour with your furry friend per day can change your outlook and enable
+          you to be more productive.
+        </Text>
 
-          <View style={styles.grid}>
-            <Grid activity={route.params.item} />
-          </View>
+        <View style={styles.grid}>
+          <Grid activity={route.params.item} />
         </View>
+      </View>
 
       {/* <Button
         style={styles.menuButton}
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 5,
     color: '#23252E',
-    fontFamily: 'Courier'
+    fontFamily: 'Courier',
   },
   descriptionContainer: {
     flex: 0.95,
