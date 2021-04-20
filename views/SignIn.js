@@ -18,8 +18,7 @@ function SubmitButton(props) {
           marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
         }}
         onPress={() => {
-          SendAuthenticationData(Email, Password)
-          navigation.navigate('Menu')
+          SendAuthenticationData(Email, Password, navigation)
           }
         }
 
@@ -39,7 +38,7 @@ export default function SignIn() {
         <View style={styles.FormItem}>
         <Text>Email</Text>
         <TextInput
-          style={{ height: 10 }}
+          style={{ height: 20 }}
           onChangeText={(newEmail) => setEmail(newEmail)}
           defaultValue={Email}
         />
@@ -47,7 +46,7 @@ export default function SignIn() {
         <View style={styles.FormItem}>
         <Text>Password</Text>
         <TextInput
-          style={{ height: 10 }}
+          style={{ height: 20 }}
           onChangeText={(newPassword) => setPassword(newPassword)}
           defaultValue={Password}
         />

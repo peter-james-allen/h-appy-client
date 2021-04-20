@@ -2,7 +2,7 @@ import {useState, useEffect } from 'react';
 import { showMessage, hideMessage } from "react-native-flash-message";
 import fetch from 'node-fetch';
 
-export default sendUserData = async (nameData, usernameData, emailData, passwordData) => {
+export default sendUserData = async (nameData, usernameData, emailData, passwordData, navigation) => {
       let response = await fetch('http://localhost:3000/user', {
       method: 'POST',
       headers: {
@@ -17,18 +17,18 @@ export default sendUserData = async (nameData, usernameData, emailData, password
       })
     });
       let json = await response.json();
-      messages(json);
+      validation(json);
     };
     
- const messages = (response) => {
+ const validation = (response, navigation) => {
    if (response.user) {
      showMessage({
        message: "Signup successful",
        description: `Welcome to H-Appy, ${response.user.name}!`,
        type: "success",
      });
-   }
-  if (response.name && response.name === "MongoError") {
+     navigation.navigate('Menu')
+   } else if (response.name && response.name === "MongoError") {
     if ("email" in response.keyPattern) {
       showMessage({
         message: "Email in use",
@@ -36,7 +36,7 @@ export default sendUserData = async (nameData, usernameData, emailData, password
         type: "error",
       });
     }
-    if ("username" in response.keyPattern) {
+    else if ("username" in response.keyPattern) {
       showMessage({
         message: "Username in use",
         description: "That username has already been taken",
@@ -44,7 +44,7 @@ export default sendUserData = async (nameData, usernameData, emailData, password
       });
     }
   }
-  if (response.errors) {
+  else if (response.errors) {
     if (response.errors.email && response.errors.email.name === "ValidatorError") {
       showMessage({
         message: "Email not valid",
@@ -52,7 +52,7 @@ export default sendUserData = async (nameData, usernameData, emailData, password
         type: "error",
       });
     }
-    if (response.errors.password && response.errors.password.name === "ValidatorError") {
+    else if (response.errors.password && response.errors.password.name === "ValidatorError") {
       showMessage({
         message: "Password too short",
         description: "Your password must be at least 8 characters long",
@@ -60,4 +60,5 @@ export default sendUserData = async (nameData, usernameData, emailData, password
       });
     }
   }
- }
+}
+ 

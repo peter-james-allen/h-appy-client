@@ -18,8 +18,7 @@ function SubmitButton(props) {
           marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
         }}
         onPress={() => {
-          SendUserData(Name, Username, Email, Password)
-          navigation.navigate('Menu')
+          SendUserData(Name, Username, Email, Password, navigation)
           }
         }
 
@@ -41,7 +40,7 @@ export default function SignUp() {
         <View style={styles.FormItem}>
         <Text>Name</Text>
         <TextInput
-          style={{ height: 10 }}
+          style={{ height: 20 }}
           placeholder="Your name here"
           onChangeText={(newName) => setName(newName)}
           defaultValue={Name}
@@ -50,7 +49,7 @@ export default function SignUp() {
         <View style={styles.FormItem}>
         <Text>Username</Text>
         <TextInput
-          style={{ height: 10 }}
+          style={{ height: 20 }}
           placeholder="Your username here"
           onChangeText={(newUsername) => setUsername(newUsername)}
           defaultValue={Username}
@@ -59,7 +58,7 @@ export default function SignUp() {
         <View style={styles.FormItem}>
         <Text>Email</Text>
         <TextInput
-          style={{ height: 10 }}
+          style={{ height: 20 }}
           placeholder="joe.bloggs@example.com"
           onChangeText={(newEmail) => setEmail(newEmail)}
           defaultValue={Email}
@@ -68,7 +67,7 @@ export default function SignUp() {
         <View style={styles.FormItem}>
         <Text>Password</Text>
         <TextInput
-          style={{ height: 10 }}
+          style={{ height: 20 }}
           placeholder="Minimum 8 characters"
           onChangeText={(newPassword) => setPassword(newPassword)}
           defaultValue={Password}
