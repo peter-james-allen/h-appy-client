@@ -7,25 +7,24 @@ import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
   StyleSheet, Text, View, Button, Image, TouchableOpacity, Alert, FlatList, ActivityIndicator,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Header from '../components/Header';
-import getAllUserData, { emptyUserData, hasUserDataChanged } from '../src/UserData';
+import getAllUserData, { emptyUserData } from '../src/UserData';
 import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
 
 export default function MainMenu() {
   const [userData, setUserData] = useState(emptyUserData);
+  const isFocused = useIsFocused();
+
   useEffect(() => {
-    console.log('useEffect');
     const fetchStuff = async () => {
       const awaitedUserData = await getAllUserData();
       setUserData(awaitedUserData);
     };
     fetchStuff();
-  }, [hasUserDataChanged()]);
-  console.log('MainMenu');
-  console.log(userData);
+  }, [isFocused]);
 
   const navigation = useNavigation();
   return (
@@ -71,7 +70,9 @@ function Item(item) {
 }
 
 function MenuSection(props) {
-  const { section, subText, userData } = props;
+  const {
+    section, subText, userData,
+  } = props;
   let { apiData } = props;
   const navigation = useNavigation();
   apiData = apiData || badNetworkApiData;

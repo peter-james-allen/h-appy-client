@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { DrawerActions, useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import {
-  StyleSheet, Text, View, Button, Alert, FlatList, ActivityIndicator,
+  StyleSheet, Text, View, Button,
 } from 'react-native';
 import Header from '../components/Header';
-import getAllUserData, { deleteDataByID } from '../src/UserData';
+import { deleteDataByID } from '../src/UserData';
 
 export default function IndividualActivity({ route }) {
   const navigation = useNavigation();
@@ -20,7 +20,7 @@ export default function IndividualActivity({ route }) {
       </Text>
       <Button
         title="Delete this activity"
-        onPress={() => { deleteDataByID(route.params.itemID); console.log('delete button pressed'); }}
+        onPress={() => { deleteDataByID(route.params.itemID); }}
       // onPress = {deleteDate(key, item.id)}
       />
       <Button
@@ -34,7 +34,6 @@ export default function IndividualActivity({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f8f9d4',

@@ -62,19 +62,11 @@ const getData = async (key) => {
   }
 };
 
-// eslint-disable-next-line import/no-mutable-exports
-let dataChange = true;
-
-export function hasUserDataChanged() {
-  return dataChange;
-}
-
 export const storeData = async (key, value) => {
   try {
     userData[key].push(value);
     const jsonValue = JSON.stringify(userData[key]);
     await AsyncStorage.setItem(key, jsonValue);
-    dataChange = true;
     alert('Activity successfully saved');
   } catch (e) {
     alert('Failed to save the data to the storage');
@@ -82,15 +74,11 @@ export const storeData = async (key, value) => {
 };
 
 export const deleteDataByID = async (ID) => {
-  console.log('deleteDataByID');
   let key;
   // eslint-disable-next-line no-restricted-syntax
   for (key of Object.keys(userData)) {
-    console.log(key);
     const filterLength = userData[key].filter((item) => item._id === ID).length;
-    console.log(filterLength);
     if (filterLength > 0) {
-      dataChange = true;
       deleteData(key, ID);
       break;
     }
@@ -98,14 +86,10 @@ export const deleteDataByID = async (ID) => {
 };
 
 export const deleteData = async (key, value) => {
-  console.log('deleteData');
   try {
-    console.log(userData[key]);
     userData[key] = userData[key].filter((item) => item._id !== value);
-    console.log(userData[key]);
     const jsonValue = JSON.stringify(userData[key]);
     await AsyncStorage.setItem(key, jsonValue);
-    dataChange = true;
     alert('Activity successfully deleted');
   } catch (e) {
     alert('Failed to save the data to the storage');
@@ -123,7 +107,6 @@ const getAllUserData = async () => {
     mains,
     desserts,
   };
-  dataChange = false;
   return userData;
 };
 
