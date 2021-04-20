@@ -11,13 +11,28 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import Header from "../components/Header";
 import { addToUserData } from "../src/UserData";
-import CategorySelect from "../components/MultiSelect";
+import MultiSelect from "react-native-multiple-select";
+// import CategorySelect from "../components/CategorySelect";
 
 export default function AddActivity() {
   const [ActivityType, setActivityType] = useState("default");
   const [ActivityName, setActivityName] = useState("");
   const [accessibility, setAccessibility] = useState(0);
   const [price, setPrice] = useState(0);
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const items = [
+    { id: 1, name: "a" },
+    { id: 2, name: "b" },
+    { id: 3, name: "c" },
+    { id: 4, name: "d" },
+  ];
+
+  function onSelectedItemsChange(selectedItems) {
+    setSelectedItems(selectedItems);
+    console.log(selectedItems);
+  }
+
 
   return (
     <View style={styles.container}>
@@ -52,7 +67,28 @@ export default function AddActivity() {
         />
       </View>
 
-      <CategorySelect />
+      <View style={styles.selectContainer}>
+        <MultiSelect
+          hideTags
+          items={items}
+          uniqueKey="name"
+          onSelectedItemsChange={onSelectedItemsChange}
+          selectedItems={selectedItems}
+          selectText="Pick categories"
+          searchInputPlaceholderText="Search categories..."
+          onChangeInput={(text) => console.log(text)}
+          tagRemoveIconColor="#CCC"
+          tagBorderColor="#CCC"
+          tagTextColor="#CCC"
+          selectedItemTextColor="#CCC"
+          selectedItemIconColor="#CCC"
+          itemTextColor="#000"
+          displayKey="name"
+          searchInputStyle={{ color: "#CCC" }}
+          // submitButtonColor="#48d22b"
+          // submitButtonText="Submit"
+        />
+    </View>
 
       <AccessibilitySlider
         accessibility={accessibility}
@@ -65,6 +101,7 @@ export default function AddActivity() {
         ActivityName={ActivityName}
         accessibility={accessibility}
         price={price}
+        categories={selectedItems}
       />
     </View>
   );
@@ -104,14 +141,14 @@ function PriceSlider(props) {
         maximumValue={10}
         minimumTrackTintColor="#FFFFFF"
         maximumTrackTintColor="#000000"
-        onSlidingComplete={(value) => setPrice(Math.ceil(value))}
+        onSlidingComplete={(value) => (setPrice(Math.ceil(value)))}
       />
     </View>
   );
 }
 
 function SubmitButton(props) {
-  const { ActivityType, ActivityName, accessibility, price } = props;
+  const { ActivityType, ActivityName, accessibility, price, categories } = props;
   return (
     <View style={{ width: "80%" }}>
       <TouchableOpacity
@@ -131,6 +168,7 @@ function SubmitButton(props) {
               name: ActivityName,
               accessibility,
               price,
+              categories: categories
             });
           }
         }}
@@ -161,5 +199,11 @@ const styles = StyleSheet.create({
     opacity: 1,
     height: 50,
     marginTop: 50,
+  },
+  selectContainer: {
+    flex: 1,
+    width: '80%',
+    borderRadius: 10,
+    // overflow: "hidden"
   },
 });

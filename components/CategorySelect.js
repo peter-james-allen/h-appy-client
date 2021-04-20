@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MultiSelect from "react-native-multiple-select";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 const items = [
   { id: 1, name: "a" },
@@ -10,18 +10,22 @@ const items = [
 ];
 
 export default function CategorySelect() {
-  const [selectedItems, setSelectedItems] = useState([]);
+
+  function onSelectedItemsChange(selectedItems) {
+    setSelectedItems(selectedItems);
+    console.log(selectedItems);
+  }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.selectContainer}>
       <MultiSelect
         hideTags
         items={items}
-        uniqueKey="id"
+        uniqueKey="name"
         onSelectedItemsChange={onSelectedItemsChange}
         selectedItems={selectedItems}
-        selectText="Pick Items"
-        searchInputPlaceholderText="Search Items..."
+        selectText="Pick categories"
+        searchInputPlaceholderText="Search categories..."
         onChangeInput={(text) => console.log(text)}
         tagRemoveIconColor="#CCC"
         tagBorderColor="#CCC"
@@ -31,13 +35,20 @@ export default function CategorySelect() {
         itemTextColor="#000"
         displayKey="name"
         searchInputStyle={{ color: "#CCC" }}
-        submitButtonColor="#48d22b"
-        submitButtonText="Submit"
+        // submitButtonColor="#48d22b"
+        // submitButtonText="Submit"
       />
     </View>
   );
 }
 
-function onSelectedItemsChange(selectedItems) {
-  setSelectedItems(selectedItems);
-}
+
+
+const styles = StyleSheet.create({
+  selectContainer: {
+    flex: 1,
+    width: '80%',
+    borderRadius: 10,
+    // overflow: "hidden"
+  },
+})
