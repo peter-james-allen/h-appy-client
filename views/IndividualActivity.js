@@ -1,17 +1,14 @@
-import React, { Component, useEffect, useState } from "react";
-import { DrawerActions, useNavigation } from "@react-navigation/native";
+import React, { Component, useEffect, useState } from 'react';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Dimensions,
-  TextInput,
-} from "react-native";
-import Header from "../components/Header";
-import Grid from "../components/Grid";
-import react from "react";
+  StyleSheet, Text, View, Dimensions,
+} from 'react-native';
+import react from 'react';
+import Header from '../components/Header';
+import Grid from '../components/Grid';
+import MenuButton from '../components/MenuButton';
+
+const windowWidth = Dimensions.get('window').width;
 
 export default function IndividualActivity({ route }) {
   const navigation = useNavigation();
@@ -19,7 +16,7 @@ export default function IndividualActivity({ route }) {
   return (
     <View style={styles.container}>
       <Header />
-      <View style={styles.nameFlex}>
+      <View style={styles.nameContainer}>
         <Text style={styles.name}>{route.params.item.name}</Text>
       </View>
 
@@ -29,17 +26,13 @@ export default function IndividualActivity({ route }) {
           hour with your furry friend per day can change your outlook and enable
           you to be more productive.
         </Text>
+
+        <View style={styles.grid}>
+          <Grid activity={route.params.item} />
+        </View>
       </View>
 
-      <View style={styles.grid}>
-        <Grid activity={route.params.item} />
-      </View>
-
-      {/* <Button
-        style={styles.menuButton}
-        title="Back to the Main Menu"
-        onPress={() => navigation.navigate('Menu')}
-      /> */}
+      <MenuButton />
     </View>
   );
 }
@@ -47,24 +40,31 @@ export default function IndividualActivity({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#f8f9d4",
-    height: Dimensions.get("window").height,
-    width: Dimensions.get("window").width,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#696773',
+    height: Dimensions.get('window').height,
+    width: windowWidth,
   },
   description: {
-    fontSize: 20,
+    fontSize: 18,
     lineHeight: 25,
-    textAlign: "center",
+    textAlign: 'center',
+    padding: 10,
+    position: 'absolute',
+    top: 5,
+    color: '#23252E',
+    fontFamily: 'Courier',
   },
   descriptionContainer: {
-    width: "80%",
-    flex: 0.1,
-    marginTop: 100,
-    position: "absolute",
-    paddingBottom: 50,
+    flex: 0.95,
+    marginTop: '65%',
+    marginBottom: '10%',
+    width: windowWidth * 0.9,
+    backgroundColor: '#B1B6A6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
   },
   individualDetail: {
     fontSize: 25,
@@ -72,21 +72,22 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 25,
-    textAlign: "center",
-    maxWidth: "90%",
-    fontFamily: "Chalkduster",
-    color: "white",
+    textAlign: 'center',
+    maxWidth: '90%',
+    fontFamily: 'Chalkduster',
+    color: 'white',
   },
-  nameFlex: {
+  nameContainer: {
     flex: 0.3,
-    top: 100,
-    width: "80%",
+    top: 80,
+    width: windowWidth * 0.9,
     minHeight: 160,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "black",
-    shadowColor: "#000",
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#363946',
+    borderRadius: 10,
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 8,
@@ -95,20 +96,24 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     elevation: 16,
   },
-  detailsFlex: {
+  detailsContainer: {
     flex: 0.4,
     marginTop: 40,
-    position: "absolute",
+    position: 'absolute',
     bottom: 70,
   },
   grid: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     flex: 0.3,
+    paddingBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
   },
-  // menuButton: {
-  //   position: 'absolute',
-  //   bottom: 0,
-  //   flex: 0.1
-  // },
 });
