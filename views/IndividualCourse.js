@@ -6,12 +6,18 @@ import {
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
 import FetchActivities from '../src/FetchActivities';
+import IndividualActivityButton from '../components/IndividualActivityButton.js'
 
 function buildItem(item) {
   return (
-    <View>
-      <Text>{item.item.name}</Text>
+    <View style={styles.itemContainer}>
+    <View style={styles.item}>
+      <Text style={styles.itemText}>
+        {item.item.name}
+      </Text>
+      <IndividualActivityButton style={styles.individualButton} item={item.item} />
     </View>
+  </View>
   );
 }
 
@@ -73,5 +79,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 6,
+  },
+  item: {
+    margin: 3,
+    padding: 10,
+    fontSize: 15,
+    backgroundColor: '#363946',
+    borderRadius: 5,
+    flexDirection: 'column',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
+  },
+  itemText: {
+    color: '#fff',
+    fontFamily: 'Chalkduster',
+    textAlign: 'center',
+    fontSize: 17,
+  },
+  itemContainer: {
+    borderRadius: 5,
+    overflow: 'hidden',
+    padding: 3
   },
 });

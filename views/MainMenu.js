@@ -55,7 +55,6 @@ function Item(item) {
         <View style={styles.item}>
           <Text style={styles.itemText}>
             {item.item.name}
-            {' '}
           </Text>
           <IndividualActivityButton style={styles.individualButton} item={item.item} />
         </View>
