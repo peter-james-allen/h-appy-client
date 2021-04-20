@@ -71,6 +71,7 @@ function Item(item) {
       </View>
     );
   }
+
   return (
     <View style={styles.item}>
       <Text style={styles.itemText}>
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
   },
   menuCollapsible: {
     fontSize: 50,
-    borderRadius: 10,
+    borderRadius: 7,
     backgroundColor: '#B1B6A6',
     width: windowWidth * 0.95,
   },

@@ -5,7 +5,7 @@ export default function MenuTitle() {
   return (
     <View style={styles.titleContainer}>
       <Text style={styles.menuTitle}>
-        {/* Acitivity Menu */}
+        Feed your Boredom
       </Text>
     </View>
   );
@@ -14,15 +14,18 @@ export default function MenuTitle() {
 const styles = StyleSheet.create({
   titleContainer: {
     flex: 0.1,
-    marginTop: 20,
+    marginTop: 45,
+    marginBottom: 15,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#696773',
-    width: '100%',
+    backgroundColor: '#819595',
+    width: '95%',
+    padding: 25,
+    borderRadius: 7
   },
   menuTitle: {
-    fontFamily: 'DamascusBold',
-    color: '#B1B6A6',
+    fontFamily: 'Didot',
+    color: '#363946',
     fontSize: 18,
   },
 });
