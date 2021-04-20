@@ -5,10 +5,9 @@ import {
   Text, View, TextInput, StyleSheet, TouchableOpacity, Picker,
 } from 'react-native';
 // import { Picker } from '@react-native-picker/picker';
-import Header from '../components/Header';
-import { storeData } from '../src/UserData';
 import { useNavigation } from '@react-navigation/native';
-import { alreadyExistingName } from '../src/UserData'
+import Header from '../components/Header';
+import { storeData, doesActivityNameExist } from '../src/UserData';
 
 export default function AddActivity() {
   const [ActivityType, setActivityType] = useState('default');
@@ -105,14 +104,17 @@ function SubmitButton(props) {
           marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
         }}
         onPress={() => {
-          alreadyExistingName(ActivityType, ActivityName)
-          if (ActivityType !== 'default' && alreadyExistingName(ActivityType, ActivityName) == false && ActivityName !== '') {
-              storeData(ActivityType, {
-                _id: ActivityName, name: ActivityName, accessibility, price,
-              });
-              navigation.navigate('Menu')
-          } else { 
-            alert('Activity already exists')
+          if (ActivityType === 'default') {
+            alert('Please select an activity type');
+          } else if (ActivityName === '') {
+            alert('Please enter an activity name!');
+          } else if (doesActivityNameExist(ActivityType, ActivityName)) {
+            alert('Activity name already exists!');
+          } else {
+            storeData(ActivityType, {
+              _id: ActivityName, name: ActivityName, accessibility, price,
+            });
+            navigation.navigate('Menu');
           }
         }}
       >
