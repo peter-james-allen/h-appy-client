@@ -1,16 +1,21 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import Slider from '@react-native-community/slider';
+import React, { useState } from "react";
+import Slider from "@react-native-community/slider";
 import {
-  Text, View, TextInput, StyleSheet, TouchableOpacity,
-} from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import Header from '../components/Header';
-import { addToUserData } from '../src/UserData';
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import Header from "../components/Header";
+import { addToUserData } from "../src/UserData";
+import CategorySelect from "../components/MultiSelect";
 
 export default function AddActivity() {
-  const [ActivityType, setActivityType] = useState('default');
-  const [ActivityName, setActivityName] = useState('');
+  const [ActivityType, setActivityType] = useState("default");
+  const [ActivityName, setActivityName] = useState("");
   const [accessibility, setAccessibility] = useState(0);
   const [price, setPrice] = useState(0);
 
@@ -25,7 +30,11 @@ export default function AddActivity() {
           selectedValue={ActivityType}
           onValueChange={(itemValue, itemIndex) => setActivityType(itemValue)}
         >
-          <Picker.Item label="Select a Menu Section..." value="default" enabled={false} />
+          <Picker.Item
+            label="Select a Menu Section..."
+            value="default"
+            enabled={false}
+          />
           <Picker.Item label="Nibbles" value="nibbles" />
           <Picker.Item label="Appetisers" value="appetisers" />
           <Picker.Item label="Mains" value="mains" />
@@ -43,10 +52,20 @@ export default function AddActivity() {
         />
       </View>
 
-      <AccessibilitySlider accessibility={accessibility} setAccessibility={setAccessibility} />
+      <CategorySelect />
+
+      <AccessibilitySlider
+        accessibility={accessibility}
+        setAccessibility={setAccessibility}
+      />
       <PriceSlider price={price} setPrice={setPrice} />
 
-      <SubmitButton ActivityType={ActivityType} ActivityName={ActivityName} accessibility={accessibility} price={price} />
+      <SubmitButton
+        ActivityType={ActivityType}
+        ActivityName={ActivityName}
+        accessibility={accessibility}
+        price={price}
+      />
     </View>
   );
 }
@@ -92,25 +111,31 @@ function PriceSlider(props) {
 }
 
 function SubmitButton(props) {
-  const {
-    ActivityType, ActivityName, accessibility, price,
-  } = props;
+  const { ActivityType, ActivityName, accessibility, price } = props;
   return (
-    <View style={{ width: '80%' }}>
+    <View style={{ width: "80%" }}>
       <TouchableOpacity
         style={{
-          marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
+          marginLeft: 8,
+          padding: 8,
+          backgroundColor: "#212121",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 8,
         }}
         onPress={() => {
           console.log(ActivityType);
-          if (ActivityType !== 'default' && ActivityName !== '') {
+          if (ActivityType !== "default" && ActivityName !== "") {
             addToUserData(ActivityType, {
-              _id: ActivityName, name: ActivityName, accessibility, price,
+              _id: ActivityName,
+              name: ActivityName,
+              accessibility,
+              price,
             });
           }
         }}
       >
-        <Text style={{ color: '#fafafa' }}>Add</Text>
+        <Text style={{ color: "#fafafa" }}>Add</Text>
       </TouchableOpacity>
     </View>
   );
@@ -119,17 +144,17 @@ function SubmitButton(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f8f9d4',
-    alignContent: 'flex-start',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f8f9d4",
+    alignContent: "flex-start",
   },
   FormItem: {
     padding: 4,
     margin: 3,
     borderWidth: 2,
     borderRadius: 5,
-    width: '80%',
+    width: "80%",
   },
   slider: {
     width: 300,
