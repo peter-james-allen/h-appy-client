@@ -20,7 +20,7 @@ export default function IndividualActivity({ route }) {
       </Text>
       <Button
         title="Delete this activity"
-        onPress={() => { deleteDataByID(route.params.itemID); }}
+        onPress={() => { deleteDataByID(route.params.itemID); navigation.navigate('Menu') } }
       // onPress = {deleteDate(key, item.id)}
       />
       <Button

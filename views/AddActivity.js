@@ -7,6 +7,7 @@ import {
 // import { Picker } from '@react-native-picker/picker';
 import Header from '../components/Header';
 import { storeData } from '../src/UserData';
+import { useNavigation } from '@react-navigation/native';
 
 export default function AddActivity() {
   const [ActivityType, setActivityType] = useState('default');
@@ -92,6 +93,7 @@ function PriceSlider(props) {
 }
 
 function SubmitButton(props) {
+  const navigation = useNavigation();
   const {
     ActivityType, ActivityName, accessibility, price,
   } = props;
@@ -107,6 +109,7 @@ function SubmitButton(props) {
               _id: ActivityName, name: ActivityName, accessibility, price,
             });
           }
+          navigation.navigate('Menu')
         }}
       >
         <Text style={{ color: '#fafafa' }}>Add</Text>
