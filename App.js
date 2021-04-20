@@ -1,17 +1,19 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
+import fetch from 'node-fetch';
+import { useState, useEffect, useContext } from 'react';
 import {
   StyleSheet, Platform, SafeAreaView, ScrollView, StatusBar,
 } from 'react-native';
+import { showMessage, hideMessage } from "react-native-flash-message";
 import AppNavigator from './routes/AppNavigator';
 import DrawerNavigator from './routes/DrawerNavigator';
 import FlashMessage from 'react-native-flash-message';
 import SecureStore from 'expo-secure-store';
 import sendAuthenticationData from './src/AuthenticationData';
+import AuthContext from './src/AuthContext';
 
-const AuthContext = React.createContext();
-
-export default function App() {
+export default function App({navigation}) {
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -51,7 +53,7 @@ export default function App() {
       } catch (error) {
 
       }
-      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
+      dispatch({ type: 'RESTORE_TOKEN', token: userToken || null });
     };
 
     bootstrapAsync();
@@ -59,24 +61,53 @@ export default function App() {
 
   const authContext = React.useMemo(
     () => ({
-      signIn: sendAuthenticationData(emailData, passwordData, navigation);
-      dispatch({ type: 'SIGN_IN', token: })
-    })
-  )
-  
-  
-  
-  
-  
+      signIn: async (emailData, passwordData, navigation) => {
+        let response = await fetch('http://localhost:3000/user/login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: emailData,
+          password: passwordData,
+        })
+      });
+        let json = await response.json();
+        if (json.user) {
+          showMessage({
+            message: "Sign in successful",
+            description: `Welcome back to H-Appy, ${json.user.name}!`,
+            type: "success",
+          });
+          dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token)})
+          navigation.navigate('Menu')
+        } else {
+           showMessage({
+             message: "Authentication failed",
+             description: "Those details don't match our records",
+             type: "error",
+           });
+         };
+      },
+      signOut: () => dispatch({type: 'SIGN_OUT'}),
+      signUp: async data => {
+        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+      },
+    }),
+    [],
+  );
   
   return (
     <>
+    <AuthContext.Provider value={authContext}>
       <SafeAreaView style={styles.safeAreaTop} />
       <SafeAreaView style={styles.safeAreaBottom}>
         <FlashMessage position="top" />
-        <AppNavigator />
+        <AppNavigator state = {state}/>
       </SafeAreaView>
       <StatusBar barStyle="light-content" />
+      </AuthContext.Provider>
     </>
   );
 }

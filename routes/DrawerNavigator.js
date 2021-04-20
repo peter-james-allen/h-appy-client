@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -11,6 +12,7 @@ import {
 } from '../src/CourseDescriptions';
 import SignUp from '../views/SignUp';
 import SignIn from '../views/SignIn';
+import AuthContext from '../src/AuthContext';
 
 
 
@@ -57,7 +59,8 @@ function Desserts() {
   );
 }
 
-const DrawerNavigator = () => (
+const DrawerNavigator = ({state}) => {
+  return (
   <Drawer.Navigator
     drawerStyle={styles.drawer}
     drawerContentOptions={drawerContentStyles}
@@ -67,14 +70,19 @@ const DrawerNavigator = () => (
     <Drawer.Screen name="Starters" component={Starters} />
     <Drawer.Screen name="Mains" component={Mains} />
     <Drawer.Screen name="Desserts" component={Desserts} />
-    state.userToken === null ? (
-      <Drawer.Screen name="Sign up" component={SignUp} />
-      <Drawer.Screen name="Sign in" component={SignIn} />
-    ) : (
-      <Drawer.Screen name="Create a Recipe" component={AddActivity} />
-    )
-  </Drawer.Navigator>
-);
+    {state.userToken == null ? (
+      <>
+    <Drawer.Screen name="Sign up" component={SignUp} />
+    <Drawer.Screen name="Sign in" component={SignIn} />
+    </>
+    ) :
+    (
+      <>
+    <Drawer.Screen name="Add activity" component={AddActivity} />
+      </>
+    )}
+    </Drawer.Navigator>
+)};
 
 export default DrawerNavigator;
 

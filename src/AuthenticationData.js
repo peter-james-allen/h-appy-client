@@ -1,6 +1,8 @@
-import {useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import { showMessage, hideMessage } from "react-native-flash-message";
 import fetch from 'node-fetch';
+import AuthContext from '../src/AuthContext';
+
 
 export default sendAuthenticationData = async (emailData, passwordData, navigation) => {
       let response = await fetch('http://localhost:3000/user/login', {
@@ -16,6 +18,7 @@ export default sendAuthenticationData = async (emailData, passwordData, navigati
     });
       let json = await response.json();
       validation(json, navigation);
+      console.log(json)
     };
     
  const validation = (response, navigation) => {
@@ -25,6 +28,7 @@ export default sendAuthenticationData = async (emailData, passwordData, navigati
        description: `Welcome back to H-Appy, ${response.user.name}!`,
        type: "success",
      });
+     dispatch({ type: 'SIGN_IN', token: response.token})
      navigation.navigate('Menu')
    } else {
       showMessage({

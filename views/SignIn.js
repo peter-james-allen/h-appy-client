@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Text, View, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import Header from '../components/Header';
 import SendAuthenticationData from '../src/AuthenticationData';
 import { useNavigation } from '@react-navigation/native';
+import AuthContext from '../src/AuthContext';
 
 function SubmitButton(props) {
   const navigation = useNavigation();
+  const { signIn } = React.useContext(AuthContext);
   const {
     Email, Password,
   } = props;
@@ -18,7 +20,7 @@ function SubmitButton(props) {
           marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
         }}
         onPress={() => {
-          SendAuthenticationData(Email, Password, navigation)
+          signIn(Email, Password, navigation)
           }
         }
 
