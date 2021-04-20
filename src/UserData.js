@@ -55,10 +55,8 @@ const defaultData = {
 };
 
 const getData = async (key) => {
-  console.log('getData');
   try {
     const data = await AsyncStorage.getItem(key);
-    console.log(data);
     return data != null ? JSON.parse(data) : defaultData[key];
   } catch (e) {
     alert('Failed to retrieve data');
@@ -67,7 +65,6 @@ const getData = async (key) => {
 
 export const storeData = async (key, value) => {
   try {
-    console.log('storeData', value);
     userData[key].push(value);
     const jsonValue = JSON.stringify(userData[key]);
     await AsyncStorage.setItem(key, jsonValue);
@@ -78,11 +75,8 @@ export const storeData = async (key, value) => {
 };
 
 const getAllUserData = async () => {
-  console.log('getAllUserData');
   const nibbles = await getData('nibbles');
-  console.log(nibbles);
   const appetisers = await getData('appetisers');
-  console.log(appetisers);
   const mains = await getData('mains');
   const desserts = await getData('desserts');
   userData = {
