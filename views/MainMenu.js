@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#696773',
     width: windowWidth,
   },
-  menu: {
+  scroll: {
   },
   menuContainer: {
     overflow: 'scroll',

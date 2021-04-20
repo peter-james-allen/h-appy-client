@@ -98,12 +98,12 @@ function AccessibilitySlider(props) {
         style={styles.slider}
         minimumValue={0}
         maximumValue={10}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
+        minimumTrackTintColor="#696773"
+        maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
-      <Text>
-        Accessibility: {accessibility}
+      <Text style={styles.sliderText}>
+        Accessibility Score: {'\t'} {accessibility}
       </Text>
     </View>
   );
@@ -117,12 +117,12 @@ function PriceSlider(props) {
         style={styles.slider}
         minimumValue={0}
         maximumValue={4}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
+        minimumTrackTintColor="#696773"
+        maximumTrackTintColor="#363946"
         onValueChange={(value) => setPrice(Math.ceil(value))}
         />
-        <Text>
-          Price: {'£ '.repeat(price)}
+        <Text style={styles.sliderText}>
+          Cost: {'\t'} {'£ '.repeat(price) || 'Free :)'}
         </Text>
     </View>
   );
@@ -155,7 +155,7 @@ function SubmitButton(props) {
           }
         }}
       >
-        <Text style={{ color: "#B1B6A6" }}>Add</Text>
+        <Text style={styles.submitButton}>Add</Text>
       </TouchableOpacity>
     </View>
   );
@@ -170,20 +170,20 @@ const styles = StyleSheet.create({
     // alignContent: 'flex-start',
   },
   FormContainer: {
-    flex: 0.85,
+    flex: 0.82,
     width: "92%",
-    marginTop: 20,
+    marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#B1B6A6",
     borderRadius: 5,
   },
   nameContainer: {
-    flex: 0.1,
+    flex: 0.15,
     borderRadius: 5,
-    marginTop: "10%",
+    marginTop: "5%",
     padding: 10,
-    width: "80%",
+    width: "90%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: '#363946',
@@ -197,12 +197,20 @@ const styles = StyleSheet.create({
     width: 280,
     opacity: 1,
     height: 50,
-    marginTop: 5,
   },
   sliderContainer: {
-    flex: 0.2,
+    flex: 0.16,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: '#819595',
+    width: '90%',
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  sliderText: {
+    color: '#23252E',
+    fontFamily: 'Courier',
+    fontSize: 16
   },
   pickerContainer: {
     marginTop: (Platform.OS === 'ios') ? -50 : 0,
@@ -211,18 +219,23 @@ const styles = StyleSheet.create({
     flex: 0.3,
   },
   picker: {
-    // flex: 0.3,
-    transform: [{ scaleX: 0.75 }, { scaleY: 0.75 }],
+    transform: (Platform.OS === 'ios') ? [{ scaleX: 0.80 }, { scaleY: 0.80 }] : [],
   },
   submitButtonContainer: {
-    width: "80%",
+    width: "92%",
     marginLeft: 8,
-    padding: 8,
+    paddingTop: 10,
+    paddingBottom: 10,
     backgroundColor: "#363946",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 8,
     position: "absolute",
-    bottom: 10,
+    bottom: 15,
+  },
+  submitButton: {
+    color: "#B1B6A6",
+    fontFamily: 'Courier',
+    fontSize: 20,
   },
 });
