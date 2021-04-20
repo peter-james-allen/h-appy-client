@@ -55,6 +55,7 @@ const defaultData = {
 };
 
 const getData = async (key) => {
+  console.log('getData');
   try {
     return AsyncStorage.getItem(key);
   } catch (e) {
@@ -62,9 +63,11 @@ const getData = async (key) => {
   }
 };
 
-const storeData = async (key, value) => {
+export const storeData = async (key, value) => {
   try {
-    const jsonValue = JSON.stringify(value);
+    console.log('storeData', value);
+    userData[key].push(value);
+    const jsonValue = JSON.stringify(userData[key]);
     await AsyncStorage.setItem(key, jsonValue);
     alert('Activity successfully saved');
   } catch (e) {
@@ -73,11 +76,12 @@ const storeData = async (key, value) => {
 };
 
 const getAllUserData = async () => {
+  console.log('getAllUserData');
   const nibbles = await getData('nibbles');
+  console.log(nibbles);
   const appetisers = await getData('appetisers');
   const mains = await getData('mains');
   const desserts = await getData('desserts');
-  
   return {
     nibbles: JSON.parse(nibbles),
     appetisers: JSON.parse(appetisers),
@@ -86,4 +90,4 @@ const getAllUserData = async () => {
   };
 };
 
-export storeData, getAllUserData
+export default getAllUserData;
