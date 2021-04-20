@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const userData = {
+let userData = {
   nibbles: [], appetisers: [], mains: [], desserts: [],
 };
 
@@ -57,7 +57,9 @@ const defaultData = {
 const getData = async (key) => {
   console.log('getData');
   try {
-    return AsyncStorage.getItem(key);
+    const data = await AsyncStorage.getItem(key);
+    console.log(data);
+    return data != null ? JSON.parse(data) : defaultData[key];
   } catch (e) {
     alert('Failed to retrieve data');
   }
@@ -80,14 +82,16 @@ const getAllUserData = async () => {
   const nibbles = await getData('nibbles');
   console.log(nibbles);
   const appetisers = await getData('appetisers');
+  console.log(appetisers);
   const mains = await getData('mains');
   const desserts = await getData('desserts');
-  return {
-    nibbles: JSON.parse(nibbles),
-    appetisers: JSON.parse(appetisers),
-    mains: JSON.parse(mains),
-    desserts: JSON.parse(desserts),
+  userData = {
+    nibbles,
+    appetisers,
+    mains,
+    desserts,
   };
+  return userData;
 };
 
 export default getAllUserData;
