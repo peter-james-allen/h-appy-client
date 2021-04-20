@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Courier-Bold',
-    color: '#B1B6A6'
+    fontFamily: 'Didot',
+    color: '#B1B6A6',
   },
 });
