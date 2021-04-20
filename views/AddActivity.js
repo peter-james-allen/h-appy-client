@@ -22,6 +22,7 @@ export default function AddActivity() {
   return (
     <View style={styles.container}>
       <Header />
+
       <View style={styles.FormContainer}>
         <View style={styles.FormItem}>
           <Text>Activity Name</Text>
@@ -33,8 +34,9 @@ export default function AddActivity() {
           />
         </View>
 
-        <View style={styles.selectContainer}>
+        <View style={styles.pickerContainer}>
           <Picker
+            style={styles.picker}
             selectedValue={ActivityType}
             onValueChange={(itemValue, itemIndex) => setActivityType(itemValue)}
           >
@@ -50,8 +52,9 @@ export default function AddActivity() {
           </Picker>
         </View>
 
-        <View style={styles.selectContainer}>
+        <View style={styles.pickerContainer}>
           <Picker
+            style={styles.picker}
             selectedValue={category}
             onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
           >
@@ -70,8 +73,10 @@ export default function AddActivity() {
           accessibility={accessibility}
           setAccessibility={setAccessibility}
         />
+
         <PriceSlider price={price} setPrice={setPrice} />
 
+      </View>
         <SubmitButton
           ActivityType={ActivityType}
           ActivityName={ActivityName}
@@ -79,7 +84,6 @@ export default function AddActivity() {
           price={price}
           categories={[category]}
         />
-      </View>
     </View>
   );
 }
@@ -87,7 +91,7 @@ export default function AddActivity() {
 function AccessibilitySlider(props) {
   const { accessibility, setAccessibility } = props;
   return (
-    <View>
+    <View style={styles.sliderContainer}>
       <Text>
         Accessibility: {accessibility}
       </Text>
@@ -106,7 +110,7 @@ function AccessibilitySlider(props) {
 function PriceSlider(props) {
   const { price, setPrice } = props;
   return (
-    <View>
+    <View style={styles.sliderContainer}>
       <Text>
         Price: {'£ '.repeat(price)}
       </Text>
@@ -132,16 +136,8 @@ function SubmitButton(props) {
     categories,
   } = props;
   return (
-    <View style={{ width: "80%" }}>
+    <View style={styles.submitButtonContainer}>
       <TouchableOpacity
-        style={{
-          marginLeft: 8,
-          padding: 8,
-          backgroundColor: "#212121",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: 8,
-        }}
         onPress={() => {
           if (ActivityType === 'default') {
             alert('Please select an activity type');
@@ -157,7 +153,7 @@ function SubmitButton(props) {
           }
         }}
       >
-        <Text style={{ color: "#fafafa" }}>Add</Text>
+        <Text style={{ color: "#B1B6A6" }}>Add</Text>
       </TouchableOpacity>
     </View>
   );
@@ -172,17 +168,18 @@ const styles = StyleSheet.create({
     // alignContent: 'flex-start',
   },
   FormContainer: {
-    flex: 0.8,
-    width: "90%",
+    flex: 0.85,
+    width: "92%",
+    marginTop: 20,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#B1B6A6",
     borderRadius: 5,
   },
   FormItem: {
-    flex: 0.2,
+    flex: 0.1,
     borderRadius: 5,
-    marginTop: "20%",
+    marginTop: "25%",
     width: "80%",
     alignItems: "center",
     justifyContent: "center",
@@ -194,12 +191,28 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
   },
-  selectContainer: {
-    width: "80%",
-    borderRadius: 10,
+  sliderContainer: {
+    flex: 0.2
   },
   pickerContainer: {
+    width: "80%",
+    borderRadius: 10,
+    flex: 0.4,
+    marginTop: 20
+  },
+  picker: {
     // flex: 0.3,
     transform: [{ scaleX: 0.75 }, { scaleY: 0.75 }],
+  },
+  submitButtonContainer: {
+    width: "80%",
+    marginLeft: 8,
+    padding: 8,
+    backgroundColor: "#363946",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    position: "absolute",
+    bottom: 10,
   },
 });

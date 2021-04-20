@@ -75,13 +75,12 @@ function Item(item) {
     <View style={styles.item}>
       <Text style={styles.itemText}>
         {item.item.name}
-        .
       </Text>
       <TouchableOpacity
         style={{ paddingTop: 10 }}
         onPress={pressHandler}
       >
-        <Ionicons name="help" size={15} color="black" />
+        <Ionicons name="help" size={15} color="fff" />
       </TouchableOpacity>
     </View>
   );
