@@ -17,11 +17,17 @@ export default sendUserData = async (nameData, usernameData, emailData, password
       })
     });
       let json = await response.json();
-      errorMessages(json);
+      messages(json);
     };
     
-
- const errorMessages = (response) => {
+ const messages = (response) => {
+   if (response.user) {
+     showMessage({
+       message: "Signup successful",
+       description: `Welcome to H-Appy, ${response.user.name}!`,
+       type: "success",
+     });
+   }
   if (response.name && response.name === "MongoError") {
     if ("email" in response.keyPattern) {
       showMessage({
