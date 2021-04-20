@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Button, FlatList,
+  StyleSheet, Text, View, Button, FlatList, Dimensions, TouchableOpacity,
 } from 'react-native';
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
@@ -21,6 +21,8 @@ function buildItem(item) {
   );
 }
 
+const windowWidth = Dimensions.get('window').width;
+
 export default function IndividualCourse(props) {
   const { dataKey, header } = props;
 
@@ -29,26 +31,38 @@ export default function IndividualCourse(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerFlexbox}>
-        <Header />
+      <Header />
+
+      <View style={styles.headerContainer}>
+        <CourseHeader style={styles.courseHeader} header={header} />
       </View>
-      <View>
-        <CourseHeader header={header} />
+
+      <View style={styles.activitiesContainer}>
+        <View style={styles.courseDetailsContainer}>
+          <Text style={styles.courseDetails}>
+            this is where the full list of appetisers could go.
+            a little mini menu. maybe also a blurb about what the appetiser
+            category means in terms of activity size
+          </Text>
+        </View>
+        <View style={styles.activityList}>
+          <FlatList
+            data={apiData[dataKey]}
+            renderItem={buildItem}
+            keyExtractor={(item) => item._id}
+            />
+        </View>
       </View>
-      <View style={styles.courseDetails}>
-        <Text>this is where the full list of appetisers could go. a little mini menu. maybe also a blurb about what the appetiser category means in terms of activity size</Text>
+      <View style={styles.menuButtonContainer}>
+        <TouchableOpacity>
+          <Text
+            style={styles.menuButton}
+            onPress={() => navigation.navigate('Menu')}
+            >
+            Back to the Main Menu
+          </Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.activityList}>
-        <FlatList
-          data={apiData[dataKey]}
-          renderItem={buildItem}
-          keyExtractor={(item) => item._id}
-        />
-      </View>
-      <Button
-        title="Back to the Main Menu"
-        onPress={() => navigation.navigate('Menu')}
-      />
     </View>
   );
 }
@@ -58,27 +72,41 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9d4',
+    backgroundColor: '#696773',
     alignContent: 'flex-start',
   },
-  courseDetails: {
-    flex: 1,
+  courseDetailsContainer: {
+    flex: 0.3,
     alignContent: 'center',
     justifyContent: 'center',
-    width: '80%',
+    width: '90%',
     paddingTop: 10,
-    paddingBottom: 30,
+    paddingBottom: 10,
   },
-  headerFlexbox: {
-    flex: 1,
+  courseDetails: {
+    fontFamily: 'Courier',
+    textAlign: 'center',
+    fontSize: 17,
+    color: '#353746'
+  },
+  headerContainer: {
+    flex: 0.08,
     alignContent: 'center',
     justifyContent: 'center',
-    width: '100%',
+    backgroundColor: '#819595',
+    width: windowWidth * 0.9,
+    padding: 15,
+    top: '10%',
+    borderRadius: 5
+  },
+  courseHeader: {
+
   },
   activityList: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 6,
+    flex: 0.8,
+    paddingBottom: 10,
   },
   item: {
     margin: 3,
@@ -107,5 +135,29 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     overflow: 'hidden',
     padding: 3
+  },
+  activitiesContainer: {
+    flex: 0.95,
+    marginTop: '30%',
+    marginBottom: '10%',
+    width: windowWidth * 0.9,
+    backgroundColor: '#B1B6A6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+  menuButtonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: '#819595',
+    flex: 0.2,
+    height: '4%',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  menuButton: {
+    fontFamily: 'Courier',
+    color: '#363946'
   },
 });

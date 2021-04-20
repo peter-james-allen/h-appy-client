@@ -24,9 +24,9 @@ export default function IndividualActivity({ route }) {
             you to be more productive.
           </Text>
 
-        <View style={styles.grid}>
-          <Grid activity={route.params.item} />
-        </View>
+          <View style={styles.grid}>
+            <Grid activity={route.params.item} />
+          </View>
         </View>
 
       {/* <Button

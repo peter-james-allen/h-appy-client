@@ -14,9 +14,13 @@ const styles = StyleSheet.create({
   courseHeader: {
     fontSize: 40,
     fontFamily: 'Didot',
+    textAlign: 'center',
+    color: '#353746'
   },
   courseHeaderContainer: {
     flex: 1,
     maxHeight: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
