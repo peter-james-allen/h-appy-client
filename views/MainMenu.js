@@ -1,60 +1,77 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
-  StyleSheet, Text, View, Button, Image, TouchableOpacity, Alert, FlatList, ActivityIndicator,
+  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList, Dimensions, LogBox,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 import Header from '../components/Header';
 import getUserData from '../src/UserData';
-import { badNetworkApiData, userData } from '../stockData';
+import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
+import AboutButton from '../components/AboutButton';
+import MenuTitle from '../components/MenuTitle';
+
+const windowWidth = Dimensions.get('window').width;
+
+function pressHandler() {
+  Alert.alert('No Network connection', "We can't fetch suggestions. Please try again later.");
+}
 
 export default function MainMenu() {
   const [userData] = useState(getUserData());
   const navigation = useNavigation();
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Header />
       <Image
       style={styles.logo}
       source={require('../assets/logo4.png')}/>
-      <View style={styles.aboutFlex}><TouchableOpacity onPress={() => navigation.navigate('About')}>
-        <Text style={styles.about}>About H-Appy</Text>
-      </TouchableOpacity></View>
-      <Menu userData={userData} />
+      <MenuTitle />
+
+      <View style={styles.menuContainer}>
+        <ScrollView>
+          <Menu userData={userData} style={styles.menu} />
+        </ScrollView>
+      </View>
+      <AboutButton />
       <StatusBar />
     </View>
   );
 }
 
 function Item(item) {
-  if (item.item._id != 'noConnection') {
+  if (item.item._id !== 'noConnection') {
     return (
-      <View style={styles.item}>
-        <Text>
-          {item.item.name}
-          {' '}
-        </Text>
-        <IndividualActivityButton style={styles.individualButton} item={item.item} />
+      <View style={styles.itemContainer}>
+        <View style={styles.item}>
+          <Text style={styles.itemText}>
+            {item.item.name}
+          </Text>
+          <IndividualActivityButton style={styles.individualButton} item={item.item} />
+        </View>
       </View>
     );
   }
   return (
     <View style={styles.item}>
-      <Text style={{ textAlign: 'center' }}>
+      <Text style={styles.itemText}>
         {item.item.name}
         .
       </Text>
       <TouchableOpacity
         style={{ paddingTop: 10 }}
-        onPress={() => {
-          Alert.alert('No Network connection', "We can't fetch suggestions. Please try again later.");
-        }}
+        onPress={pressHandler}
       >
         <Ionicons name="help" size={15} color="black" />
       </TouchableOpacity>
@@ -75,14 +92,14 @@ function MenuSection(props) {
       noArrow
     >
       <FlatList
-        ListHeaderComponent={<Text style={styles.menuSubText}>{subText}</Text>}
+        ListHeaderComponent={<Text style={styles.menuSubText}>Favourites</Text>}
         data={userData}
         renderItem={Item}
         keyExtractor={(item) => item._id}
       />
       <View style={styles.border} />
       <FlatList
-        ListHeaderComponent={<Text style={styles.menuSubText}>Chef's Specials</Text>}
+        ListHeaderComponent={<Text style={styles.menuSubText}>Specials</Text>}
         data={apiData}
         renderItem={Item}
         keyExtractor={(item) => item._id}
@@ -100,25 +117,21 @@ function Menu(props) {
     <View>
       <MenuSection
         section="Nibbles"
-        subText="Bitesized activities, for the short of time"
         apiData={apiData.nibbles}
         userData={userData.nibbles}
       />
       <MenuSection
         section="Appetisers"
-        subText="very tasty small things"
         apiData={apiData.appetisers}
         userData={userData.appetisers}
       />
       <MenuSection
         section="Mains"
-        subText="very tasty medium things"
         apiData={apiData.mains}
         userData={userData.mains}
       />
       <MenuSection
         section="Desserts"
-        subText="pudding"
         apiData={apiData.desserts}
         userData={userData.desserts}
       />
@@ -131,21 +144,36 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9d4',
+    backgroundColor: '#696773',
+    width: windowWidth,
+  },
+  menu: {
+  },
+  menuContainer: {
+    overflow: 'scroll',
+    flex: 0.8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: windowWidth,
   },
   menuCollapsible: {
-    width: 250,
     fontSize: 50,
-    borderRadius: 25,
-    borderColor: '#240037',
+    borderRadius: 10,
+    backgroundColor: '#B1B6A6',
+    width: windowWidth * 0.95,
   },
   menuSubText: {
     textAlign: 'center',
+    fontFamily: 'Courier',
     fontSize: 20,
+    color: '#363946',
   },
   menuSection: {
     fontSize: 30,
     fontFamily: 'Didot',
+    fontWeight: 'bold',
+    color: '#363946',
+    padding: 25,
   },
   name: {
     fontSize: 25,
@@ -156,19 +184,34 @@ const styles = StyleSheet.create({
   },
   item: {
     margin: 3,
-    padding: 6,
+    padding: 10,
     fontSize: 15,
-    backgroundColor: '#ffff99',
-    borderRadius: 20,
+    backgroundColor: '#363946',
+    borderRadius: 5,
     flexDirection: 'column',
     alignItems: 'center',
-    textAlign: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
   },
-
+  itemText: {
+    color: '#fff',
+    fontFamily: 'Chalkduster',
+    textAlign: 'center',
+    fontSize: 17,
+  },
+  itemContainer: {
+    borderRadius: 5,
+    overflow: 'hidden',
+    padding: 3,
+  },
   border: {
-    height: 5,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
+    paddingTop: 30,
   },
   individualButton: {
     alignSelf: 'flex-end',

@@ -13,7 +13,7 @@ const IndividualActivityButton = ({ item }) => {
       onPress={() => navigation.navigate('IndividualActivity', { item })}
     >
       <Text>
-        <Ionicons name="ellipsis-horizontal" size={15} color="black" />
+        <Ionicons name="ellipsis-horizontal" size={15} color="#fff" />
       </Text>
     </TouchableOpacity>
   );
