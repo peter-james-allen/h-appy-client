@@ -5,7 +5,7 @@ import react from 'react';
 import Header from '../components/Header';
 import Grid from '../components/Grid';
 
-const windowWidth = Dimensions.get('window').width
+const windowWidth = Dimensions.get('window').width;
 
 export default function IndividualActivity({ route }) {
   const navigation = useNavigation();

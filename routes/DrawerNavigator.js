@@ -5,31 +5,48 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainMenu from '../views/MainMenu';
 import About from '../views/About';
 import IndividualCourse from '../views/IndividualCourse';
-import AddActivity from '../views/AddActivity';
+import AddActivity from '../views/AddActivity'
+import { NIBBLES, APPETISERS, MAINS, DESSERTS } from '../src/CourseDescriptions'
 
 const Drawer = createDrawerNavigator();
 
 function Nibbles() {
   return (
-    <IndividualCourse header="Nibbles" dataKey="nibbles" />
+    <IndividualCourse
+      header="Nibbles"
+      dataKey="nibbles"
+      description={NIBBLES}
+    />
   );
 }
 
 function Starters() {
   return (
-    <IndividualCourse header="Starters" dataKey="appetisers" />
+    <IndividualCourse
+      header="Starters"
+      dataKey="appetisers"
+      description={APPETISERS}
+    />
   );
 }
 
 function Mains() {
   return (
-    <IndividualCourse header="Mains" dataKey="mains" />
+    <IndividualCourse
+      header="Mains"
+      dataKey="mains"
+      description={MAINS}
+    />
   );
 }
 
 function Desserts() {
   return (
-    <IndividualCourse header="Desserts" dataKey="desserts" />
+    <IndividualCourse
+      header="Desserts"
+      dataKey="desserts"
+      description={DESSERTS}
+    />
   );
 }
 

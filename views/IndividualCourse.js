@@ -24,7 +24,7 @@ function buildItem(item) {
 const windowWidth = Dimensions.get('window').width;
 
 export default function IndividualCourse(props) {
-  const { dataKey, header } = props;
+  const { dataKey, header, description } = props;
 
   const navigation = useNavigation();
   const apiData = FetchActivities();
@@ -34,15 +34,13 @@ export default function IndividualCourse(props) {
       <Header />
 
       <View style={styles.headerContainer}>
-        <CourseHeader style={styles.courseHeader} header={header} />
+        <CourseHeader header={header} />
       </View>
 
       <View style={styles.activitiesContainer}>
         <View style={styles.courseDetailsContainer}>
           <Text style={styles.courseDetails}>
-            this is where the full list of appetisers could go.
-            a little mini menu. maybe also a blurb about what the appetiser
-            category means in terms of activity size
+            {description}
           </Text>
         </View>
         <View style={styles.activityList}>
@@ -58,7 +56,7 @@ export default function IndividualCourse(props) {
           <Text
             style={styles.menuButton}
             onPress={() => navigation.navigate('Menu')}
-            >
+          >
             Back to the Main Menu
           </Text>
         </TouchableOpacity>
@@ -73,10 +71,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#696773',
-    alignContent: 'flex-start',
   },
   courseDetailsContainer: {
-    flex: 0.3,
+    flex: 0.4,
     alignContent: 'center',
     justifyContent: 'center',
     width: '90%',
@@ -98,9 +95,6 @@ const styles = StyleSheet.create({
     padding: 15,
     top: '10%',
     borderRadius: 5
-  },
-  courseHeader: {
-
   },
   activityList: {
     justifyContent: 'center',
@@ -138,8 +132,8 @@ const styles = StyleSheet.create({
   },
   activitiesContainer: {
     flex: 0.95,
-    marginTop: '30%',
-    marginBottom: '10%',
+    marginTop: '25%',
+    marginBottom: '12%',
     width: windowWidth * 0.9,
     backgroundColor: '#B1B6A6',
     alignItems: 'center',
