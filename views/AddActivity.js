@@ -24,11 +24,13 @@ export default function AddActivity() {
       <Header />
 
       <View style={styles.FormContainer}>
-        <View style={styles.FormItem}>
-          <Text>Activity Name</Text>
+
+        <View style={styles.nameContainer}>
           <TextInput
-            style={{ height: 40 }}
-            placeholder="enter the name of the activity here"
+            editable
+            style={styles.nameField}
+            placeholder="Activity name..."
+            placeholderTextColor="#fff"
             onChangeText={(newActivityName) => setActivityName(newActivityName)}
             defaultValue={ActivityName}
           />
@@ -77,13 +79,13 @@ export default function AddActivity() {
         <PriceSlider price={price} setPrice={setPrice} />
 
       </View>
-        <SubmitButton
-          ActivityType={ActivityType}
-          ActivityName={ActivityName}
-          accessibility={accessibility}
-          price={price}
-          categories={[category]}
-        />
+      <SubmitButton
+        ActivityType={ActivityType}
+        ActivityName={ActivityName}
+        accessibility={accessibility}
+        price={price}
+        categories={[category]}
+      />
     </View>
   );
 }
@@ -92,17 +94,17 @@ function AccessibilitySlider(props) {
   const { accessibility, setAccessibility } = props;
   return (
     <View style={styles.sliderContainer}>
-      <Text>
-        Accessibility: {accessibility}
-      </Text>
       <Slider
         style={styles.slider}
         minimumValue={0}
         maximumValue={10}
         minimumTrackTintColor="#FFFFFF"
         maximumTrackTintColor="#000000"
-        onSlidingComplete={(value) => setAccessibility(Math.ceil(value))}
+        onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
+      <Text>
+        Accessibility: {accessibility}
+      </Text>
     </View>
   );
 }
@@ -111,17 +113,17 @@ function PriceSlider(props) {
   const { price, setPrice } = props;
   return (
     <View style={styles.sliderContainer}>
-      <Text>
-        Price: {'£ '.repeat(price)}
-      </Text>
       <Slider
         style={styles.slider}
         minimumValue={0}
         maximumValue={4}
         minimumTrackTintColor="#FFFFFF"
         maximumTrackTintColor="#000000"
-        onSlidingComplete={(value) => setPrice(Math.ceil(value))}
-      />
+        onValueChange={(value) => setPrice(Math.ceil(value))}
+        />
+        <Text>
+          Price: {'£ '.repeat(price)}
+        </Text>
     </View>
   );
 }
@@ -176,29 +178,37 @@ const styles = StyleSheet.create({
     backgroundColor: "#B1B6A6",
     borderRadius: 5,
   },
-  FormItem: {
+  nameContainer: {
     flex: 0.1,
     borderRadius: 5,
-    marginTop: "25%",
+    marginTop: "10%",
+    padding: 10,
     width: "80%",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: '#363946',
+  },
+  nameField: {
+    color: "#fff",
+    fontFamily: 'Chalkduster',
+    fontSize: 18,
   },
   slider: {
-    width: 300,
+    width: 280,
     opacity: 1,
     height: 50,
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 5,
   },
   sliderContainer: {
-    flex: 0.2
+    flex: 0.2,
+    alignItems: "center",
+    justifyContent: "center",
   },
   pickerContainer: {
+    marginTop: (Platform.OS === 'ios') ? -50 : 0,
     width: "80%",
     borderRadius: 10,
-    flex: 0.4,
-    marginTop: 20
+    flex: 0.3,
   },
   picker: {
     // flex: 0.3,

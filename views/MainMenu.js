@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
-  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList, Dimensions, LogBox,
+  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList, Dimensions, LogBox, Platform,
 } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
