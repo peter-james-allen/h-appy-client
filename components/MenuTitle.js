@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
   menuTitle: {
     fontFamily: 'Didot',
     color: '#363946',
-    fontSize: 18,
+    fontSize: 20,
   },
 });
