@@ -56,8 +56,7 @@ function AccessibilitySlider(props) {
   return (
     <View>
       <Text>
-        Accessibility:
-        {accessibility}
+        Accessibility: {accessibility}
       </Text>
       <Slider
         style={styles.slider}
@@ -76,13 +75,12 @@ function PriceSlider(props) {
   return (
     <View>
       <Text>
-        Price:
-        {price}
+        Price: {'£ '.repeat(price)}
       </Text>
       <Slider
         style={styles.slider}
         minimumValue={0}
-        maximumValue={10}
+        maximumValue={4}
         minimumTrackTintColor="#FFFFFF"
         maximumTrackTintColor="#000000"
         onSlidingComplete={(value) => setPrice(Math.ceil(value))}
@@ -105,7 +103,7 @@ function SubmitButton(props) {
           console.log(ActivityType);
           if (ActivityType !== 'default' && ActivityName !== '') {
             addToUserData(ActivityType, {
-              _id: ActivityName, name: ActivityName, accessibility, price,
+              _id: ActivityName, name: ActivityName, accessibility: accessibility, cost: price,
             });
           }
         }}
