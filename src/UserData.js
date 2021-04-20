@@ -110,4 +110,10 @@ const getAllUserData = async () => {
   return userData;
 };
 
+export function alreadyExistingName(key, name) {
+  const existingName = userData[key].filter((item) => item.name == name)
+  return existingName.length > 0 ? true : false;
+}
+
+
 export default getAllUserData;

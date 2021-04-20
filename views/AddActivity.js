@@ -8,6 +8,7 @@ import {
 import Header from '../components/Header';
 import { storeData } from '../src/UserData';
 import { useNavigation } from '@react-navigation/native';
+import { alreadyExistingName } from '../src/UserData'
 
 export default function AddActivity() {
   const [ActivityType, setActivityType] = useState('default');
@@ -104,12 +105,15 @@ function SubmitButton(props) {
           marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
         }}
         onPress={() => {
-          if (ActivityType !== 'default' && ActivityName !== '') {
-            storeData(ActivityType, {
-              _id: ActivityName, name: ActivityName, accessibility, price,
-            });
+          alreadyExistingName(ActivityType, ActivityName)
+          if (ActivityType !== 'default' && alreadyExistingName(ActivityType, ActivityName) == false && ActivityName !== '') {
+              storeData(ActivityType, {
+                _id: ActivityName, name: ActivityName, accessibility, price,
+              });
+              navigation.navigate('Menu')
+          } else { 
+            alert('Activity already exists')
           }
-          navigation.navigate('Menu')
         }}
       >
         <Text style={{ color: '#fafafa' }}>Add</Text>
