@@ -102,7 +102,6 @@ function SubmitButton(props) {
           marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
         }}
         onPress={() => {
-          console.log(ActivityType);
           if (ActivityType !== 'default' && ActivityName !== '') {
             storeData(ActivityType, {
               _id: ActivityName, name: ActivityName, accessibility, price,

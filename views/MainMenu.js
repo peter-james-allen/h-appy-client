@@ -19,17 +19,13 @@ export default function MainMenu() {
   useEffect(() => {
     const fetchStuff = async () => {
       const awaitedUserData = await getAllUserData();
-      console.log('awaitedUserData: ', awaitedUserData);
       setUserData(awaitedUserData);
     };
     fetchStuff();
   }, []);
-  console.log('MainMenu');
-  console.log(userData);
-  // setTimeout(() => {
-  //   console.log('MainMenu timeout');
-  //   console.log(userData);
-  // }, 1000);
+  // console.log('MainMenu');
+  // console.log(userData);
+
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
