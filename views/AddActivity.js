@@ -1,38 +1,33 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
-import Slider from "@react-native-community/slider";
+import React, { useState } from 'react';
+import Slider from '@react-native-community/slider';
 import {
   Text,
   View,
   TextInput,
   StyleSheet,
   TouchableOpacity,
-} from "react-native";
-import { Picker } from "@react-native-picker/picker";
-import Header from "../components/Header";
-import { addToUserData } from "../src/UserData";
-import MultiSelect from "react-native-multiple-select";
+} from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+import MultiSelect from 'react-native-multiple-select';
+import Header from '../components/Header';
+import { addToUserData } from '../src/UserData';
+import { FetchCategories } from '../src/FetchActivities';
 // import CategorySelect from "../components/CategorySelect";
 
 export default function AddActivity() {
-  const [ActivityType, setActivityType] = useState("default");
-  const [ActivityName, setActivityName] = useState("");
+  const [ActivityType, setActivityType] = useState('default');
+  const [ActivityName, setActivityName] = useState('');
   const [accessibility, setAccessibility] = useState(0);
   const [price, setPrice] = useState(0);
   const [selectedItems, setSelectedItems] = useState([]);
 
-  const items = [
-    { id: 1, name: "a" },
-    { id: 2, name: "b" },
-    { id: 3, name: "c" },
-    { id: 4, name: "d" },
-  ];
+  const categories = FetchCategories();
+  const items = categories.map((category) => ({ name: category }));
 
   function onSelectedItemsChange(selectedItems) {
     setSelectedItems(selectedItems);
-    console.log(selectedItems);
   }
-
 
   return (
     <View style={styles.container}>
@@ -76,19 +71,15 @@ export default function AddActivity() {
           selectedItems={selectedItems}
           selectText="Pick categories"
           searchInputPlaceholderText="Search categories..."
-          onChangeInput={(text) => console.log(text)}
-          tagRemoveIconColor="#CCC"
-          tagBorderColor="#CCC"
-          tagTextColor="#CCC"
           selectedItemTextColor="#CCC"
           selectedItemIconColor="#CCC"
           itemTextColor="#000"
           displayKey="name"
-          searchInputStyle={{ color: "#CCC" }}
-          // submitButtonColor="#48d22b"
-          // submitButtonText="Submit"
+          searchInputStyle={{ color: '#CCC' }}
+          submitButtonColor="#ccc"
+          submitButtonText="Submit"
         />
-    </View>
+      </View>
 
       <AccessibilitySlider
         accessibility={accessibility}
@@ -148,32 +139,34 @@ function PriceSlider(props) {
 }
 
 function SubmitButton(props) {
-  const { ActivityType, ActivityName, accessibility, price, categories } = props;
+  const {
+    ActivityType, ActivityName, accessibility, price, categories,
+  } = props;
   return (
-    <View style={{ width: "80%" }}>
+    <View style={{ width: '80%' }}>
       <TouchableOpacity
         style={{
           marginLeft: 8,
           padding: 8,
-          backgroundColor: "#212121",
-          justifyContent: "center",
-          alignItems: "center",
+          backgroundColor: '#212121',
+          justifyContent: 'center',
+          alignItems: 'center',
           borderRadius: 8,
         }}
         onPress={() => {
           console.log(ActivityType);
-          if (ActivityType !== "default" && ActivityName !== "") {
+          if (ActivityType !== 'default' && ActivityName !== '') {
             addToUserData(ActivityType, {
               _id: ActivityName,
               name: ActivityName,
               accessibility,
               price,
-              categories: categories
+              categories,
             });
           }
         }}
       >
-        <Text style={{ color: "#fafafa" }}>Add</Text>
+        <Text style={{ color: '#fafafa' }}>Add</Text>
       </TouchableOpacity>
     </View>
   );
@@ -182,17 +175,17 @@ function SubmitButton(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#f8f9d4",
-    alignContent: "flex-start",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f8f9d4',
+    alignContent: 'flex-start',
   },
   FormItem: {
     padding: 4,
     margin: 3,
     borderWidth: 2,
     borderRadius: 5,
-    width: "80%",
+    width: '80%',
   },
   slider: {
     width: 300,

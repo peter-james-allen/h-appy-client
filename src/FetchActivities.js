@@ -13,3 +13,17 @@ export default function FetchActivities(limit) {
 
   return apiData;
 }
+
+export function FetchCategories() {
+  const [apiData, setApiData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://happy-haddocks.herokuapp.com/categories')
+      .then((response) => response.json())
+      .then((json) => setApiData(json))
+      .catch((error) => console.error(error));
+  }, []);
+
+  console.log(apiData);
+  return apiData;
+}
