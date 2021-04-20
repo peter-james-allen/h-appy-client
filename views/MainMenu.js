@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
-import getAllUserData, { emptyUserData } from '../src/UserData';
+import getAllUserData, { emptyUserData, hasUserDataChanged } from '../src/UserData';
 import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
@@ -17,14 +17,15 @@ import IndividualActivityButton from '../components/IndividualActivityButton';
 export default function MainMenu() {
   const [userData, setUserData] = useState(emptyUserData);
   useEffect(() => {
+    console.log('useEffect');
     const fetchStuff = async () => {
       const awaitedUserData = await getAllUserData();
       setUserData(awaitedUserData);
     };
     fetchStuff();
-  }, [userData]);
-  // console.log('MainMenu');
-  // console.log(userData);
+  }, [hasUserDataChanged()]);
+  console.log('MainMenu');
+  console.log(userData);
 
   const navigation = useNavigation();
   return (

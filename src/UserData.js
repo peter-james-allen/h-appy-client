@@ -62,11 +62,19 @@ const getData = async (key) => {
   }
 };
 
+// eslint-disable-next-line import/no-mutable-exports
+let dataChange = true;
+
+export function hasUserDataChanged() {
+  return dataChange;
+}
+
 export const storeData = async (key, value) => {
   try {
     userData[key].push(value);
     const jsonValue = JSON.stringify(userData[key]);
     await AsyncStorage.setItem(key, jsonValue);
+    dataChange = true;
     alert('Activity successfully saved');
   } catch (e) {
     alert('Failed to save the data to the storage');
@@ -84,6 +92,7 @@ const getAllUserData = async () => {
     mains,
     desserts,
   };
+  dataChange = false;
   return userData;
 };
 
