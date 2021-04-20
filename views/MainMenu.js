@@ -109,7 +109,7 @@ function MenuSection(props) {
 
 function Menu(props) {
   const { userData } = props;
-  const apiData = FetchActivities();
+  const apiData = FetchActivities(3);
 
   return (
     <View>
