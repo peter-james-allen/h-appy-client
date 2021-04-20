@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Dimensions,
+  StyleSheet, Text, View, Dimensions, Button,
 } from 'react-native';
 import react from 'react';
 import Header from '../components/Header';
@@ -35,7 +35,7 @@ export default function IndividualActivity({ route }) {
 
       <Button
         title="Delete this activity"
-        onPress={() => { deleteDataByID(route.params.itemID); navigation.navigate('Menu') } }
+        onPress={() => { deleteDataByID(route.params.item._id); navigation.navigate('Menu'); }}
       // onPress = {deleteDate(key, item.id)}
       />
 
