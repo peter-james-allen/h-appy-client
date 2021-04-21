@@ -4,23 +4,23 @@ import fetch from 'node-fetch';
 
 export default sendUserData = async (nameData, usernameData, emailData, passwordData, navigation) => {
       let response = await fetch('http://localhost:3000/user', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: nameData,
-        username: usernameData,
-        email: emailData,
-        password: passwordData,
-      })
-    });
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: nameData,
+          username: usernameData,
+          email: emailData,
+          password: passwordData,
+        })
+      });
       let json = await response.json();
       validation(json, navigation);
     };
     
- const validation = (response, navigation) => {
+  const validation = (response, navigation) => {
    if (response.user) {
      showMessage({
        message: "Signup successful",

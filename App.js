@@ -107,13 +107,68 @@ export default function App({navigation}) {
           type: "success",
         })
     },
-      signUp: async data => {
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+      signUp: async (nameData, usernameData, emailData, passwordData, navigation) => {
+        let response = await fetch('http://localhost:3000/user', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: nameData,
+            username: usernameData,
+            email: emailData,
+            password: passwordData,
+          })
+        });
+        let json = await response.json();
+        if (json.user) {
+          showMessage({
+            message: "Signup successful",
+            description: `Welcome to H-Appy, ${json.user.name}!`,
+            type: "success",
+          });
+          dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token)})
+          navigation.navigate('Menu')
+        } else if (json.name && json.name === "MongoError") {
+          if ("email" in json.keyPattern) {
+            showMessage({
+              message: "Email in use",
+              description: "That email has already been taken",
+              type: "error",
+            });
+          }
+          else if ("username" in json.keyPattern) {
+            showMessage({
+              message: "Username in use",
+              description: "That username has already been taken",
+              type: "error",
+            });
+          }
+        }
+        else if (json.errors) {
+          if (json.errors.email && json.errors.email.name === "ValidatorError") {
+            showMessage({
+              message: "Email not valid",
+              description: "You must submit a valid email",
+              type: "error",
+            });
+          }
+          else if (json.errors.password && json.errors.password.name === "ValidatorError") {
+            showMessage({
+              message: "Password too short",
+              description: "Your password must be at least 8 characters long",
+              type: "error",
+            });
+          }
+        }
       },
     }),
     [],
   );
+
   console.log(state.userToken)
+
   return (
     <>
     <AuthContext.Provider value={authContext}>
@@ -139,3 +194,46 @@ const styles = StyleSheet.create({
     backgroundColor: '#819595',
   },
 });
+
+const validation = (response, navigation) => {
+  if (response.user) {
+    showMessage({
+      message: "Signup successful",
+      description: `Welcome to H-Appy, ${response.user.name}!`,
+      type: "success",
+    });
+    dispatch({ type: 'SIGN_IN', token: JSON.stringify(response.token)})
+    navigation.navigate('Menu')
+  } else if (response.name && response.name === "MongoError") {
+   if ("email" in response.keyPattern) {
+     showMessage({
+       message: "Email in use",
+       description: "That email has already been taken",
+       type: "error",
+     });
+   }
+   else if ("username" in response.keyPattern) {
+     showMessage({
+       message: "Username in use",
+       description: "That username has already been taken",
+       type: "error",
+     });
+   }
+ }
+ else if (response.errors) {
+   if (response.errors.email && response.errors.email.name === "ValidatorError") {
+     showMessage({
+       message: "Email not valid",
+       description: "You must submit a valid email",
+       type: "error",
+     });
+   }
+   else if (response.errors.password && response.errors.password.name === "ValidatorError") {
+     showMessage({
+       message: "Password too short",
+       description: "Your password must be at least 8 characters long",
+       type: "error",
+     });
+   }
+ }
+}
