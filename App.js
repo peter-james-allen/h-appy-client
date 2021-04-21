@@ -93,6 +93,11 @@ export default function App({navigation}) {
       signOut: (navigation) => {
         dispatch({type: 'SIGN_OUT'})
         navigation.navigate('Menu')
+        showMessage({
+          message: "Sign out successful",
+          description: 'Come back soon!',
+          type: "success",
+        });
       },
       signUp: async data => {
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
