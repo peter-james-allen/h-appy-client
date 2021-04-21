@@ -112,6 +112,7 @@ function AccessibilitySlider(props) {
     <View style={styles.sliderContainer}>
       <Slider
         style={styles.slider}
+        value={accessibility}
         minimumValue={0}
         maximumValue={10}
         minimumTrackTintColor="#696773"
@@ -134,6 +135,7 @@ function PriceSlider(props) {
   return (
     <View style={styles.sliderContainer}>
       <Slider
+        value={price}
         style={styles.slider}
         minimumValue={0}
         maximumValue={4}
