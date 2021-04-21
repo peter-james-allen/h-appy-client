@@ -3,7 +3,6 @@ import { DrawerActions, useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Dimensions, Button,
 } from 'react-native';
-import react from 'react';
 import Header from '../components/Header';
 import { deleteDataByID } from '../src/UserData';
 import Grid from '../components/Grid';
