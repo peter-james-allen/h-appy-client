@@ -1,8 +1,8 @@
 import React from 'react';
 import {useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer, Button } from '@react-navigation/native';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import MainMenu from '../views/MainMenu';
 import About from '../views/About';
 import IndividualCourse from '../views/IndividualCourse';
@@ -13,6 +13,7 @@ import {
 import SignUp from '../views/SignUp';
 import SignIn from '../views/SignIn';
 import AuthContext from '../src/AuthContext';
+
 
 
 
@@ -59,10 +60,24 @@ function Desserts() {
   );
 }
 
+function SignOutButton(props) {
+  const { signOut } = React.useContext(AuthContext);
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem
+        label="Sign Out"
+        onPress={() => signOut()}
+      />
+    </DrawerContentScrollView>
+  );
+}
+
 const DrawerNavigator = ({state}) => {
   return (
-  <Drawer.Navigator
+  <Drawer.Navigator 
     drawerStyle={styles.drawer}
+    drawerContent={(props) => <SignOutButton {...props} />}
     drawerContentOptions={drawerContentStyles}
     >
     <Drawer.Screen name="Menu" component={MainMenu} />
