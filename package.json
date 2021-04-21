@@ -56,7 +56,8 @@
     "react-native-screens": "~3.0.0",
     "react-native-table-component": "^1.2.1",
     "react-native-web": "~0.13.12",
-    "whatwg-fetch": "^3.6.2"
+    "whatwg-fetch": "^3.6.2",
+    "expo-linking": "~2.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
