@@ -10,7 +10,7 @@ import {
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Header from '../components/Header';
-import getAllUserData, { emptyUserData } from '../src/UserData';
+import getAllUserData, { emptyUserData, doesActivityNameExist } from '../src/UserData';
 import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
@@ -122,6 +122,15 @@ function MenuSection(props) {
 function Menu(props) {
   const { userData } = props;
   const apiData = FetchActivities(3);
+
+  let key;
+  // eslint-disable-next-line no-restricted-syntax
+  for (key of Object.keys(userData)) {
+    if (apiData[key] !== undefined) {
+      // eslint-disable-next-line no-loop-func
+      apiData[key] = apiData[key].filter((item) => !doesActivityNameExist(key, item.name));
+    }
+  }
 
   return (
     <View>
