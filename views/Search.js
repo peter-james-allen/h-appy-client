@@ -141,7 +141,6 @@ const styles = StyleSheet.create({
   },
   accessibilityContainer: {
     flex: 0.15,
-    backgroundColor: '#363946',
     width: '92%',
     borderRadius: 5,
     alignItems: 'center',
@@ -150,7 +149,6 @@ const styles = StyleSheet.create({
   },
   priceContainer: {
     flex: 0.08,
-    backgroundColor: '#363946',
     width: '92%',
     borderRadius: 5,
     marginBottom: '3%',
@@ -187,7 +185,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontFamily: 'Courier',
-    color: '#B1B6A6',
+    color: '#363946',
     textAlign: 'center',
     padding: 10,
   },

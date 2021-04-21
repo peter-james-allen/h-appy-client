@@ -65,7 +65,7 @@ export default function AddActivity() {
           setAccessibility={setAccessibility}
         />
 
-        <View style={styles.pickerContainer}>
+        <View style={[styles.pickerContainer, { marginTop: -80}]}>
           <Picker
             style={styles.picker}
             selectedValue={category}
