@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import { NavigationContainer, Button } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import MainMenu from '../views/MainMenu';
@@ -57,6 +57,21 @@ function Desserts() {
   );
 }
 
+const SignOutAlert = (navigation, signOut) => {
+    Alert.alert(
+      "Sign Out",
+      "Are you sure you want to sign out?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Yes", onPress: () => signOut(navigation) }
+      ]
+    );
+}
+
 function SignOutButton(props) {
   const { signOut } = React.useContext(AuthContext);
   const navigation = useNavigation();
@@ -65,7 +80,7 @@ function SignOutButton(props) {
       <DrawerItemList {...props} />
       <DrawerItem {...props}
         label="Sign Out"
-        onPress={() => signOut(navigation)}
+        onPress={() => SignOutAlert(navigation, signOut)}
         style={styles.signout}
       />
     </DrawerContentScrollView>

@@ -90,22 +90,30 @@ export default function App({navigation}) {
            });
          };
       },
-      signOut: (navigation) => {
-        dispatch({type: 'SIGN_OUT'})
+      signOut: async (navigation, userToken) => {
+        await fetch('http://localhost:3000/user/profile/logout', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer' + state.userToken
+        },
+      });
+        dispatch({ type: 'SIGN_OUT'})
         navigation.navigate('Menu')
         showMessage({
           message: "Sign out successful",
           description: 'Come back soon!',
           type: "success",
-        });
-      },
+        })
+    },
       signUp: async data => {
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
     }),
     [],
   );
-  
+  console.log(state.userToken)
   return (
     <>
     <AuthContext.Provider value={authContext}>
