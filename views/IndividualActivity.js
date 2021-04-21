@@ -45,7 +45,7 @@ export default function IndividualActivity({ route }) {
         </View>
       </View>
       <TouchableOpacity style={styles.touchable}>
-        < AddOrDeleteActivity isThisAPIData={isThisAPIData} menu={menuSection} item={item} />
+        < AddOrDeleteActivity isThisAPIData={isThisAPIData} menuSection={menuSection} item={item} />
       </TouchableOpacity>
       <MenuButton />
     </View>

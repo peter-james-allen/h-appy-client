@@ -63,6 +63,8 @@ const getData = async (key) => {
 };
 
 export const storeData = async (key, value) => {
+  console.log("key", key)
+  console.log(value)
   try {
     userData[key].push(value);
     const jsonValue = JSON.stringify(userData[key]);
