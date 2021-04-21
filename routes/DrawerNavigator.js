@@ -13,10 +13,7 @@ import {
 import SignUp from '../views/SignUp';
 import SignIn from '../views/SignIn';
 import AuthContext from '../src/AuthContext';
-
-
-
-
+import { useNavigation } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
@@ -62,12 +59,13 @@ function Desserts() {
 
 function SignOutButton(props) {
   const { signOut } = React.useContext(AuthContext);
+  const navigation = useNavigation();
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
       <DrawerItem {...props}
         label="Sign Out"
-        onPress={() => signOut()}
+        onPress={() => signOut(navigation)}
         style={styles.signout}
       />
     </DrawerContentScrollView>

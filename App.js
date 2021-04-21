@@ -90,7 +90,10 @@ export default function App({navigation}) {
            });
          };
       },
-      signOut: () => dispatch({type: 'SIGN_OUT'}),
+      signOut: (navigation) => {
+        dispatch({type: 'SIGN_OUT'})
+        navigation.navigate('Menu')
+      },
       signUp: async data => {
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
