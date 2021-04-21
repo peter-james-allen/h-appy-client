@@ -113,7 +113,7 @@ function SubmitButton(props) {
       <TouchableOpacity
         onPress={() => {
             console.log({ accessibility: accessibility, cost: price, category: category });
-            navigation.navigate('Menu');
+            navigation.navigate('SearchResults');
           }
         }
       >
