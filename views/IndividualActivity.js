@@ -4,7 +4,7 @@ import {
   StyleSheet, Text, View, Dimensions, Button, TouchableOpacity,
 } from 'react-native';
 import Header from '../components/Header';
-import { deleteDataByID, doesActivityNameExist } from '../src/UserData';
+import { deleteDataByID, doesActivityNameExist, storeData } from '../src/UserData';
 import Grid from '../components/Grid';
 import MenuButton from '../components/MenuButton';
 
@@ -22,7 +22,7 @@ export default function IndividualActivity({ route }) {
     isThisAPIData = false;
   } else {
     if (!menuSection.endsWith('s')) { menuSection = `${menuSection}s`; }
-    isThisAPIData = doesActivityNameExist(menuSection, item.name);
+    isThisAPIData = !doesActivityNameExist(menuSection, item.name);
   }
   console.log(isThisAPIData);
 
@@ -44,23 +44,40 @@ export default function IndividualActivity({ route }) {
           <Grid activity={item} />
         </View>
       </View>
-
       <TouchableOpacity style={styles.touchable}>
-        <View style={styles.deleteButtonContainer}>
-          <Text
-            style={styles.deleteButton}
-            title="Delete this activity"
-            onPress={() => { deleteDataByID(item._id); navigation.navigate('Menu'); }}
-          // onPress = {deleteDate(key, item.id)}
-          >
-            Remove from favourites
-          </Text>
-        </View>
+        < AddOrDeleteActivity isThisAPIData={isThisAPIData} menu={menuSection} item={item} />
       </TouchableOpacity>
-
       <MenuButton />
     </View>
   );
+}
+
+function AddOrDeleteActivity(props) {
+  const navigation = useNavigation();
+  if (props.isThisAPIData) {
+    return (
+    <View style={styles.deleteButtonContainer}>
+      <Text
+        style={styles.deleteButton}
+        title="Add to favorites"
+        onPress={() => { storeData(props.menuSection, props.item); navigation.navigate('Menu'); }}
+      // onPress = {deleteDate(key, item.id)}
+      >
+        Add to favourites
+      </Text>
+    </View>)
+  }
+  return (
+  <View style={styles.deleteButtonContainer}>
+    <Text
+      style={styles.deleteButton}
+      title="Delete this activity"
+      onPress={() => { deleteDataByID(props.item._id); navigation.navigate('Menu'); }}
+    // onPress = {deleteDate(key, item.id)}
+    >
+      Remove from favourites
+    </Text>
+  </View>)
 }
 
 const styles = StyleSheet.create({
