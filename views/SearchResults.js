@@ -52,7 +52,7 @@ function SearchActivities(query) {
 function AccessibilitySlider(props) {
   const { accessibility, setAccessibility } = props;
   return (
-    <View style={styles.sliderContainer}>
+    <View style={[styles.sliderContainer, styles.shadow]}>
       <Slider
         style={styles.slider}
         minimumValue={1}
@@ -76,7 +76,7 @@ function AccessibilitySlider(props) {
 function PriceSlider(props) {
   const { price, setPrice } = props;
   return (
-    <View style={styles.sliderContainer}>
+    <View style={[styles.sliderContainer, styles.shadow]}>
       <Slider
         style={styles.slider}
         minimumValue={0}
@@ -136,7 +136,7 @@ export default function SeachResults({ route }) {
     <View style={styles.container}>
       <Header />
 
-      <View style={styles.formContainer}>
+      <View style={[styles.formContainer, styles.shadow]}>
         <AccessibilitySlider
           accessibility={accessibility}
           setAccessibility={setAccessibility}
@@ -166,7 +166,7 @@ export default function SeachResults({ route }) {
         category={category}
       />
 
-      <View style={styles.activitiesContainer}>
+      <View style={[styles.activitiesContainer, styles.shadow]}>
         <View style={styles.activityList}>
           <FlatList
             data={apiData}
@@ -290,4 +290,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 5,
   },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
+  }
 });

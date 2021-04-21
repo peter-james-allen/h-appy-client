@@ -20,7 +20,7 @@ export default function Search() {
     <View style={styles.container}>
       <Header />
 
-      <View style={styles.formContainer}>
+      <View style={[styles.formContainer, styles.shadow]}>
         <View style={styles.nameContainer}>
           <Text style={styles.Title}>Search all Activities</Text>
         </View>
@@ -44,7 +44,7 @@ export default function Search() {
           accessibility={accessibility}
           setAccessibility={setAccessibility}
         />
-        <View style={styles.accessibilityContainer}>
+        <View style={[styles.accessibilityContainer, styles.shadow]}>
           <Text style={styles.description}>
             Filter by accesssibility, 1 being the least accessible and
             10 being the most. Example: taking a nap = 10, climbing
@@ -53,7 +53,7 @@ export default function Search() {
         </View>
 
         <PriceSlider price={price} setPrice={setPrice} />
-        <View style={styles.priceContainer}>
+        <View style={[styles.priceContainer, styles.shadow]}>
           <Text style={styles.description}>
             Find activities within your budget
           </Text>
@@ -71,7 +71,7 @@ export default function Search() {
 function AccessibilitySlider(props) {
   const { accessibility, setAccessibility } = props;
   return (
-    <View style={styles.sliderContainer}>
+    <View style={[styles.sliderContainer, styles.shadow]}>
       <Slider
         style={styles.slider}
         minimumValue={1}
@@ -94,7 +94,7 @@ function AccessibilitySlider(props) {
 function PriceSlider(props) {
   const { price, setPrice } = props;
   return (
-    <View style={styles.sliderContainer}>
+    <View style={[styles.sliderContainer, styles.shadow]}>
       <Slider
         style={styles.slider}
         minimumValue={0}
@@ -247,4 +247,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#FFF',
   },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
+  }
 });

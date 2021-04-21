@@ -84,6 +84,14 @@ const styles = StyleSheet.create({
     padding: 20,
     top: '10%',
     borderRadius: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
   },
   activityList: {
     justifyContent: 'center',
@@ -128,5 +136,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
+    paddingLeft: 5,
+    paddingRight: 5
   },
 });
