@@ -20,7 +20,7 @@ export default function Grid(props) {
     { id: 'categories', value: categories },
     { id: 'header2', value: 'Cost' },
     { id: 'header3', value: 'Acccessibility' },
-    { id: 'cost', value: 'cost\n£ '.repeat(activity.cost) || 'Free :)' },
+    { id: 'cost', value: '£ '.repeat(activity.cost) || 'Free :)' },
     { id: 'accessibility', value: `${activity.accessibility}/10` },
   ];
 
@@ -57,12 +57,13 @@ function itemStyle(item) {
   if (item.id.includes('header')) {
     return {
       textDecorationLine: 'underline',
-      marginTop: 15
-
+      marginTop: 15,
+      paddingTop: 5,
+      marginBottom: -10
     };
   }
   return {
-    padding: '20%',
+    paddingTop: '10%',
   };
 }
 
