@@ -1,14 +1,19 @@
-import React, { Component, useEffect, useState } from 'react';
-import { DrawerActions, useNavigation } from '@react-navigation/native';
+import React, { Component, useEffect, useState } from "react";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 import {
-  StyleSheet, Text, View, Dimensions, Button, TouchableOpacity,
-} from 'react-native';
-import Header from '../components/Header';
-import { deleteDataByID } from '../src/UserData';
-import Grid from '../components/Grid';
-import MenuButton from '../components/MenuButton';
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Button,
+  TouchableOpacity,
+} from "react-native";
+import Header from "../components/Header";
+import { deleteDataByID } from "../src/UserData";
+import Grid from "../components/Grid";
+import MenuButton from "../components/MenuButton";
 
-const windowWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get("window").width;
 
 export default function IndividualActivity({ route }) {
   const navigation = useNavigation();
@@ -21,11 +26,7 @@ export default function IndividualActivity({ route }) {
       </View>
 
       <View style={styles.descriptionContainer}>
-        <Text style={styles.description}>
-          Being with animals improves mood and takes away stress. Just half an
-          hour with your furry friend per day can change your outlook and enable
-          you to be more productive.
-        </Text>
+        <Text style={styles.description}>{route.params.item.description}</Text>
 
         <View style={styles.grid}>
           <Grid activity={route.params.item} />
@@ -37,8 +38,11 @@ export default function IndividualActivity({ route }) {
           <Text
             style={styles.deleteButton}
             title="Delete this activity"
-            onPress={() => { deleteDataByID(route.params.item._id); navigation.navigate('Menu'); }}
-          // onPress = {deleteDate(key, item.id)}
+            onPress={() => {
+              deleteDataByID(route.params.item._id);
+              navigation.navigate("Menu");
+            }}
+            // onPress = {deleteDate(key, item.id)}
           >
             Remove from favourites
           </Text>
@@ -53,30 +57,30 @@ export default function IndividualActivity({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#696773',
-    height: Dimensions.get('window').height,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#696773",
+    height: Dimensions.get("window").height,
     width: windowWidth,
   },
   description: {
     fontSize: 16,
     lineHeight: 25,
-    textAlign: 'center',
+    textAlign: "center",
     padding: 10,
-    position: 'absolute',
+    position: "absolute",
     top: 5,
-    color: '#23252E',
-    fontFamily: 'Courier',
+    color: "#23252E",
+    fontFamily: "Courier",
   },
   descriptionContainer: {
     flex: 0.82,
-    marginTop: '52%',
-    marginBottom: '11%',
+    marginTop: "52%",
+    marginBottom: "11%",
     width: windowWidth * 0.95,
-    backgroundColor: '#B1B6A6',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#B1B6A6",
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 5,
   },
   individualDetail: {
@@ -85,22 +89,22 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    textAlign: 'center',
-    maxWidth: '90%',
-    fontFamily: 'Chalkduster',
-    color: 'white',
+    textAlign: "center",
+    maxWidth: "90%",
+    fontFamily: "Chalkduster",
+    color: "white",
   },
   nameContainer: {
     flex: 0.3,
     top: 70,
     width: windowWidth * 0.95,
     minHeight: 160,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#363946',
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#363946",
     borderRadius: 7,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 8,
@@ -112,15 +116,15 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 0.4,
     marginTop: 40,
-    position: 'absolute',
+    position: "absolute",
     bottom: 70,
   },
   grid: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     flex: 0.3,
     paddingBottom: 15,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 8,
@@ -130,21 +134,21 @@ const styles = StyleSheet.create({
     elevation: 16,
   },
   deleteButton: {
-    fontFamily: 'Courier',
-    color: '#B1B6A6'
+    fontFamily: "Courier",
+    color: "#B1B6A6",
   },
   deleteButtonContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: -6,
-    backgroundColor: '#353846',
+    backgroundColor: "#353846",
     width: windowWidth * 0.95,
     borderRadius: 7,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 10,
   },
   touchable: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
