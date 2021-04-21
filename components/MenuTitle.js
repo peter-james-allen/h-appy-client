@@ -3,11 +3,11 @@ import {
 } from 'react-native';
 import React from 'react';
 
-export default function MenuTitle() {
+export default function MenuTitle({name}) {
   return (
     <View style={styles.titleContainer}>
       <Text style={styles.menuTitle}>
-        Feed your Boredom
+        Feed your Boredom, {name}
       </Text>
     </View>
   );
