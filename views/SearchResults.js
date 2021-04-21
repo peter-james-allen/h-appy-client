@@ -7,20 +7,18 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
+  Picker,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import Slider from "@react-native-community/slider";
 import Header from "../components/Header";
 import CourseHeader from "../components/CourseHeader";
 import FetchActivities from "../src/FetchActivities";
 import IndividualActivityButton from "../components/IndividualActivityButton.js";
 import MenuButton from "../components/MenuButton";
+import { FetchCategories } from "../src/FetchActivities";
 
-// export default function SearchResults() {
-//   return(
-//     <View>
-//       <Text>Hi</Text>
-//     </View>
-//   )
-// }
+const windowWidth = Dimensions.get("window").width;
 
 function buildItem(item) {
   return (
@@ -51,9 +49,68 @@ function SearchActivities(query) {
   return apiData;
 }
 
-const windowWidth = Dimensions.get("window").width;
+function AccessibilitySlider(props) {
+  const { accessibility, setAccessibility } = props;
+  return (
+    <View style={styles.sliderContainer}>
+      <Slider
+        style={styles.slider}
+        minimumValue={0}
+        maximumValue={10}
+        minimumTrackTintColor="#696773"
+        maximumTrackTintColor="#363946"
+        onValueChange={(value) => setAccessibility(Math.ceil(value))}
+      />
+      <Text style={styles.sliderText}>
+        Accessibility Score: {"\t"} {accessibility}
+      </Text>
+    </View>
+  );
+}
+
+function PriceSlider(props) {
+  const { price, setPrice } = props;
+  return (
+    <View style={styles.sliderContainer}>
+      <Slider
+        style={styles.slider}
+        minimumValue={0}
+        maximumValue={4}
+        minimumTrackTintColor="#696773"
+        maximumTrackTintColor="#363946"
+        onValueChange={(value) => setPrice(Math.ceil(value))}
+      />
+      <Text style={styles.sliderText}>
+        Cost: {"\t"} {"£ ".repeat(price) || "Free :)"}
+      </Text>
+    </View>
+  );
+}
+
+function SubmitButton(props) {
+  const navigation = useNavigation();
+  const searchParams = props;
+
+  return (
+    <View style={styles.submitButtonContainer}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("SearchResults", { searchParams });
+        }}
+      >
+        <Text style={styles.submitButton}>Search</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
 
 export default function SeachResults({ route }) {
+  const [category, setCategory] = useState([]);
+  const [accessibility, setAccessibility] = useState(0);
+  const [price, setPrice] = useState(0);
+
+  const categories = FetchCategories();
+
   const apiData = SearchActivities({
     cost: route.params.searchParams.price,
     accessibility: route.params.searchParams.accessibility,
@@ -64,9 +121,39 @@ export default function SeachResults({ route }) {
     <View style={styles.container}>
       <Header />
 
-      <View style={styles.headerContainer}>
-        <Text>Search Results</Text>
+        <View style={styles.formContainer}>
+          <AccessibilitySlider
+            accessibility={accessibility}
+            setAccessibility={setAccessibility}
+          />
+
+          <PriceSlider price={price} setPrice={setPrice} />
+
+          <View style={styles.pickerContainer}>
+            <Picker
+              style={styles.picker}
+              selectedValue={category}
+              onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
+            >
+              <Picker.Item
+                label="Select a Category..."
+                value="default"
+                enabled={false}
+              />
+              {categories.map((item, index) => {
+                return <Picker.Item label={item} value={item} key={index} />;
+              })}
+            </Picker>
+          </View>
+
+          <SubmitButton
+            accessibility={accessibility}
+            price={price}
+            category={category}
+          />
       </View>
+
+
 
       <View style={styles.activitiesContainer}>
         <View>
@@ -93,6 +180,63 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#696773",
+  },
+  formContainer: {
+    flex: 0.5,
+    width: "92%",
+    marginTop: '20%',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#B1B6A6",
+    borderRadius: 5,
+  },
+  slider: {
+    width: 280,
+    opacity: 1,
+    height: 50,
+  },
+  sliderContainer: {
+    flex: (Platform.OS === "ios") ? 0.2 : 0.4,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#819595",
+    width: "90%",
+    borderRadius: 5,
+    marginBottom: 15,
+    zIndex: 999
+  },
+  sliderText: {
+    color: "#23252E",
+    fontFamily: "Courier",
+    fontSize: 16,
+  },
+  pickerContainer: {
+    marginTop: (Platform.OS === "ios") ? -100 : 0,
+    width: "80%",
+    // padding: 20,
+    borderRadius: 10,
+    flex: 0.5,
+    overflow: 'hidden',
+  },
+  picker: {
+    transform: Platform.OS === "ios" ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],
+  },
+  submitButtonContainer: {
+    width: "92%",
+    marginLeft: 8,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: "#363946",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    position: "absolute",
+    bottom: 15,
+  },
+  submitButton: {
+    color: "#B1B6A6",
+    fontFamily: "Courier",
+    fontSize: 20,
   },
   courseDetailsContainer: {
     flex: 0.4,
@@ -153,8 +297,8 @@ const styles = StyleSheet.create({
     padding: 3,
   },
   activitiesContainer: {
-    flex: 0.95,
-    marginTop: "25%",
+    flex: 0.4,
+    marginTop: "5%",
     marginBottom: "12%",
     width: windowWidth * 0.9,
     backgroundColor: "#B1B6A6",

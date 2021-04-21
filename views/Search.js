@@ -18,7 +18,7 @@ export default function Search() {
     <View style={styles.container}>
       <Header />
 
-      <View style={styles.FormContainer}>
+      <View style={styles.formContainer}>
         <View style={styles.nameContainer}></View>
 
         <View style={styles.pickerContainer}></View>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#696773",
     // alignContent: 'flex-start',
   },
-  FormContainer: {
+  formContainer: {
     flex: 0.82,
     width: "92%",
     marginTop: 10,
