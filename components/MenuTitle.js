@@ -18,7 +18,7 @@ export default function MenuTitle() {
 const styles = StyleSheet.create({
   titleContainer: {
     flex: 0.15,
-    width: windowWidth * 0.939,
+    width: windowWidth * 0.93,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#363946',

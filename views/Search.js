@@ -46,7 +46,9 @@ export default function Search() {
         />
         <View style={styles.accessibilityContainer}>
           <Text style={styles.description}>
-            Filter by accesssibility, 1 being the least accessible and 10 being the most{'\n'}e.g. taking a nap = 10, climbing Mount Everest = 1
+            Filter by accesssibility, 1 being the least accessible and
+            10 being the most. Example: taking a nap = 10, climbing
+            Mount Everest = 1
           </Text>
         </View>
 
@@ -74,7 +76,7 @@ function AccessibilitySlider(props) {
         style={styles.slider}
         minimumValue={1}
         maximumValue={10}
-        minimumTrackTintColor="#696773"
+        minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
@@ -97,7 +99,7 @@ function PriceSlider(props) {
         style={styles.slider}
         minimumValue={0}
         maximumValue={4}
-        minimumTrackTintColor="#696773"
+        minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setPrice(Math.ceil(value))}
       />
@@ -139,8 +141,8 @@ const styles = StyleSheet.create({
   },
   accessibilityContainer: {
     flex: 0.15,
-    backgroundColor: '#819595',
-    width: '95%',
+    backgroundColor: '#363946',
+    width: '92%',
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
@@ -148,8 +150,8 @@ const styles = StyleSheet.create({
   },
   priceContainer: {
     flex: 0.08,
-    backgroundColor: '#819595',
-    width: '95%',
+    backgroundColor: '#363946',
+    width: '92%',
     borderRadius: 5,
     marginBottom: '3%',
     alignItems: 'center',
@@ -157,7 +159,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     flex: 0.82,
-    width: '92%',
+    width: '93%',
     marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -169,25 +171,23 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: '4%',
     padding: 10,
-    width: '95%',
+    width: '92%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#363946',
     zIndex: 999,
-  },
-  descriptionContainer: {
-    flex: 0.25,
-    backgroundColor: '#819595',
-    borderRadius: 7,
-    marginTop: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '95%',
-    zIndex: 999,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
   },
   description: {
     fontFamily: 'Courier',
-    color: '#23252E',
+    color: '#B1B6A6',
     textAlign: 'center',
     padding: 10,
   },
@@ -205,13 +205,13 @@ const styles = StyleSheet.create({
     flex: 0.16,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#819595',
-    width: '95%',
+    backgroundColor: '#363946',
+    width: '92%',
     borderRadius: 5,
     marginBottom: 10,
   },
   sliderText: {
-    color: '#23252E',
+    color: '#B1B6A6',
     fontFamily: 'Courier',
     fontSize: 16,
   },
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     transform: Platform.OS === 'ios' ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],
   },
   submitButtonContainer: {
-    width: '92%',
+    width: '93%',
     marginLeft: 8,
     paddingTop: 10,
     paddingBottom: 10,
