@@ -122,7 +122,6 @@ function MenuSection(props) {
 function Menu(props) {
   const { userData } = props;
   const apiData = FetchActivities(3);
-
   let key;
   // eslint-disable-next-line no-restricted-syntax
   for (key of Object.keys(userData)) {

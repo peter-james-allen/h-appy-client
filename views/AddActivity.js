@@ -13,6 +13,7 @@ import { FetchCategories } from '../src/FetchActivities';
 export default function AddActivity() {
   const [ActivityType, setActivityType] = useState('default');
   const [ActivityName, setActivityName] = useState('');
+  const [ActivityDescription, setActivityDescription] = useState('');
   const [accessibility, setAccessibility] = useState(0);
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState([]);
@@ -33,6 +34,17 @@ export default function AddActivity() {
             placeholderTextColor="#fff"
             onChangeText={(newActivityName) => setActivityName(newActivityName)}
             defaultValue={ActivityName}
+          />
+        </View>
+
+        <View style={styles.nameContainer}>
+          <TextInput
+            editable
+            style={styles.nameField}
+            placeholder="Activity description..."
+            placeholderTextColor="#fff"
+            onChangeText={(newActivityDescription) => setActivityDescription(newActivityDescription)}
+            defaultValue={ActivityDescription}
           />
         </View>
 
@@ -80,6 +92,7 @@ export default function AddActivity() {
       <SubmitButton
         ActivityType={ActivityType}
         ActivityName={ActivityName}
+        ActivityDescription={ActivityDescription}
         accessibility={accessibility}
         price={price}
         categories={[category]}
@@ -137,6 +150,7 @@ function PriceSlider(props) {
 function SubmitButton(props) {
   const navigation = useNavigation();
   const {
+    ActivityDescription,
     ActivityType,
     ActivityName,
     accessibility,
@@ -155,7 +169,7 @@ function SubmitButton(props) {
             alert('Activity name already exists!');
           } else {
             storeData(ActivityType, {
-              _id: ActivityName, name: ActivityName, accessibility, price, categories, size: ActivityType,
+              _id: ActivityName, name: ActivityName, accessibility, price, categories, size: ActivityType, description: ActivityDescription
             });
             navigation.navigate('Menu');
           }

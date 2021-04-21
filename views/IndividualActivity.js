@@ -32,9 +32,7 @@ export default function IndividualActivity({ route }) {
 
       <View style={styles.descriptionContainer}>
         <Text style={styles.description}>
-          Being with animals improves mood and takes away stress. Just half an
-          hour with your furry friend per day can change your outlook and enable
-          you to be more productive.
+          {item.description}
         </Text>
 
         <View style={styles.grid}>
