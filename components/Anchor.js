@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import * as Linking from 'expo-linking';
 
 const handlePress = (props) => {
@@ -9,8 +9,8 @@ const handlePress = (props) => {
 
 export default function Anchor (props) {
     return (
-      <Text {...props} onPress={handlePress(props)}>
+      <TouchableOpacity {...props} style={{alignItems: 'center'}} onPress={() => handlePress(props)}>
         {props.children}
-      </Text>
+      </TouchableOpacity>
     );
   }
