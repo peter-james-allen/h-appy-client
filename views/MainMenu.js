@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     borderRadius: 10,
     backgroundColor: '#B1B6A6',
-    width: windowWidth * 0.95,
+    width: windowWidth * 0.94,
   },
   menuSubText: {
     textAlign: 'center',
