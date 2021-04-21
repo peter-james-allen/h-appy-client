@@ -42,11 +42,29 @@ export default function IndividualActivity({ route }) {
       <TouchableOpacity style={styles.touchable}>
         <AddOrDeleteActivity isThisAPIData={isThisAPIData} menuSection={menuSection} item={item} />
       </TouchableOpacity>
+      <TouchableOpacity style={styles.touchable}>
+        <EditUserActivity />
+      </TouchableOpacity>
       <MenuButton />
     </View>
   );
 }
 
+
+function EditUserActivity(item) {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.EditButtonContainer}>
+      <Text
+        style={styles.deleteButton}
+        title="Edit your Activity"
+        onPress={() => { navigation.navigate('EditActivity', { item })}}
+      >
+        Edit your Activity
+      </Text>
+    </View>
+  )
+}
 function AddOrDeleteActivity(props) {
   const navigation = useNavigation();
   if (props.isThisAPIData) {
@@ -160,6 +178,16 @@ const styles = StyleSheet.create({
   },
   deleteButtonContainer: {
     position: 'absolute',
+    bottom: -6,
+    backgroundColor: '#353846',
+    width: windowWidth * 0.95,
+    borderRadius: 7,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    marginBottom: 5
+  },
+  EditButtonContainer: {
     bottom: -6,
     backgroundColor: '#353846',
     width: windowWidth * 0.95,
