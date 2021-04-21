@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Dimensions, Button,
+  StyleSheet, Text, View, Dimensions, Button, TouchableOpacity,
 } from 'react-native';
 import Header from '../components/Header';
 import { deleteDataByID } from '../src/UserData';
@@ -32,11 +32,18 @@ export default function IndividualActivity({ route }) {
         </View>
       </View>
 
-      <Button
-        title="Delete this activity"
-        onPress={() => { deleteDataByID(route.params.item._id); navigation.navigate('Menu'); }}
-      // onPress = {deleteDate(key, item.id)}
-      />
+      <TouchableOpacity style={styles.touchable}>
+        <View style={styles.deleteButtonContainer}>
+          <Text
+            style={styles.deleteButton}
+            title="Delete this activity"
+            onPress={() => { deleteDataByID(route.params.item._id); navigation.navigate('Menu'); }}
+          // onPress = {deleteDate(key, item.id)}
+          >
+            Remove from favourites
+          </Text>
+        </View>
+      </TouchableOpacity>
 
       <MenuButton />
     </View>
@@ -53,7 +60,7 @@ const styles = StyleSheet.create({
     width: windowWidth,
   },
   description: {
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 25,
     textAlign: 'center',
     padding: 10,
@@ -63,10 +70,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Courier',
   },
   descriptionContainer: {
-    flex: 0.95,
-    marginTop: '65%',
-    marginBottom: '10%',
-    width: windowWidth * 0.9,
+    flex: 0.82,
+    marginTop: '52%',
+    marginBottom: '11%',
+    width: windowWidth * 0.95,
     backgroundColor: '#B1B6A6',
     alignItems: 'center',
     justifyContent: 'center',
@@ -77,7 +84,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   name: {
-    fontSize: 25,
+    fontSize: 24,
     textAlign: 'center',
     maxWidth: '90%',
     fontFamily: 'Chalkduster',
@@ -85,14 +92,14 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     flex: 0.3,
-    top: 80,
-    width: windowWidth * 0.9,
+    top: 70,
+    width: windowWidth * 0.95,
     minHeight: 160,
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#363946',
-    borderRadius: 10,
+    borderRadius: 7,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -121,5 +128,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.44,
     shadowRadius: 10.32,
     elevation: 16,
+  },
+  deleteButton: {
+    fontFamily: 'Courier',
+    color: '#B1B6A6'
+  },
+  deleteButtonContainer: {
+    position: 'absolute',
+    bottom: -6,
+    backgroundColor: '#353846',
+    width: windowWidth * 0.95,
+    borderRadius: 7,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+  },
+  touchable: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

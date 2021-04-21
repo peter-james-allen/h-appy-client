@@ -3,7 +3,7 @@ import { back } from 'react-native/Libraries/Animated/src/Easing';
 const NIBBLES = [
   'Bite-sized activities for the short of time. ',
   'These morsels are low investment, high-return ways to incrementally ',
-  'increase your happiness and productivity, on nibble at a time. ',
+  'increase your happiness and productivity, one nibble at a time. ',
   'They can take anywhere from 5 minutes to an hour.',
 ].join('');
 
@@ -15,17 +15,17 @@ const APPETISERS = [
 ].join('');
 
 const MAINS = [
-  'Welcome to the main event. When only serious undertakings will satisfy, ',
-  'main activities are what you need.',
-  'They can take a full day, or be a goal that you work towards over weeks or months. ',
-  'Although they require more in terms of time and energy, the rewards are unmatchable.',
+  'Welcome to the main event. When only serious doing will satisfy, ',
+  'main activities are what you need. ',
+  'They may take a full day, or be a goal that you work towards over weeks or months. ',
+  'They often require more from you in time and energy, but the rewards are unmatchable.',
 ].join('');
 
 const DESSERTS = [
-  "Sometimes you need minimal effort and maximum comfort. We've got your back. ",
-  'Dessert activities are to be enjoyed as a special treat, because sometimes you just need that.',
-  "They can be enjoyed whenever, just don't fill up on them. ",
-  'Top tip: These are perfect enjoyed right after completing a main',
+  "When you need a treat, we've got your back. ",
+  'Dessert activities are the perfect tonic to hard work and stress. ',
+  "They're great right after completing a main activity, ",
+  "but can be enjoyed whenever you like, just don't fill up on them.",
 ].join('');
 
 export {
