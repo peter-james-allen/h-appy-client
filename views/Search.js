@@ -96,13 +96,13 @@ function PriceSlider(props) {
 
 function SubmitButton(props) {
   const navigation = useNavigation();
-  const { accessibility, price, category } = props;
+  const searchParams = props;
 
   return (
     <View style={styles.submitButtonContainer}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("SearchResults");
+          navigation.navigate("SearchResults", { searchParams });
         }}
       >
         <Text style={styles.submitButton}>Add</Text>

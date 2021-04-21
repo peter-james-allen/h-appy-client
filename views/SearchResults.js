@@ -53,13 +53,13 @@ function SearchActivities(query) {
 
 const windowWidth = Dimensions.get("window").width;
 
-export default function SeachResults(props) {
-  const { dataKey, header, description } = props;
+export default function SeachResults({ route }) {
   const apiData = SearchActivities({
-    cost: 10,
-    accessibility: 0,
-    category: "alcohol",
+    cost: route.params.searchParams.price,
+    accessibility: route.params.searchParams.accessibility,
+    category: route.params.searchParams.category,
   });
+
   return (
     <View style={styles.container}>
       <Header />
@@ -73,9 +73,7 @@ export default function SeachResults(props) {
           <Text>Filter Props</Text>
         </View>
 
-        <View style={styles.courseDetailsContainer}>
-          <Text style={styles.courseDetails}>{description}</Text>
-        </View>
+        <View style={styles.courseDetailsContainer}></View>
         <View style={styles.activityList}>
           <FlatList
             data={apiData}
