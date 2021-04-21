@@ -12,12 +12,13 @@ import { FetchCategories } from '../src/FetchActivities';
 
 export default function EditActivity({ route }) {
   const oldItem = route.params.item;
+  console.log(oldItem);
   const { menuSection } = route.params;
   const [ActivityType, setActivityType] = useState(menuSection);
   const [ActivityName, setActivityName] = useState(oldItem.name);
   const [ActivityDescription, setActivityDescription] = useState(oldItem.description);
   const [accessibility, setAccessibility] = useState(oldItem.accessibility);
-  const [price, setPrice] = useState(oldItem.price);
+  const [cost, setCost] = useState(oldItem.cost);
   const [category, setCategory] = useState(oldItem.categories[0] || []);
 
   const categories = FetchCategories();
@@ -89,7 +90,7 @@ export default function EditActivity({ route }) {
           setAccessibility={setAccessibility}
         />
 
-        <PriceSlider price={price} setPrice={setPrice} />
+        <PriceSlider price={cost} setPrice={setCost} />
 
       </View>
       <SubmitButton
@@ -98,7 +99,7 @@ export default function EditActivity({ route }) {
         ActivityName={ActivityName}
         ActivityDescription={ActivityDescription}
         accessibility={accessibility}
-        price={price}
+        price={cost}
         categories={[category]}
       />
     </View>
@@ -175,7 +176,7 @@ function SubmitButton(props) {
               _id: ActivityName,
               name: ActivityName,
               accessibility,
-              price,
+              cost: price,
               categories,
               size: ActivityType,
               description: ActivityDescription,
