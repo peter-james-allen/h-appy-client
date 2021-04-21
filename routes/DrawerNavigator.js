@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Platform } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {useState, useEffect } from 'react';
+import { StyleSheet, Platform, Alert } from 'react-native';
+import { NavigationContainer, Button } from '@react-navigation/native';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import MainMenu from '../views/MainMenu';
 import About from '../views/About';
 import IndividualCourse from '../views/IndividualCourse';
@@ -9,6 +11,10 @@ import Search from '../views/Search';
 import {
   NIBBLES, APPETISERS, MAINS, DESSERTS,
 } from '../src/CourseDescriptions';
+import SignUp from '../views/SignUp';
+import SignIn from '../views/SignIn';
+import AuthContext from '../src/AuthContext';
+import { useNavigation } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
@@ -52,21 +58,73 @@ function Desserts() {
   );
 }
 
-const DrawerNavigator = () => (
-  <Drawer.Navigator
-    drawerStyle={styles.drawer}
-    drawerContentOptions={drawerContentStyles}
-  >
-    <Drawer.Screen name="Menu" component={MainMenu} />
-    <Drawer.Screen name="About" component={About} />
-    <Drawer.Screen name="Nibbles" component={Nibbles} />
-    <Drawer.Screen name="Starters" component={Starters} />
-    <Drawer.Screen name="Mains" component={Mains} />
-    <Drawer.Screen name="Desserts" component={Desserts} />
-    <Drawer.Screen name="Create a Recipe" component={AddActivity} />
-    <Drawer.Screen name="Search" component={Search} />
-  </Drawer.Navigator>
-);
+const SignOutAlert = (navigation, signOut) => {
+    Alert.alert(
+      "Sign Out",
+      "Are you sure you want to sign out?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Yes", onPress: () => signOut(navigation) }
+      ]
+    );
+}
+
+function SignOutButton(props) {
+  const { signOut } = React.useContext(AuthContext);
+  const navigation = useNavigation();
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem {...props}
+        label="Sign Out"
+        onPress={() => SignOutAlert(navigation, signOut)}
+        style={styles.signout}
+      />
+    </DrawerContentScrollView>
+  )
+}
+
+const DrawerNavigator = ({state}) => {
+  if (state.userToken) {
+    return (
+      <Drawer.Navigator 
+        drawerStyle={styles.drawer}
+        drawerContent={(props) => <SignOutButton {...props} />}
+        drawerContentOptions={drawerContentStyles}
+        >
+        <Drawer.Screen name="Menu" component={MainMenu} />
+        <Drawer.Screen name="About" component={About} />
+        <Drawer.Screen name="Nibbles" component={Nibbles} />
+        <Drawer.Screen name="Starters" component={Starters} />
+        <Drawer.Screen name="Mains" component={Mains} />
+        <Drawer.Screen name="Desserts" component={Desserts} />
+        <Drawer.Screen name="Create a Recipe" component={AddActivity} />
+        <Drawer.Screen name="Search" component={Search} />
+        </Drawer.Navigator>
+        )
+      } else {
+     return (
+      <Drawer.Navigator 
+        drawerStyle={styles.drawer}
+        drawerContentOptions={drawerContentStyles}
+        >
+        <Drawer.Screen name="Menu" component={MainMenu} />
+        <Drawer.Screen name="About" component={About} />
+        <Drawer.Screen name="Nibbles" component={Nibbles} />
+        <Drawer.Screen name="Starters" component={Starters} />
+        <Drawer.Screen name="Mains" component={Mains} />
+        <Drawer.Screen name="Desserts" component={Desserts} />
+        <Drawer.Screen name="Search" component={Search} />
+        <Drawer.Screen name="Sign up" component={SignUp} />
+        <Drawer.Screen name="Sign in" component={SignIn} />
+        </Drawer.Navigator>
+        )
+     }
+    };
 
 export default DrawerNavigator;
 
@@ -75,6 +133,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#363946',
     width: 240,
   },
+  signout: {
+    fontFamily: 'Didot',
+    fontSize: 20,
+    paddingTop: 10,
+    color: '#B1B6A6',
+  }
 });
 
 const drawerContentStyles = {
