@@ -149,7 +149,7 @@ function SubmitButton(props) {
             alert('Activity name already exists!');
           } else {
             storeData(ActivityType, {
-              _id: ActivityName, name: ActivityName, accessibility, price,
+              _id: ActivityName, name: ActivityName, accessibility, price, categories, size: ActivityType
             });
             navigation.navigate('Menu');
           }
