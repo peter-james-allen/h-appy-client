@@ -1,12 +1,11 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Button, FlatList, Dimensions, TouchableOpacity,
+  StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Platform,
 } from 'react-native';
 import Header from '../components/Header';
 import CourseHeader from '../components/CourseHeader';
 import FetchActivities from '../src/FetchActivities';
-import IndividualActivityButton from '../components/IndividualActivityButton.js';
+import IndividualActivityButton from '../components/IndividualActivityButton';
 import MenuButton from '../components/MenuButton';
 
 function buildItem(item) {
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   courseDetails: {
-    fontFamily: 'Courier',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     textAlign: 'center',
     fontSize: 17,
     color: '#353746',
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: '#fff',
-    fontFamily: 'Chalkduster',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
     textAlign: 'center',
     fontSize: 17,
   },

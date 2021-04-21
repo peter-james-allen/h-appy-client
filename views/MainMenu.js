@@ -10,7 +10,7 @@ import {
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Header from '../components/Header';
-import getAllUserData, { emptyUserData } from '../src/UserData';
+import getAllUserData, { emptyUserData, doesActivityNameExist } from '../src/UserData';
 import { badNetworkApiData } from '../stockData';
 import FetchActivities from '../src/FetchActivities';
 import IndividualActivityButton from '../components/IndividualActivityButton';
@@ -122,6 +122,14 @@ function MenuSection(props) {
 function Menu(props) {
   const { userData } = props;
   const apiData = FetchActivities(3);
+  let key;
+  // eslint-disable-next-line no-restricted-syntax
+  for (key of Object.keys(userData)) {
+    if (apiData[key] !== undefined) {
+      // eslint-disable-next-line no-loop-func
+      apiData[key] = apiData[key].filter((item) => !doesActivityNameExist(key, item.name));
+    }
+  }
 
   return (
     <View>
@@ -174,13 +182,13 @@ const styles = StyleSheet.create({
   },
   menuSubText: {
     textAlign: 'center',
-    fontFamily: 'Courier',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     fontSize: 20,
     color: '#363946',
   },
   menuSection: {
     fontSize: 30,
-    fontFamily: 'Didot',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Didot',
     fontWeight: 'bold',
     color: '#363946',
     padding: 25,
@@ -190,7 +198,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Didot',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Didot',
   },
   item: {
     margin: 3,
@@ -211,7 +219,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: '#fff',
-    fontFamily: 'Chalkduster',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
     textAlign: 'center',
     fontSize: 17,
   },

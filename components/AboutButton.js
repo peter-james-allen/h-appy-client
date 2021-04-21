@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
-  View, Text, StyleSheet, TouchableOpacity,
+  View, Text, StyleSheet, TouchableOpacity, Platform,
 } from 'react-native';
 
 export default function AboutButton() {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   aboutText: {
-    fontFamily: 'Courier',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     color: '#363946',
   },
 });

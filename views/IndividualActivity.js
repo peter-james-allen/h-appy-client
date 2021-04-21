@@ -1,10 +1,10 @@
 import React, { Component, useEffect, useState } from "react";
 import { DrawerActions, useNavigation } from "@react-navigation/native";
 import {
-  StyleSheet, Text, View, Dimensions, Button, TouchableOpacity,
+  StyleSheet, Text, View, Dimensions, TouchableOpacity, Platform,
 } from 'react-native';
 import Header from '../components/Header';
-import { deleteDataByID, doesActivityNameExist } from '../src/UserData';
+import { deleteDataByID, doesActivityNameExist, storeData } from '../src/UserData';
 import Grid from '../components/Grid';
 import MenuButton from '../components/MenuButton';
 
@@ -13,18 +13,15 @@ const windowWidth = Dimensions.get("window").width;
 export default function IndividualActivity({ route }) {
   const { item } = route.params;
   const navigation = useNavigation();
-  console.log(item);
 
   let menuSection = item.size;
   let isThisAPIData;
-  console.log('menuSection: ', menuSection);
   if (menuSection === undefined) {
     isThisAPIData = false;
   } else {
     if (!menuSection.endsWith('s')) { menuSection = `${menuSection}s`; }
-    isThisAPIData = doesActivityNameExist(menuSection, item.name);
+    isThisAPIData = !doesActivityNameExist(menuSection, item.name);
   }
-  console.log(isThisAPIData);
 
   return (
     <View style={styles.container}>
@@ -34,29 +31,46 @@ export default function IndividualActivity({ route }) {
       </View>
 
       <View style={styles.descriptionContainer}>
-        <Text style={styles.description}>{route.params.item.description}</Text>
+        <Text style={styles.description}>
+          {item.description}
+        </Text>
 
         <View style={styles.grid}>
           <Grid activity={item} />
         </View>
       </View>
-
       <TouchableOpacity style={styles.touchable}>
-        <View style={styles.deleteButtonContainer}>
-          <Text
-            style={styles.deleteButton}
-            title="Delete this activity"
-            onPress={() => { 
-              deleteDataByID(item._id); 
-              navigation.navigate('Menu'); 
-            }}
-          >
-            Remove from favourites
-          </Text>
-        </View>
+        <AddOrDeleteActivity isThisAPIData={isThisAPIData} menuSection={menuSection} item={item} />
       </TouchableOpacity>
-
       <MenuButton />
+    </View>
+  );
+}
+
+function AddOrDeleteActivity(props) {
+  const navigation = useNavigation();
+  if (props.isThisAPIData) {
+    return (
+      <View style={styles.deleteButtonContainer}>
+        <Text
+          style={styles.deleteButton}
+          title="Add to favorites"
+          onPress={() => { storeData(props.menuSection, props.item); navigation.navigate('Menu'); }}
+        >
+          Add to favourites
+        </Text>
+      </View>
+    );
+  }
+  return (
+    <View style={styles.deleteButtonContainer}>
+      <Text
+        style={styles.deleteButton}
+        title="Delete this activity"
+        onPress={() => { deleteDataByID(props.item._id); navigation.navigate('Menu'); }}
+      >
+        Remove from favourites
+      </Text>
     </View>
   );
 }
@@ -77,8 +91,8 @@ const styles = StyleSheet.create({
     padding: 10,
     position: "absolute",
     top: 5,
-    color: "#23252E",
-    fontFamily: "Courier",
+    color: '#23252E',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
   },
   descriptionContainer: {
     flex: 0.82,
@@ -96,10 +110,10 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    textAlign: "center",
-    maxWidth: "90%",
-    fontFamily: "Chalkduster",
-    color: "white",
+    textAlign: 'center',
+    maxWidth: '90%',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
+    color: 'white',
   },
   nameContainer: {
     flex: 0.3,
@@ -141,7 +155,7 @@ const styles = StyleSheet.create({
     elevation: 16,
   },
   deleteButton: {
-    fontFamily: 'Courier',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     color: '#B1B6A6',
   },
   deleteButtonContainer: {
