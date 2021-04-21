@@ -174,13 +174,13 @@ const styles = StyleSheet.create({
   },
   menuSubText: {
     textAlign: 'center',
-    fontFamily: 'Courier',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     fontSize: 20,
     color: '#363946',
   },
   menuSection: {
     fontSize: 30,
-    fontFamily: 'Didot',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Didot',
     fontWeight: 'bold',
     color: '#363946',
     padding: 25,
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Didot',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Didot',
   },
   item: {
     margin: 3,
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: '#fff',
-    fontFamily: 'Chalkduster',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
     textAlign: 'center',
     fontSize: 17,
   },

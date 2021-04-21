@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View, Text, StyleSheet, Platform,
+} from 'react-native';
 
 export default function CourseHeader(props) {
   const { header } = props;
@@ -13,7 +15,7 @@ export default function CourseHeader(props) {
 const styles = StyleSheet.create({
   courseHeader: {
     fontSize: 40,
-    fontFamily: 'Didot',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Didot',
     textAlign: 'center',
     color: '#353746',
   },

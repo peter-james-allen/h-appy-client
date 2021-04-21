@@ -1,7 +1,7 @@
-import React, { Component, useEffect, useState } from 'react';
-import { DrawerActions, useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Dimensions, Button, TouchableOpacity,
+  StyleSheet, Text, View, Dimensions, TouchableOpacity, Platform,
 } from 'react-native';
 import Header from '../components/Header';
 import { deleteDataByID, doesActivityNameExist, storeData } from '../src/UserData';
@@ -13,18 +13,15 @@ const windowWidth = Dimensions.get('window').width;
 export default function IndividualActivity({ route }) {
   const { item } = route.params;
   const navigation = useNavigation();
-  console.log(item);
 
   let menuSection = item.size;
   let isThisAPIData;
-  console.log('menuSection: ', menuSection);
   if (menuSection === undefined) {
     isThisAPIData = false;
   } else {
     if (!menuSection.endsWith('s')) { menuSection = `${menuSection}s`; }
     isThisAPIData = !doesActivityNameExist(menuSection, item.name);
   }
-  console.log(isThisAPIData);
 
   return (
     <View style={styles.container}>
@@ -45,7 +42,7 @@ export default function IndividualActivity({ route }) {
         </View>
       </View>
       <TouchableOpacity style={styles.touchable}>
-        < AddOrDeleteActivity isThisAPIData={isThisAPIData} menuSection={menuSection} item={item} />
+        <AddOrDeleteActivity isThisAPIData={isThisAPIData} menuSection={menuSection} item={item} />
       </TouchableOpacity>
       <MenuButton />
     </View>
@@ -56,28 +53,28 @@ function AddOrDeleteActivity(props) {
   const navigation = useNavigation();
   if (props.isThisAPIData) {
     return (
+      <View style={styles.deleteButtonContainer}>
+        <Text
+          style={styles.deleteButton}
+          title="Add to favorites"
+          onPress={() => { storeData(props.menuSection, props.item); navigation.navigate('Menu'); }}
+        >
+          Add to favourites
+        </Text>
+      </View>
+    );
+  }
+  return (
     <View style={styles.deleteButtonContainer}>
       <Text
         style={styles.deleteButton}
-        title="Add to favorites"
-        onPress={() => { storeData(props.menuSection, props.item); navigation.navigate('Menu'); }}
-      // onPress = {deleteDate(key, item.id)}
+        title="Delete this activity"
+        onPress={() => { deleteDataByID(props.item._id); navigation.navigate('Menu'); }}
       >
-        Add to favourites
+        Remove from favourites
       </Text>
-    </View>)
-  }
-  return (
-  <View style={styles.deleteButtonContainer}>
-    <Text
-      style={styles.deleteButton}
-      title="Delete this activity"
-      onPress={() => { deleteDataByID(props.item._id); navigation.navigate('Menu'); }}
-    // onPress = {deleteDate(key, item.id)}
-    >
-      Remove from favourites
-    </Text>
-  </View>)
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -97,7 +94,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 5,
     color: '#23252E',
-    fontFamily: 'Courier',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
   },
   descriptionContainer: {
     flex: 0.82,
@@ -117,7 +114,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     maxWidth: '90%',
-    fontFamily: 'Chalkduster',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
     color: 'white',
   },
   nameContainer: {
@@ -160,7 +157,7 @@ const styles = StyleSheet.create({
     elevation: 16,
   },
   deleteButton: {
-    fontFamily: 'Courier',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     color: '#B1B6A6',
   },
   deleteButtonContainer: {

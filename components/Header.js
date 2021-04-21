@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet, Text, View, Platform,
+} from 'react-native';
 
 export default function Header() {
   return (
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Didot',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Didot',
     color: '#B1B6A6',
   },
 });

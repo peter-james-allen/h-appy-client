@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Text, View, StyleSheet, TouchableOpacity,
+  Text, View, StyleSheet, TouchableOpacity, Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   menuButton: {
-    fontFamily: 'Courier',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     color: '#363946',
   },
 });

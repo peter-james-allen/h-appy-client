@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, Platform } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainMenu from '../views/MainMenu';
 import About from '../views/About';
@@ -82,7 +81,7 @@ const drawerContentStyles = {
     marginVertical: 5,
   },
   labelStyle: {
-    fontFamily: 'Didot',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Didot',
     fontSize: 20,
     paddingTop: 10,
     color: '#B1B6A6',

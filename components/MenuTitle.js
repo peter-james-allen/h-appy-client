@@ -1,4 +1,6 @@
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View, Text, StyleSheet, Platform,
+} from 'react-native';
 import React from 'react';
 
 export default function MenuTitle() {
@@ -21,10 +23,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#819595',
     width: '95%',
     padding: 25,
-    borderRadius: 7
+    borderRadius: 7,
   },
   menuTitle: {
-    fontFamily: 'Didot',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Didot',
     color: '#363946',
     fontSize: 20,
   },

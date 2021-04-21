@@ -1,5 +1,5 @@
 import {
-  Text, View, StyleSheet, FlatList, Dimensions,
+  Text, View, StyleSheet, FlatList, Dimensions, Platform,
 } from 'react-native';
 import React from 'react';
 
@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 4,
     overflow: 'hidden',
-    fontFamily: 'Chalkduster',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
   },
 });

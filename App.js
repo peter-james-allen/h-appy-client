@@ -5,12 +5,9 @@ import {
 } from 'react-native';
 import AppNavigator from './routes/AppNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import DrawerNavigator from './routes/DrawerNavigator';
-import { loadData } from './src/UserData';
 
 export default function App() {
   // AsyncStorage.clear();
-  // loadData();
   return (
     <>
       <SafeAreaView style={styles.safeAreaTop} />

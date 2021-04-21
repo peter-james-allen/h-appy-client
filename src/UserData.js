@@ -63,8 +63,6 @@ const getData = async (key) => {
 };
 
 export const storeData = async (key, value) => {
-  console.log("key", key)
-  console.log(value)
   try {
     userData[key].push(value);
     const jsonValue = JSON.stringify(userData[key]);
@@ -113,8 +111,6 @@ const getAllUserData = async () => {
 };
 
 export function doesActivityNameExist(key, name) {
-  console.log('doesActivityNameExist', key, name);
-  console.log(userData[key]);
   const existingName = userData[key].filter((item) => item.name === name);
   return existingName.length !== 0;
 }
