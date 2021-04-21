@@ -11,20 +11,18 @@ import DrawerNavigator from './DrawerNavigator';
 
 const { Navigator, Screen } = createStackNavigator();
 
-const HomeNavigator = ({state}) => {
-    return (
+const HomeNavigator = ({ state }) => (
   <Navigator headerMode="none">
-    <Screen name="Drawer" children={()=><DrawerNavigator state={state}/>}/>
+    <Screen name="Drawer" children={() => <DrawerNavigator state={state} />} />
     <Screen name="IndividualActivity" component={IndividualActivity} />
     <Screen name="SearchResults" component={SearchResults} />
   </Navigator>
-)};
+);
 
-const AppNavigator = ({state}) => {
-  return (
+const AppNavigator = ({ state }) => (
   <NavigationContainer>
-    <HomeNavigator state={state}/>
+    <HomeNavigator state={state} />
   </NavigationContainer>
-)};
+);
 
 export default AppNavigator;

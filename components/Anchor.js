@@ -7,10 +7,10 @@ const handlePress = (props) => {
   props.onPress && props.onPress();
 };
 
-export default function Anchor (props) {
-    return (
-      <TouchableOpacity {...props} style={{alignItems: 'center'}} onPress={() => handlePress(props)}>
-        {props.children}
-      </TouchableOpacity>
-    );
-  }
+export default function Anchor(props) {
+  return (
+    <TouchableOpacity {...props} style={{ alignItems: 'center' }} onPress={() => handlePress(props)}>
+      {props.children}
+    </TouchableOpacity>
+  );
+}

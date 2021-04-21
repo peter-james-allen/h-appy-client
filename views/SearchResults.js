@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,17 +8,16 @@ import {
   Dimensions,
   TouchableOpacity,
   Picker,
-} from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import Slider from "@react-native-community/slider";
-import Header from "../components/Header";
-import CourseHeader from "../components/CourseHeader";
-import FetchActivities from "../src/FetchActivities";
-import IndividualActivityButton from "../components/IndividualActivityButton.js";
-import MenuButton from "../components/MenuButton";
-import { FetchCategories } from "../src/FetchActivities";
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Slider from '@react-native-community/slider';
+import Header from '../components/Header';
+import CourseHeader from '../components/CourseHeader';
+import FetchActivities, { FetchCategories } from '../src/FetchActivities';
+import IndividualActivityButton from '../components/IndividualActivityButton.js';
+import MenuButton from '../components/MenuButton';
 
-const windowWidth = Dimensions.get("window").width;
+const windowWidth = Dimensions.get('window').width;
 
 function buildItem(item) {
   return (
@@ -39,7 +38,7 @@ function SearchActivities(query) {
 
   useEffect(() => {
     fetch(
-      `https://happy-haddocks.herokuapp.com/search?cost=${query.cost}&accessibility=${query.accessibility}&categories=${query.category}`
+      `https://happy-haddocks.herokuapp.com/search?cost=${query.cost}&accessibility=${query.accessibility}&categories=${query.category}`,
     )
       .then((response) => response.json())
       .then((json) => setApiData(json))
@@ -62,14 +61,18 @@ function AccessibilitySlider(props) {
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
       <Text style={styles.sliderText}>
-        Accessibility Score: {"\t"} {accessibility}
+        Accessibility Score:
+        {' '}
+        {'\t'}
+        {' '}
+        {accessibility}
       </Text>
     </View>
   );
 }
 
 function PriceSlider(props) {
-  let { price, setPrice } = props;
+  const { price, setPrice } = props;
   return (
     <View style={styles.sliderContainer}>
       <Slider
@@ -82,7 +85,11 @@ function PriceSlider(props) {
         onValueChange={(value) => setPrice(Math.ceil(value))}
       />
       <Text style={styles.sliderText}>
-        Cost: {"\t"} {"£ ".repeat(price) || "Free :)"}
+        Cost:
+        {' '}
+        {'\t'}
+        {' '}
+        {'£ '.repeat(price) || 'Free :)'}
       </Text>
     </View>
   );
@@ -96,8 +103,8 @@ function SubmitButton(props) {
     <View style={styles.submitButtonContainer}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Search");
-          navigation.navigate("SearchResults", { searchParams });
+          navigation.navigate('Search');
+          navigation.navigate('SearchResults', { searchParams });
         }}
       >
         <Text style={styles.submitButton}>Update Results</Text>
@@ -146,9 +153,7 @@ export default function SeachResults({ route }) {
               value=""
               enabled={false}
             />
-            {categories.map((item, index) => {
-              return <Picker.Item label={item} value={item} key={index} />;
-            })}
+            {categories.map((item, index) => <Picker.Item label={item} value={item} key={index} />)}
           </Picker>
         </View>
 
@@ -176,17 +181,17 @@ export default function SeachResults({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#696773",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#696773',
   },
   formContainer: {
     flex: 0.5,
-    width: "92%",
-    marginTop: "20%",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#B1B6A6",
+    width: '92%',
+    marginTop: '20%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#B1B6A6',
     borderRadius: 5,
   },
   slider: {
@@ -195,75 +200,75 @@ const styles = StyleSheet.create({
     height: 50,
   },
   sliderContainer: {
-    flex: Platform.OS === "ios" ? 0.2 : 0.4,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#819595",
-    width: "90%",
+    flex: Platform.OS === 'ios' ? 0.2 : 0.4,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#819595',
+    width: '90%',
     borderRadius: 5,
     marginBottom: 15,
     zIndex: 999,
   },
   sliderText: {
-    color: "#23252E",
-    fontFamily: "Courier",
+    color: '#23252E',
+    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
     fontSize: 16,
   },
   pickerContainer: {
-    marginTop: Platform.OS === "ios" ? -100 : 0,
-    width: "80%",
+    marginTop: Platform.OS === 'ios' ? -100 : 0,
+    width: '80%',
     // padding: 20,
     borderRadius: 10,
     flex: 0.5,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   picker: {
-    transform: Platform.OS === "ios" ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],
+    transform: Platform.OS === 'ios' ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],
   },
   submitButtonContainer: {
-    width: "92%",
+    width: '92%',
     marginLeft: 8,
     paddingTop: 10,
     paddingBottom: 10,
-    backgroundColor: "#363946",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#363946',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 8,
-    position: "absolute",
+    position: 'absolute',
     bottom: 15,
   },
   submitButton: {
-    color: "#B1B6A6",
-    fontFamily: "Courier",
+    color: '#B1B6A6',
+    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
     fontSize: 20,
   },
   courseDetailsContainer: {
     flex: 0.4,
-    alignContent: "center",
-    justifyContent: "center",
-    width: "90%",
+    alignContent: 'center',
+    justifyContent: 'center',
+    width: '90%',
     paddingTop: 10,
     paddingBottom: 10,
   },
   courseDetails: {
-    fontFamily: "Courier",
-    textAlign: "center",
+    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
+    textAlign: 'center',
     fontSize: 17,
-    color: "#353746",
+    color: '#353746',
   },
   headerContainer: {
     flex: 0.08,
-    alignContent: "center",
-    justifyContent: "center",
-    backgroundColor: "#819595",
+    alignContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#819595',
     width: windowWidth * 0.9,
     padding: 15,
-    top: "10%",
+    top: '10%',
     borderRadius: 5,
   },
   activityList: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     flex: 0.8,
     paddingBottom: 10,
   },
@@ -271,11 +276,11 @@ const styles = StyleSheet.create({
     margin: 3,
     padding: 10,
     fontSize: 15,
-    backgroundColor: "#363946",
+    backgroundColor: '#363946',
     borderRadius: 5,
-    flexDirection: "column",
-    alignItems: "center",
-    shadowColor: "#000",
+    flexDirection: 'column',
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 8,
@@ -285,24 +290,24 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   itemText: {
-    color: "#fff",
-    fontFamily: "Chalkduster",
-    textAlign: "center",
+    color: '#fff',
+    fontFamily: Platform.OS === 'ios' ? 'Chalkduster' : 'Roboto',
+    textAlign: 'center',
     fontSize: 17,
   },
   itemContainer: {
     borderRadius: 5,
-    overflow: "hidden",
+    overflow: 'hidden',
     padding: 3,
   },
   activitiesContainer: {
     flex: 0.4,
-    marginTop: "5%",
-    marginBottom: "12%",
+    marginTop: '5%',
+    marginBottom: '12%',
     width: windowWidth * 0.9,
-    backgroundColor: "#B1B6A6",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#B1B6A6',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 5,
   },
 });
