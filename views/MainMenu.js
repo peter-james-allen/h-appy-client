@@ -167,9 +167,9 @@ const styles = StyleSheet.create({
   },
   menuCollapsible: {
     fontSize: 50,
-    borderRadius: 10,
+    borderRadius: 7,
     backgroundColor: '#B1B6A6',
-    width: windowWidth * 0.94,
+    width: windowWidth * 0.939,
   },
   menuSubText: {
     textAlign: 'center',
