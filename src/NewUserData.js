@@ -17,7 +17,7 @@ export default sendUserData = async (nameData, usernameData, emailData, password
       })
     });
       let json = await response.json();
-      validation(json);
+      validation(json, navigation);
     };
     
  const validation = (response, navigation) => {

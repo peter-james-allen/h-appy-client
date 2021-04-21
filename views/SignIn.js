@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import Header from '../components/Header';
 import SendAuthenticationData from '../src/AuthenticationData';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 import AuthContext from '../src/AuthContext';
 
 function SubmitButton(props) {
