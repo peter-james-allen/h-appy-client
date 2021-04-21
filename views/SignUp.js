@@ -71,6 +71,7 @@ export default function SignUp() {
           placeholder="Minimum 8 characters"
           onChangeText={(newPassword) => setPassword(newPassword)}
           defaultValue={Password}
+          secureTextEntry={true}
         />
         </View>
         <SubmitButton Name={Name} Username={Username} Email={Email} Password={Password} />

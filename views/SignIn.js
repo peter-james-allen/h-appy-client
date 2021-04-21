@@ -51,6 +51,7 @@ export default function SignIn() {
           style={{ height: 20 }}
           onChangeText={(newPassword) => setPassword(newPassword)}
           defaultValue={Password}
+          secureTextEntry={true}
         />
         </View>
         <SubmitButton Email={Email} Password={Password} />
