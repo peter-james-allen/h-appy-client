@@ -7,12 +7,10 @@ import {
 // import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
-import { doesActivityNameExist, editData } from '../src/UserData';
+import { editData } from '../src/UserData';
 import { FetchCategories } from '../src/FetchActivities';
 
 export default function EditActivity({ route }) {
-  console.log('#######################');
-  console.log(route.params.item);
   const oldItem = route.params.item;
   const { menuSection } = route.params;
   const [ActivityType, setActivityType] = useState(menuSection);
@@ -23,7 +21,7 @@ export default function EditActivity({ route }) {
   const [category, setCategory] = useState(oldItem.categories[0] || []);
 
   const categories = FetchCategories();
-  console.log('category', category);
+
   return (
     <View style={styles.container}>
       <Header />

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 // eslint-disable-next-line prefer-const
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -82,8 +83,7 @@ export const storeData = async (key, value) => {
 
 export const editData = async (oldID, key, value) => {
   try {
-    console.log('editData', value);
-    await deleteData(key, oldID);
+    await deleteData(key, oldID, false);
     userData[key].push(value);
     const jsonValue = JSON.stringify(userData[key]);
     await AsyncStorage.setItem(key, jsonValue);
@@ -105,14 +105,16 @@ export const deleteDataByID = async (ID) => {
   }
 };
 
-export const deleteData = async (key, ID) => {
+export const deleteData = async (key, ID, raiseAlerts = true) => {
   try {
     userData[key] = userData[key].filter((item) => item._id !== ID);
     const jsonValue = JSON.stringify(userData[key]);
     await AsyncStorage.setItem(key, jsonValue);
-    alert('Activity successfully deleted');
+    if (raiseAlerts) {
+      alert('Activity successfully deleted');
+    }
   } catch (e) {
-    alert('Failed to save the data to the storage');
+    alert('Failed to delete the data from the storage');
   }
 };
 

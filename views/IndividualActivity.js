@@ -52,7 +52,7 @@ export default function IndividualActivity({ route }) {
 
 function EditUserActivity(props) {
   const { item, menuSection } = props;
-  console.log('EditUserActivity: ', item);
+
   const navigation = useNavigation();
   return (
     <View style={styles.EditButtonContainer}>
