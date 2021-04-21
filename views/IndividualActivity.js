@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   grid: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 5,
     flex: 0.3,
     paddingBottom: 15,
     shadowColor: '#000',

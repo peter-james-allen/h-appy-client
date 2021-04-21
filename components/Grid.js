@@ -6,7 +6,7 @@ import React from 'react';
 const windowWidth = Dimensions.get('window').width;
 const numColumns = 2;
 const gridWidth = windowWidth / numColumns - 30;
-const gridHeight = gridWidth / 2;
+const gridHeight = gridWidth / 1.5;
 
 export default function Grid(props) {
   const { activity } = props;
@@ -14,14 +14,14 @@ export default function Grid(props) {
   if (!activity.categories) { activity.categories = []; }
   const categories = activity.categories.join('\n');
   const data = [
-    { id: 'header0', value: 'Size' },
-    { id: 'header1', value: 'Categories' },
+    // { id: 'header0', value: 'Size' },
+    // { id: 'header1', value: 'Categories' },
     { id: 'size', value: activity.size },
     { id: 'categories', value: categories },
-    { id: 'header2', value: 'Cost' },
-    { id: 'header3', value: 'Acccessibility' },
-    { id: 'cost', value: '£ '.repeat(activity.cost) || 'Free :)' },
-    { id: 'accessibility', value: `${activity.accessibility}/10` },
+    // { id: 'header2', value: 'Cost' },
+    // { id: 'header3', value: 'Acccessibility' },
+    { id: 'cost', value: 'cost\n£ '.repeat(activity.cost) || 'Free :)' },
+    { id: 'accessibility', value: `♿︎\t${activity.accessibility}/10` },
   ];
 
   return (
@@ -54,13 +54,12 @@ function containerStyle(item) {
 }
 
 function itemStyle(item) {
-  const padding = {
+  if (item.id.includes('header')) {
+    return { textDecorationLine: 'underline' };
+  }
+  return {
     padding: '20%',
   };
-
-  if (!item.id.includes('header')) {
-    return padding;
-  }
 }
 
 const styles = StyleSheet.create({
@@ -69,6 +68,8 @@ const styles = StyleSheet.create({
     height: gridWidth,
     flexDirection: 'row',
     borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   item: {
     flex: 1,
