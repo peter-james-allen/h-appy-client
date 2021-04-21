@@ -15,7 +15,7 @@ export default function Grid(props) {
   const categories = activity.categories.join('\n');
   const data = [
     { id: 'header0', value: 'Size' },
-    { id: 'header1', value: 'Categories' },
+    { id: 'header1', value: 'Category' },
     { id: 'size', value: activity.size },
     { id: 'categories', value: categories },
     { id: 'header2', value: 'Cost' },
