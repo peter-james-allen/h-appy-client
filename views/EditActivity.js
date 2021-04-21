@@ -10,16 +10,20 @@ import Header from '../components/Header';
 import { storeData, doesActivityNameExist, addToUserData } from '../src/UserData';
 import { FetchCategories } from '../src/FetchActivities';
 
-export default function EditActivity() {
-  const [ActivityType, setActivityType] = useState('default');
-  const [ActivityName, setActivityName] = useState('');
-  const [ActivityDescription, setActivityDescription] = useState('');
-  const [accessibility, setAccessibility] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [category, setCategory] = useState([]);
+export default function EditActivity({ route }) {
+  console.log('#######################');
+  console.log(route.params.item);
+  const oldItem = route.params.item;
+  const menuSection = route.params.menuSection;
+  const [ActivityType, setActivityType] = useState(menuSection);
+  const [ActivityName, setActivityName] = useState(oldItem.name);
+  const [ActivityDescription, setActivityDescription] = useState(oldItem.description);
+  const [accessibility, setAccessibility] = useState(oldItem.accessibility);
+  const [price, setPrice] = useState(oldItem.price);
+  const [category, setCategory] = useState(oldItem.categories[0] || []);
 
   const categories = FetchCategories();
-
+  console.log('category', category);
   return (
     <View style={styles.container}>
       <Header />
@@ -169,7 +173,7 @@ function SubmitButton(props) {
             alert('Activity name already exists!');
           } else {
             storeData(ActivityType, {
-              _id: ActivityName, name: ActivityName, accessibility, price, categories, size: ActivityType, description: ActivityDescription
+              _id: ActivityName, name: ActivityName, accessibility, price, categories, size: ActivityType, description: ActivityDescription,
             });
             navigation.navigate('Menu');
           }
