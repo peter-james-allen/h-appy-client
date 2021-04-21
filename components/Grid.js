@@ -6,7 +6,7 @@ import React from 'react';
 const windowWidth = Dimensions.get('window').width;
 const numColumns = 2;
 const gridWidth = windowWidth / numColumns - 30;
-const gridHeight = gridWidth / 1.5;
+const gridHeight = gridWidth / 2;
 
 export default function Grid(props) {
   const { activity } = props;
@@ -55,7 +55,11 @@ function containerStyle(item) {
 
 function itemStyle(item) {
   if (item.id.includes('header')) {
-    return { textDecorationLine: 'underline' };
+    return {
+      textDecorationLine: 'underline',
+      marginTop: 15
+
+    };
   }
   return {
     padding: '20%',
