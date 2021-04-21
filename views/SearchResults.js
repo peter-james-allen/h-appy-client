@@ -35,9 +35,8 @@ function buildItem(item) {
 }
 
 function SearchActivities(query) {
-  // const { category, cost, accessibility } = query;
   const [apiData, setApiData] = useState([]);
-  // console.log(query.accessibility);
+
   useEffect(() => {
     fetch(
       `https://happy-haddocks.herokuapp.com/search?cost=${query.cost}&accessibility=${query.accessibility}&categories=${query.category}`
@@ -57,6 +56,7 @@ function AccessibilitySlider(props) {
         style={styles.slider}
         minimumValue={0}
         maximumValue={10}
+        value={accessibility}
         minimumTrackTintColor="#696773"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
@@ -69,13 +69,14 @@ function AccessibilitySlider(props) {
 }
 
 function PriceSlider(props) {
-  const { price, setPrice } = props;
+  let { price, setPrice } = props;
   return (
     <View style={styles.sliderContainer}>
       <Slider
         style={styles.slider}
         minimumValue={0}
         maximumValue={4}
+        value={price}
         minimumTrackTintColor="#696773"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setPrice(Math.ceil(value))}
@@ -95,6 +96,7 @@ function SubmitButton(props) {
     <View style={styles.submitButtonContainer}>
       <TouchableOpacity
         onPress={() => {
+          navigation.navigate("Search");
           navigation.navigate("SearchResults", { searchParams });
         }}
       >
@@ -105,9 +107,13 @@ function SubmitButton(props) {
 }
 
 export default function SeachResults({ route }) {
-  const [category, setCategory] = useState([]);
-  const [accessibility, setAccessibility] = useState(0);
-  const [price, setPrice] = useState(0);
+  const previousAccessibility = route.params.searchParams.accessibility
+  const previousPrice = route.params.searchParams.price
+  const previousCategory = route.params.searchParams.category
+
+  const [category, setCategory] = useState(previousCategory);
+  const [accessibility, setAccessibility] = useState(previousAccessibility);
+  const [price, setPrice] = useState(previousPrice);
 
   const categories = FetchCategories();
 
@@ -137,7 +143,7 @@ export default function SeachResults({ route }) {
             >
               <Picker.Item
                 label="Select a Category..."
-                value="default"
+                value=""
                 enabled={false}
               />
               {categories.map((item, index) => {
@@ -153,14 +159,7 @@ export default function SeachResults({ route }) {
           />
       </View>
 
-
-
       <View style={styles.activitiesContainer}>
-        <View>
-          <Text>Filter Props</Text>
-        </View>
-
-        <View style={styles.courseDetailsContainer}></View>
         <View style={styles.activityList}>
           <FlatList
             data={apiData}
