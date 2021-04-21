@@ -7,14 +7,14 @@ import {
 // import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
-import { storeData, doesActivityNameExist, addToUserData } from '../src/UserData';
+import { doesActivityNameExist, editData } from '../src/UserData';
 import { FetchCategories } from '../src/FetchActivities';
 
 export default function EditActivity({ route }) {
   console.log('#######################');
   console.log(route.params.item);
   const oldItem = route.params.item;
-  const menuSection = route.params.menuSection;
+  const { menuSection } = route.params;
   const [ActivityType, setActivityType] = useState(menuSection);
   const [ActivityName, setActivityName] = useState(oldItem.name);
   const [ActivityDescription, setActivityDescription] = useState(oldItem.description);
@@ -47,6 +47,7 @@ export default function EditActivity({ route }) {
             style={styles.nameField}
             placeholder="Activity description..."
             placeholderTextColor="#fff"
+            // eslint-disable-next-line max-len
             onChangeText={(newActivityDescription) => setActivityDescription(newActivityDescription)}
             defaultValue={ActivityDescription}
           />
@@ -94,6 +95,7 @@ export default function EditActivity({ route }) {
 
       </View>
       <SubmitButton
+        oldID={oldItem._id}
         ActivityType={ActivityType}
         ActivityName={ActivityName}
         ActivityDescription={ActivityDescription}
@@ -154,6 +156,7 @@ function PriceSlider(props) {
 function SubmitButton(props) {
   const navigation = useNavigation();
   const {
+    oldID,
     ActivityDescription,
     ActivityType,
     ActivityName,
@@ -169,11 +172,15 @@ function SubmitButton(props) {
             alert('Please select an activity type');
           } else if (ActivityName === '') {
             alert('Please enter an activity name!');
-          } else if (doesActivityNameExist(ActivityType, ActivityName)) {
-            alert('Activity name already exists!');
           } else {
-            storeData(ActivityType, {
-              _id: ActivityName, name: ActivityName, accessibility, price, categories, size: ActivityType, description: ActivityDescription,
+            editData(oldID, ActivityType, {
+              _id: ActivityName,
+              name: ActivityName,
+              accessibility,
+              price,
+              categories,
+              size: ActivityType,
+              description: ActivityDescription,
             });
             navigation.navigate('Menu');
           }
