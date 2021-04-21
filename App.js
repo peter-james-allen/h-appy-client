@@ -96,7 +96,7 @@ export default function App({navigation}) {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer' + state.userToken
+          'Authorization': 'Bearer ' + state.userToken
         },
       });
         dispatch({ type: 'SIGN_OUT'})
