@@ -58,7 +58,7 @@ function AccessibilitySlider(props) {
         minimumValue={1}
         maximumValue={10}
         value={accessibility}
-        minimumTrackTintColor="#696773"
+        minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
@@ -82,7 +82,7 @@ function PriceSlider(props) {
         minimumValue={0}
         maximumValue={4}
         value={price}
-        minimumTrackTintColor="#696773"
+        minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setPrice(Math.ceil(value))}
       />
@@ -158,13 +158,13 @@ export default function SeachResults({ route }) {
             {categories.map((item, index) => <Picker.Item label={item} value={item} key={index} />)}
           </Picker>
         </View>
-
-        <SubmitButton
-          accessibility={accessibility}
-          price={price}
-          category={category}
-        />
       </View>
+
+      <SubmitButton
+        accessibility={accessibility}
+        price={price}
+        category={category}
+      />
 
       <View style={styles.activitiesContainer}>
         <View style={styles.activityList}>
@@ -205,22 +205,21 @@ const styles = StyleSheet.create({
     flex: Platform.OS === 'ios' ? 0.2 : 0.4,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#819595',
+    backgroundColor: '#353846',
     width: windowWidth * 0.875,
     borderRadius: 5,
-    marginBottom: Platform.OS === 'ios' ? 20 : 0,
+    marginBottom: Platform.OS === 'ios' ? 15 : 0,
     marginTop: Platform.OS === 'ios' ? -8 : 10,
     zIndex: 999,
     paddingBottom: 5,
   },
   sliderText: {
-    color: '#23252E',
+    color: '#B1B6A6',
     fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
     fontSize: 16,
   },
   pickerContainer: {
-    marginTop: Platform.OS === 'ios' ? -100 : 0,
-    marginBottom: 10,
+    marginTop: Platform.OS === 'ios' ? -80 : 0,
     width: '80%',
     paddingTop: Platform.OS === 'ios' ? 10 : 0,
     borderRadius: 5,
@@ -231,37 +230,18 @@ const styles = StyleSheet.create({
     transform: Platform.OS === 'ios' ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],
   },
   submitButtonContainer: {
-    width: windowWidth * 0.875,
-    marginLeft: 8,
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: '#363946',
+    width: windowWidth * 0.93,
+    backgroundColor: '#353846',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-    position: 'absolute',
-    bottom: 10,
+    flex: 0.08,
+    marginTop: 10
   },
   submitButton: {
     color: '#B1B6A6',
     fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
     fontSize: 20,
-  },
-  courseDetails: {
-    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
-    textAlign: 'center',
-    fontSize: 17,
-    color: '#353746',
-  },
-  headerContainer: {
-    flex: 0.08,
-    alignContent: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#819595',
-    width: windowWidth * 0.9,
-    padding: 15,
-    top: '10%',
-    borderRadius: 5,
   },
   activityList: {
     justifyContent: 'center',
@@ -302,7 +282,7 @@ const styles = StyleSheet.create({
   },
   activitiesContainer: {
     flex: 0.6,
-    marginTop: '5%',
+    marginTop: '3%',
     marginBottom: '12%',
     width: windowWidth * 0.939,
     backgroundColor: '#B1B6A6',
