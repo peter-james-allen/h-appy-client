@@ -62,7 +62,7 @@ export default function App({navigation}) {
   const authContext = React.useMemo(
     () => ({
       signIn: async (emailData, passwordData, navigation) => {
-        let response = await fetch('http://localhost:3000/user/login', {
+        fetch('http://localhost:3000/user/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -72,8 +72,9 @@ export default function App({navigation}) {
           email: emailData,
           password: passwordData,
         })
-      });
-        let json = await response.json();
+      }).then((response) => {
+        return response.json();
+      }).then((json) => {
         if (json.user) {
           showMessage({
             message: "Sign in successful",
@@ -88,17 +89,23 @@ export default function App({navigation}) {
              description: "Those details don't match our records",
              type: "error",
            });
-         };
+      }}).catch((error) => {
+        showMessage({
+          message: "Oops",
+          description: `Something went wrong. Please try again later.`,
+          type: "error",
+        });
+      })
       },
       signOut: async (navigation, userToken) => {
-        await fetch('http://localhost:3000/user/profile/logout', {
+        fetch('http://localhost:3000/user/profile/logout', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + state.userToken
         },
-      });
+      }).then(() => {
         dispatch({ type: 'SIGN_OUT'})
         navigation.navigate('Menu')
         showMessage({
@@ -106,9 +113,16 @@ export default function App({navigation}) {
           description: 'Come back soon!',
           type: "success",
         })
+      }).catch((error) => {
+        showMessage({
+          message: "Oops",
+          description: `Something went wrong. Please try again later.`,
+          type: "error",
+        });
+      })
     },
       signUp: async (nameData, usernameData, emailData, passwordData, navigation) => {
-        let response = await fetch('http://localhost:3000/user', {
+        fetch('http://localhost:3000/user', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -120,8 +134,9 @@ export default function App({navigation}) {
             email: emailData,
             password: passwordData,
           })
-        });
-        let json = await response.json();
+        }).then((response) => {
+         return response.json();
+        }).then((json) => {
         if (json.user) {
           showMessage({
             message: "Signup successful",
@@ -162,6 +177,13 @@ export default function App({navigation}) {
             });
           }
         }
+      }).catch((error) => {
+        showMessage({
+          message: "Oops",
+          description: `Something went wrong. Please try again later.`,
+          type: "error",
+        });
+      })
       },
     }),
     [],
