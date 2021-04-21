@@ -100,16 +100,16 @@ function SubmitButton(props) {
           navigation.navigate("SearchResults", { searchParams });
         }}
       >
-        <Text style={styles.submitButton}>Search</Text>
+        <Text style={styles.submitButton}>Update Results</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
 export default function SeachResults({ route }) {
-  const previousAccessibility = route.params.searchParams.accessibility
-  const previousPrice = route.params.searchParams.price
-  const previousCategory = route.params.searchParams.category
+  const previousAccessibility = route.params.searchParams.accessibility;
+  const previousPrice = route.params.searchParams.price;
+  const previousCategory = route.params.searchParams.category;
 
   const [category, setCategory] = useState(previousCategory);
   const [accessibility, setAccessibility] = useState(previousAccessibility);
@@ -127,36 +127,36 @@ export default function SeachResults({ route }) {
     <View style={styles.container}>
       <Header />
 
-        <View style={styles.formContainer}>
-          <AccessibilitySlider
-            accessibility={accessibility}
-            setAccessibility={setAccessibility}
-          />
+      <View style={styles.formContainer}>
+        <AccessibilitySlider
+          accessibility={accessibility}
+          setAccessibility={setAccessibility}
+        />
 
-          <PriceSlider price={price} setPrice={setPrice} />
+        <PriceSlider price={price} setPrice={setPrice} />
 
-          <View style={styles.pickerContainer}>
-            <Picker
-              style={styles.picker}
-              selectedValue={category}
-              onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
-            >
-              <Picker.Item
-                label="Select a Category..."
-                value=""
-                enabled={false}
-              />
-              {categories.map((item, index) => {
-                return <Picker.Item label={item} value={item} key={index} />;
-              })}
-            </Picker>
-          </View>
+        <View style={styles.pickerContainer}>
+          <Picker
+            style={styles.picker}
+            selectedValue={category}
+            onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
+          >
+            <Picker.Item
+              label="Select a Category..."
+              value=""
+              enabled={false}
+            />
+            {categories.map((item, index) => {
+              return <Picker.Item label={item} value={item} key={index} />;
+            })}
+          </Picker>
+        </View>
 
-          <SubmitButton
-            accessibility={accessibility}
-            price={price}
-            category={category}
-          />
+        <SubmitButton
+          accessibility={accessibility}
+          price={price}
+          category={category}
+        />
       </View>
 
       <View style={styles.activitiesContainer}>
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   formContainer: {
     flex: 0.5,
     width: "92%",
-    marginTop: '20%',
+    marginTop: "20%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#B1B6A6",
@@ -195,14 +195,14 @@ const styles = StyleSheet.create({
     height: 50,
   },
   sliderContainer: {
-    flex: (Platform.OS === "ios") ? 0.2 : 0.4,
+    flex: Platform.OS === "ios" ? 0.2 : 0.4,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#819595",
     width: "90%",
     borderRadius: 5,
     marginBottom: 15,
-    zIndex: 999
+    zIndex: 999,
   },
   sliderText: {
     color: "#23252E",
@@ -210,12 +210,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   pickerContainer: {
-    marginTop: (Platform.OS === "ios") ? -100 : 0,
+    marginTop: Platform.OS === "ios" ? -100 : 0,
     width: "80%",
     // padding: 20,
     borderRadius: 10,
     flex: 0.5,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   picker: {
     transform: Platform.OS === "ios" ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],

@@ -8,7 +8,7 @@ import Header from "../components/Header";
 import { FetchCategories } from "../src/FetchActivities";
 
 export default function Search() {
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState("");
   const [accessibility, setAccessibility] = useState(0);
   const [price, setPrice] = useState(0);
 
@@ -19,7 +19,12 @@ export default function Search() {
       <Header />
 
       <View style={styles.formContainer}>
-        <View style={styles.nameContainer}></View>
+        <View style={styles.nameContainer}>
+          <Text style={styles.Title}>Search all Activities</Text>
+        </View>
+        <View>
+          <Text>Description of search paramters and accesibility score</Text>
+        </View>
 
         <View style={styles.pickerContainer}></View>
 
@@ -88,7 +93,7 @@ function PriceSlider(props) {
         onValueChange={(value) => setPrice(Math.ceil(value))}
       />
       <Text style={styles.sliderText}>
-        Cost: {"\t"} {"£ ".repeat(price) || "Free :)"}
+        Maximum Cost: {"\t"} {"£ ".repeat(price) || "Free :)"}
       </Text>
     </View>
   );
@@ -105,7 +110,7 @@ function SubmitButton(props) {
           navigation.navigate("SearchResults", { searchParams });
         }}
       >
-        <Text style={styles.submitButton}>Add</Text>
+        <Text style={styles.submitButton}>Search</Text>
       </TouchableOpacity>
     </View>
   );
@@ -187,5 +192,11 @@ const styles = StyleSheet.create({
     color: "#B1B6A6",
     fontFamily: "Courier",
     fontSize: 20,
+  },
+  Title: {
+    fontSize: 25,
+    fontFamily: "Chalkduster",
+    textAlign: "center",
+    color: "#FFF",
   },
 });
