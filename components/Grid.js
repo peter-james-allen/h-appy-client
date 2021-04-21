@@ -82,4 +82,3 @@ const styles = StyleSheet.create({
     fontFamily: 'Chalkduster',
   },
 });
-353746
