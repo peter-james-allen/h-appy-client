@@ -1,0 +1,17 @@
+import { useEffect, useState } from "react";
+import fetch from "node-fetch";
+
+export function SearchActivities(query) {
+  const [apiData, setApiData] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `https://happy-haddocks.herokuapp.com/search?cost=${query.cost}&categories=${query.category}&accessibility=${query.accessibility}`
+    )
+      .then((response) => response.json())
+      .then((json) => setApiData(json))
+      .catch((error) => console.error(error));
+  }, []);
+
+  return apiData;
+}

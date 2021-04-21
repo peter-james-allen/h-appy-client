@@ -1,64 +1,24 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import Slider from "@react-native-community/slider";
-import {
-  Text,
-  View,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  Picker,
-} from "react-native";
-// import { Picker } from '@react-native-picker/picker';
+import { Text, View, StyleSheet, TouchableOpacity, Picker } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Header from "../components/Header";
-import {
-  storeData,
-  doesActivityNameExist,
-  addToUserData,
-} from "../src/UserData";
 import { FetchCategories } from "../src/FetchActivities";
+import { SearchActivities } from "../src/SearchActivities";
+import { acc } from "react-native-reanimated";
 
-export default function AddActivity() {
-  const [ActivityType, setActivityType] = useState("default");
-  const [ActivityName, setActivityName] = useState("");
+export default function Search() {
   const [accessibility, setAccessibility] = useState(0);
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState([]);
-
   const categories = FetchCategories();
 
   return (
     <View style={styles.container}>
       <Header />
       <View style={styles.FormContainer}>
-        <View style={styles.FormItem}>
-          <Text>Activity Name</Text>
-          <TextInput
-            style={{ height: 40 }}
-            placeholder="enter the name of the activity here"
-            onChangeText={(newActivityName) => setActivityName(newActivityName)}
-            defaultValue={ActivityName}
-          />
-        </View>
-
-        <View style={styles.selectContainer}>
-          <Picker
-            selectedValue={ActivityType}
-            onValueChange={(itemValue, itemIndex) => setActivityType(itemValue)}
-          >
-            <Picker.Item
-              label="Select a Menu Section..."
-              value="default"
-              enabled={false}
-            />
-            <Picker.Item label="Nibbles" value="nibbles" />
-            <Picker.Item label="Appetisers" value="appetisers" />
-            <Picker.Item label="Mains" value="mains" />
-            <Picker.Item label="Desserts" value="desserts" />
-          </Picker>
-        </View>
-
+        <Text style={styles.header}>Search for an Activity</Text>
         <View style={styles.selectContainer}>
           <Picker
             selectedValue={category}
@@ -82,8 +42,6 @@ export default function AddActivity() {
         <PriceSlider price={price} setPrice={setPrice} />
 
         <SubmitButton
-          ActivityType={ActivityType}
-          ActivityName={ActivityName}
           accessibility={accessibility}
           price={price}
           categories={[category]}
@@ -129,13 +87,7 @@ function PriceSlider(props) {
 
 function SubmitButton(props) {
   const navigation = useNavigation();
-  const {
-    ActivityType,
-    ActivityName,
-    accessibility,
-    price,
-    categories,
-  } = props;
+  const { accessibility, price, category } = props;
   return (
     <View style={{ width: "80%" }}>
       <TouchableOpacity
@@ -148,16 +100,15 @@ function SubmitButton(props) {
           borderRadius: 8,
         }}
         onPress={() => {
-          storeData(ActivityType, {
-            _id: ActivityName,
-            name: ActivityName,
-            accessibility,
-            price,
+          SearchActivities({
+            cost: price,
+            accessibility: accessibility,
+            categories: category,
           });
           navigation.navigate("Menu");
         }}
       >
-        <Text style={{ color: "#fafafa" }}>Add</Text>
+        <Text style={{ color: "#fafafa" }}>Search</Text>
       </TouchableOpacity>
     </View>
   );
@@ -169,7 +120,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#696773",
-    // alignContent: 'flex-start',
   },
   FormContainer: {
     flex: 0.8,
@@ -178,14 +128,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#B1B6A6",
     borderRadius: 5,
-  },
-  FormItem: {
-    flex: 0.2,
-    borderRadius: 5,
-    marginTop: "20%",
-    width: "80%",
-    alignItems: "center",
-    justifyContent: "center",
   },
   slider: {
     width: 300,
@@ -197,9 +139,5 @@ const styles = StyleSheet.create({
   selectContainer: {
     width: "80%",
     borderRadius: 10,
-  },
-  pickerContainer: {
-    // flex: 0.3,
-    transform: [{ scaleX: 0.75 }, { scaleY: 0.75 }],
   },
 });

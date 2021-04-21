@@ -1,14 +1,18 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import MainMenu from '../views/MainMenu';
-import About from '../views/About';
-import IndividualCourse from '../views/IndividualCourse';
-import AddActivity from '../views/AddActivity';
+import React from "react";
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import MainMenu from "../views/MainMenu";
+import About from "../views/About";
+import Search from "../views/Search";
+import IndividualCourse from "../views/IndividualCourse";
+import AddActivity from "../views/AddActivity";
 import {
-  NIBBLES, APPETISERS, MAINS, DESSERTS,
-} from '../src/CourseDescriptions';
+  NIBBLES,
+  APPETISERS,
+  MAINS,
+  DESSERTS,
+} from "../src/CourseDescriptions";
 
 const Drawer = createDrawerNavigator();
 
@@ -34,11 +38,7 @@ function Starters() {
 
 function Mains() {
   return (
-    <IndividualCourse
-      header="Mains"
-      dataKey="mains"
-      description={MAINS}
-    />
+    <IndividualCourse header="Mains" dataKey="mains" description={MAINS} />
   );
 }
 
@@ -64,6 +64,7 @@ const DrawerNavigator = () => (
     <Drawer.Screen name="Mains" component={Mains} />
     <Drawer.Screen name="Desserts" component={Desserts} />
     <Drawer.Screen name="Create a Recipe" component={AddActivity} />
+    <Drawer.Screen name="Search" component={Search} />
   </Drawer.Navigator>
 );
 
@@ -71,20 +72,20 @@ export default DrawerNavigator;
 
 const styles = StyleSheet.create({
   drawer: {
-    backgroundColor: '#363946',
+    backgroundColor: "#363946",
     width: 240,
   },
 });
 
 const drawerContentStyles = {
-  activeTintColor: '#819595',
+  activeTintColor: "#819595",
   itemStyle: {
     marginVertical: 5,
   },
   labelStyle: {
-    fontFamily: 'Didot',
+    fontFamily: "Didot",
     fontSize: 20,
     paddingTop: 10,
-    color: '#B1B6A6',
+    color: "#B1B6A6",
   },
 };
