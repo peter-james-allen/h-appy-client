@@ -6,22 +6,24 @@ import About from '../views/About';
 import IndividualCourse from '../views/IndividualCourse';
 import AddActivity from '../views/AddActivity';
 import IndividualActivity from '../views/IndividualActivity';
+import SearchResults from '../views/SearchResults';
 import DrawerNavigator from './DrawerNavigator';
-import EditActivity from '../views/EditActivity'
+import EditActivity from '../views/EditActivity';
 
 const { Navigator, Screen } = createStackNavigator();
 
-const HomeNavigator = () => (
+const HomeNavigator = ({ state }) => (
   <Navigator headerMode="none">
-    <Screen name="Drawer" component={DrawerNavigator} />
+    <Screen name="Drawer" children={() => <DrawerNavigator state={state} />} />
     <Screen name="IndividualActivity" component={IndividualActivity} />
     <Screen name="EditActivity" component={EditActivity} />
+    <Screen name="SearchResults" component={SearchResults} />
   </Navigator>
 );
 
-const AppNavigator = () => (
+const AppNavigator = ({ state }) => (
   <NavigationContainer>
-    <HomeNavigator />
+    <HomeNavigator state={state} />
   </NavigationContainer>
 );
 
