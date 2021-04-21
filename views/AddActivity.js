@@ -22,19 +22,23 @@ export default function AddActivity() {
   return (
     <View style={styles.container}>
       <Header />
+
       <View style={styles.FormContainer}>
-        <View style={styles.FormItem}>
-          <Text>Activity Name</Text>
+
+        <View style={styles.nameContainer}>
           <TextInput
-            style={{ height: 40 }}
-            placeholder="enter the name of the activity here"
+            editable
+            style={styles.nameField}
+            placeholder="Activity name..."
+            placeholderTextColor="#fff"
             onChangeText={(newActivityName) => setActivityName(newActivityName)}
             defaultValue={ActivityName}
           />
         </View>
 
-        <View style={styles.selectContainer}>
+        <View style={styles.pickerContainer}>
           <Picker
+            style={styles.picker}
             selectedValue={ActivityType}
             onValueChange={(itemValue, itemIndex) => setActivityType(itemValue)}
           >
@@ -50,8 +54,9 @@ export default function AddActivity() {
           </Picker>
         </View>
 
-        <View style={styles.selectContainer}>
+        <View style={styles.pickerContainer}>
           <Picker
+            style={styles.picker}
             selectedValue={category}
             onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
           >
@@ -70,16 +75,17 @@ export default function AddActivity() {
           accessibility={accessibility}
           setAccessibility={setAccessibility}
         />
+
         <PriceSlider price={price} setPrice={setPrice} />
 
-        <SubmitButton
-          ActivityType={ActivityType}
-          ActivityName={ActivityName}
-          accessibility={accessibility}
-          price={price}
-          categories={[category]}
-        />
       </View>
+      <SubmitButton
+        ActivityType={ActivityType}
+        ActivityName={ActivityName}
+        accessibility={accessibility}
+        price={price}
+        categories={[category]}
+      />
     </View>
   );
 }
@@ -87,18 +93,18 @@ export default function AddActivity() {
 function AccessibilitySlider(props) {
   const { accessibility, setAccessibility } = props;
   return (
-    <View>
-      <Text>
-        Accessibility: {accessibility}
-      </Text>
+    <View style={styles.sliderContainer}>
       <Slider
         style={styles.slider}
         minimumValue={0}
         maximumValue={10}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
-        onSlidingComplete={(value) => setAccessibility(Math.ceil(value))}
+        minimumTrackTintColor="#696773"
+        maximumTrackTintColor="#363946"
+        onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
+      <Text style={styles.sliderText}>
+        Accessibility Score: {'\t'} {accessibility}
+      </Text>
     </View>
   );
 }
@@ -106,18 +112,18 @@ function AccessibilitySlider(props) {
 function PriceSlider(props) {
   const { price, setPrice } = props;
   return (
-    <View>
-      <Text>
-        Price: {'£ '.repeat(price)}
-      </Text>
+    <View style={styles.sliderContainer}>
       <Slider
         style={styles.slider}
         minimumValue={0}
         maximumValue={4}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
-        onSlidingComplete={(value) => setPrice(Math.ceil(value))}
-      />
+        minimumTrackTintColor="#696773"
+        maximumTrackTintColor="#363946"
+        onValueChange={(value) => setPrice(Math.ceil(value))}
+        />
+        <Text style={styles.sliderText}>
+          Cost: {'\t'} {'£ '.repeat(price) || 'Free :)'}
+        </Text>
     </View>
   );
 }
@@ -132,16 +138,8 @@ function SubmitButton(props) {
     categories,
   } = props;
   return (
-    <View style={{ width: "80%" }}>
+    <View style={styles.submitButtonContainer}>
       <TouchableOpacity
-        style={{
-          marginLeft: 8,
-          padding: 8,
-          backgroundColor: "#212121",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: 8,
-        }}
         onPress={() => {
           if (ActivityType === 'default') {
             alert('Please select an activity type');
@@ -157,7 +155,7 @@ function SubmitButton(props) {
           }
         }}
       >
-        <Text style={{ color: "#fafafa" }}>Add</Text>
+        <Text style={styles.submitButton}>Add</Text>
       </TouchableOpacity>
     </View>
   );
@@ -172,34 +170,72 @@ const styles = StyleSheet.create({
     // alignContent: 'flex-start',
   },
   FormContainer: {
-    flex: 0.8,
-    width: "90%",
+    flex: 0.82,
+    width: "92%",
+    marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#B1B6A6",
     borderRadius: 5,
   },
-  FormItem: {
-    flex: 0.2,
+  nameContainer: {
+    flex: 0.15,
     borderRadius: 5,
-    marginTop: "20%",
-    width: "80%",
+    marginTop: "5%",
+    padding: 10,
+    width: "90%",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: '#363946',
+  },
+  nameField: {
+    color: "#fff",
+    fontFamily: 'Chalkduster',
+    fontSize: 18,
   },
   slider: {
-    width: 300,
+    width: 280,
     opacity: 1,
     height: 50,
-    marginTop: 20,
-    marginBottom: 20,
   },
-  selectContainer: {
-    width: "80%",
-    borderRadius: 10,
+  sliderContainer: {
+    flex: 0.16,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: '#819595',
+    width: '90%',
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  sliderText: {
+    color: '#23252E',
+    fontFamily: 'Courier',
+    fontSize: 16
   },
   pickerContainer: {
-    // flex: 0.3,
-    transform: [{ scaleX: 0.75 }, { scaleY: 0.75 }],
+    marginTop: (Platform.OS === 'ios') ? -50 : 0,
+    width: "80%",
+    borderRadius: 10,
+    flex: 0.3,
+  },
+  picker: {
+    transform: (Platform.OS === 'ios') ? [{ scaleX: 0.80 }, { scaleY: 0.80 }] : [],
+  },
+  submitButtonContainer: {
+    width: "92%",
+    marginLeft: 8,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: "#363946",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    position: "absolute",
+    bottom: 15,
+  },
+  submitButton: {
+    color: "#B1B6A6",
+    fontFamily: 'Courier',
+    fontSize: 20,
   },
 });

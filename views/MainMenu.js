@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import CollapsibleView from '@eliav2/react-native-collapsible-view';
 import {
-  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList, Dimensions, LogBox,
+  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList, Dimensions, LogBox, Platform,
 } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -76,13 +76,12 @@ function Item(item) {
     <View style={styles.item}>
       <Text style={styles.itemText}>
         {item.item.name}
-        .
       </Text>
       <TouchableOpacity
         style={{ paddingTop: 10 }}
         onPress={pressHandler}
       >
-        <Ionicons name="help" size={15} color="black" />
+        <Ionicons name="help" size={15} color="fff" />
       </TouchableOpacity>
     </View>
   );
@@ -158,7 +157,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#696773',
     width: windowWidth,
   },
-  menu: {
+  scroll: {
   },
   menuContainer: {
     overflow: 'scroll',
@@ -171,7 +170,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     borderRadius: 7,
     backgroundColor: '#B1B6A6',
-    width: windowWidth * 0.95,
+    width: windowWidth * 0.939,
   },
   menuSubText: {
     textAlign: 'center',
