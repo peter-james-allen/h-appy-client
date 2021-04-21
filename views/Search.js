@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import Slider from "@react-native-community/slider";
-import {
-  Text, View, StyleSheet, TouchableOpacity, Picker,
-} from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Picker } from "react-native";
 // import { Picker } from '@react-native-picker/picker';
-import { useNavigation } from '@react-navigation/native';
-import Header from '../components/Header';
+import { useNavigation } from "@react-navigation/native";
+import Header from "../components/Header";
 import { FetchCategories } from "../src/FetchActivities";
 
 export default function Search() {
@@ -16,17 +14,14 @@ export default function Search() {
 
   const categories = FetchCategories();
 
-  return(
+  return (
     <View style={styles.container}>
       <Header />
 
       <View style={styles.FormContainer}>
+        <View style={styles.nameContainer}></View>
 
-        <View style={styles.nameContainer}>
-        </View>
-
-        <View style={styles.pickerContainer}>
-        </View>
+        <View style={styles.pickerContainer}></View>
 
         <View style={styles.pickerContainer}>
           <Picker
@@ -51,7 +46,6 @@ export default function Search() {
         />
 
         <PriceSlider price={price} setPrice={setPrice} />
-
       </View>
       <SubmitButton
         accessibility={accessibility}
@@ -75,7 +69,7 @@ function AccessibilitySlider(props) {
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
       <Text style={styles.sliderText}>
-        Accessibility Score: {'\t'} {accessibility}
+        Accessibility Score: {"\t"} {accessibility}
       </Text>
     </View>
   );
@@ -92,30 +86,24 @@ function PriceSlider(props) {
         minimumTrackTintColor="#696773"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setPrice(Math.ceil(value))}
-        />
-        <Text style={styles.sliderText}>
-          Cost: {'\t'} {'£ '.repeat(price) || 'Free :)'}
-        </Text>
+      />
+      <Text style={styles.sliderText}>
+        Cost: {"\t"} {"£ ".repeat(price) || "Free :)"}
+      </Text>
     </View>
   );
 }
 
 function SubmitButton(props) {
   const navigation = useNavigation();
-  const {
-    accessibility,
-    price,
-    category,
-  } = props;
+  const { accessibility, price, category } = props;
 
   return (
     <View style={styles.submitButtonContainer}>
       <TouchableOpacity
         onPress={() => {
-            console.log({ accessibility: accessibility, cost: price, category: category });
-            navigation.navigate('SearchResults');
-          }
-        }
+          navigation.navigate("SearchResults");
+        }}
       >
         <Text style={styles.submitButton}>Add</Text>
       </TouchableOpacity>
@@ -148,11 +136,11 @@ const styles = StyleSheet.create({
     width: "90%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: '#363946',
+    backgroundColor: "#363946",
   },
   nameField: {
     color: "#fff",
-    fontFamily: 'Chalkduster',
+    fontFamily: "Chalkduster",
     fontSize: 18,
   },
   slider: {
@@ -164,24 +152,24 @@ const styles = StyleSheet.create({
     flex: 0.16,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: '#819595',
-    width: '90%',
+    backgroundColor: "#819595",
+    width: "90%",
     borderRadius: 5,
     marginBottom: 15,
   },
   sliderText: {
-    color: '#23252E',
-    fontFamily: 'Courier',
-    fontSize: 16
+    color: "#23252E",
+    fontFamily: "Courier",
+    fontSize: 16,
   },
   pickerContainer: {
-    marginTop: (Platform.OS === 'ios') ? -50 : 0,
+    marginTop: Platform.OS === "ios" ? -50 : 0,
     width: "80%",
     borderRadius: 10,
     flex: 0.3,
   },
   picker: {
-    transform: (Platform.OS === 'ios') ? [{ scaleX: 0.80 }, { scaleY: 0.80 }] : [],
+    transform: Platform.OS === "ios" ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],
   },
   submitButtonContainer: {
     width: "92%",
@@ -197,7 +185,7 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     color: "#B1B6A6",
-    fontFamily: 'Courier',
+    fontFamily: "Courier",
     fontSize: 20,
   },
 });
