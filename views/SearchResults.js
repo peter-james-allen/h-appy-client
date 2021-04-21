@@ -209,8 +209,9 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.875,
     borderRadius: 5,
     marginBottom: Platform.OS === 'ios' ? 20 : 0,
-    marginTop: Platform.OS === 'ios' ? -7 : 10,
+    marginTop: Platform.OS === 'ios' ? -8 : 10,
     zIndex: 999,
+    paddingBottom: 5,
   },
   sliderText: {
     color: '#23252E',
