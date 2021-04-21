@@ -1,35 +1,43 @@
 import React, { Component, useEffect, useState } from "react";
 import { DrawerActions, useNavigation } from "@react-navigation/native";
 import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  Button,
-  TouchableOpacity,
-} from "react-native";
-import Header from "../components/Header";
-import { deleteDataByID } from "../src/UserData";
-import Grid from "../components/Grid";
-import MenuButton from "../components/MenuButton";
+  StyleSheet, Text, View, Dimensions, Button, TouchableOpacity,
+} from 'react-native';
+import Header from '../components/Header';
+import { deleteDataByID, doesActivityNameExist } from '../src/UserData';
+import Grid from '../components/Grid';
+import MenuButton from '../components/MenuButton';
 
 const windowWidth = Dimensions.get("window").width;
 
 export default function IndividualActivity({ route }) {
+  const { item } = route.params;
   const navigation = useNavigation();
+  console.log(item);
+
+  let menuSection = item.size;
+  let isThisAPIData;
+  console.log('menuSection: ', menuSection);
+  if (menuSection === undefined) {
+    isThisAPIData = false;
+  } else {
+    if (!menuSection.endsWith('s')) { menuSection = `${menuSection}s`; }
+    isThisAPIData = doesActivityNameExist(menuSection, item.name);
+  }
+  console.log(isThisAPIData);
 
   return (
     <View style={styles.container}>
       <Header />
       <View style={styles.nameContainer}>
-        <Text style={styles.name}>{route.params.item.name}</Text>
+        <Text style={styles.name}>{item.name}</Text>
       </View>
 
       <View style={styles.descriptionContainer}>
         <Text style={styles.description}>{route.params.item.description}</Text>
 
         <View style={styles.grid}>
-          <Grid activity={route.params.item} />
+          <Grid activity={item} />
         </View>
       </View>
 
@@ -38,11 +46,10 @@ export default function IndividualActivity({ route }) {
           <Text
             style={styles.deleteButton}
             title="Delete this activity"
-            onPress={() => {
-              deleteDataByID(route.params.item._id);
-              navigation.navigate("Menu");
+            onPress={() => { 
+              deleteDataByID(item._id); 
+              navigation.navigate('Menu'); 
             }}
-            // onPress = {deleteDate(key, item.id)}
           >
             Remove from favourites
           </Text>
@@ -134,8 +141,8 @@ const styles = StyleSheet.create({
     elevation: 16,
   },
   deleteButton: {
-    fontFamily: "Courier",
-    color: "#B1B6A6",
+    fontFamily: 'Courier',
+    color: '#B1B6A6',
   },
   deleteButtonContainer: {
     position: "absolute",

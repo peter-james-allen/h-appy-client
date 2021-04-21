@@ -111,6 +111,8 @@ const getAllUserData = async () => {
 };
 
 export function doesActivityNameExist(key, name) {
+  console.log('doesActivityNameExist', key, name);
+  console.log(userData[key]);
   const existingName = userData[key].filter((item) => item.name === name);
   return existingName.length !== 0;
 }
