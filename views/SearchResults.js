@@ -23,7 +23,9 @@ function buildItem(item) {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.item}>
-        <Text style={styles.itemText}>{item.item.name}</Text>
+        <Text style={styles.itemText}>
+          {item.item.name}
+        </Text>
         <IndividualActivityButton
           style={styles.individualButton}
           item={item.item}
@@ -53,7 +55,7 @@ function AccessibilitySlider(props) {
     <View style={styles.sliderContainer}>
       <Slider
         style={styles.slider}
-        minimumValue={0}
+        minimumValue={1}
         maximumValue={10}
         value={accessibility}
         minimumTrackTintColor="#696773"
@@ -186,9 +188,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#696773',
   },
   formContainer: {
-    flex: 0.5,
-    width: '92%',
-    marginTop: '20%',
+    flex: 0.55,
+    width: windowWidth * 0.939,
+    marginTop: '19%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#B1B6A6',
@@ -204,9 +206,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#819595',
-    width: '90%',
+    width: windowWidth * 0.875,
     borderRadius: 5,
-    marginBottom: 15,
+    marginBottom: Platform.OS === 'ios' ? 20 : 0,
+    marginTop: Platform.OS === 'ios' ? -7 : 10,
     zIndex: 999,
   },
   sliderText: {
@@ -216,9 +219,10 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     marginTop: Platform.OS === 'ios' ? -100 : 0,
+    marginBottom: 10,
     width: '80%',
-    // padding: 20,
-    borderRadius: 10,
+    paddingTop: Platform.OS === 'ios' ? 10 : 0,
+    borderRadius: 5,
     flex: 0.5,
     overflow: 'hidden',
   },
@@ -226,29 +230,21 @@ const styles = StyleSheet.create({
     transform: Platform.OS === 'ios' ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],
   },
   submitButtonContainer: {
-    width: '92%',
+    width: windowWidth * 0.875,
     marginLeft: 8,
     paddingTop: 10,
     paddingBottom: 10,
     backgroundColor: '#363946',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: 5,
     position: 'absolute',
-    bottom: 15,
+    bottom: 10,
   },
   submitButton: {
     color: '#B1B6A6',
     fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
     fontSize: 20,
-  },
-  courseDetailsContainer: {
-    flex: 0.4,
-    alignContent: 'center',
-    justifyContent: 'center',
-    width: '90%',
-    paddingTop: 10,
-    paddingBottom: 10,
   },
   courseDetails: {
     fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
@@ -269,8 +265,9 @@ const styles = StyleSheet.create({
   activityList: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 0.8,
+    flex: 0.95,
     paddingBottom: 10,
+    width: '100%'
   },
   item: {
     margin: 3,
@@ -294,17 +291,19 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === 'ios' ? 'Chalkduster' : 'Roboto',
     textAlign: 'center',
     fontSize: 17,
+    width: '100%'
   },
   itemContainer: {
     borderRadius: 5,
     overflow: 'hidden',
     padding: 3,
+    width: windowWidth * 0.9
   },
   activitiesContainer: {
-    flex: 0.4,
+    flex: 0.6,
     marginTop: '5%',
     marginBottom: '12%',
-    width: windowWidth * 0.9,
+    width: windowWidth * 0.939,
     backgroundColor: '#B1B6A6',
     alignItems: 'center',
     justifyContent: 'center',

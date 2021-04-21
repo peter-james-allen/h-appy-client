@@ -165,8 +165,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#696773',
     width: windowWidth,
   },
-  scroll: {
-  },
   menuContainer: {
     overflow: 'scroll',
     flex: 0.8,
