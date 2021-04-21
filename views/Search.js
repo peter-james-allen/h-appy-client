@@ -56,7 +56,7 @@ export default function Search() {
       <SubmitButton
         accessibility={accessibility}
         price={price}
-        categories={category}
+        category={category}
       />
     </View>
   );
@@ -112,7 +112,7 @@ function SubmitButton(props) {
     <View style={styles.submitButtonContainer}>
       <TouchableOpacity
         onPress={() => {
-            storeData({ accessibility: accessibility, price: price });
+            console.log({ accessibility: accessibility, cost: price, category: category });
             navigation.navigate('Menu');
           }
         }
