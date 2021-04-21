@@ -63,7 +63,7 @@ function itemStyle(item) {
     };
   }
   return {
-    paddingTop: '10%',
+    paddingTop: '12%',
   };
 }
 
