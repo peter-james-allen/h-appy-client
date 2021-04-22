@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, Dimensions, TouchableOpacity, Platform,
+  StyleSheet, Text, View, Dimensions, TouchableOpacity, Platform, ScrollView,
 } from 'react-native';
 import Header from '../components/Header';
 import { deleteDataByID, doesActivityNameExist, storeData } from '../src/UserData';
@@ -31,9 +31,13 @@ export default function IndividualActivity({ route }) {
       </View>
 
       <View style={styles.descriptionContainer}>
-        <Text style={styles.description}>
-          {item.description}
-        </Text>
+        <View style={styles.textContainer}>
+          <ScrollView style={{ width: '100%' }}>
+          <Text style={styles.description}>
+            {item.description}
+          </Text>
+          </ScrollView>
+        </View>
 
         <View style={styles.grid}>
           <Grid activity={item} />
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
     width: windowWidth,
   },
   description: {
-    fontSize: 16,
+    fontSize: 15,
     lineHeight: 25,
     textAlign: 'center',
     padding: 10,
@@ -114,9 +118,17 @@ const styles = StyleSheet.create({
     color: '#23252E',
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
   },
+  textContainer: {
+    position: 'absolute',
+    top: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: windowWidth * 0.9,
+    height: '37%',
+  },
   descriptionContainer: {
     flex: 0.82,
-    marginTop: '52%',
+    marginTop: '40%',
     marginBottom: '11%',
     width: windowWidth * 0.93,
     backgroundColor: '#B1B6A6',
@@ -129,17 +141,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   name: {
-    fontSize: 24,
+    fontSize: 22,
     textAlign: 'center',
     maxWidth: '90%',
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
     color: 'white',
   },
   nameContainer: {
-    flex: 0.3,
+    flex: 0.2,
     top: 72,
     width: windowWidth * 0.93,
-    minHeight: 160,
+    minHeight: 120,
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
@@ -154,16 +166,9 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     elevation: 16,
   },
-  detailsContainer: {
-    flex: 0.4,
-    marginTop: 40,
-    position: 'absolute',
-    bottom: 70,
-  },
   grid: {
     position: 'absolute',
     bottom: 0,
-    flex: 0.3,
     paddingBottom: 15,
     shadowColor: '#000',
     shadowOffset: {
