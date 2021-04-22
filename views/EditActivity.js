@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
   nameField: {
     color: '#fff',
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
-    fontSize: 20,
+    fontSize: 16,
     zIndex: 999,
     padding: 10,
     height: '100%',
