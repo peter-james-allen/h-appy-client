@@ -40,7 +40,7 @@ export default function AddActivity() {
           />
         </View>
 
-        <View style={[styles.pickerContainer, { marginBottom: 10 }]}>
+        <View style={styles.pickerContainer}>
           <Picker
             style={styles.picker}
             selectedValue={ActivityType}
@@ -65,7 +65,7 @@ export default function AddActivity() {
           setAccessibility={setAccessibility}
         />
 
-        <View style={[styles.pickerContainer, { marginTop: -80, marginBottom: 10}]}>
+        <View style={[styles.pickerContainer, styles.pickerBottom]}>
           <Picker
             style={styles.picker}
             selectedValue={category}
@@ -266,10 +266,14 @@ const styles = StyleSheet.create({
     marginTop: (Platform.OS === 'ios') ? -70 : 0,
     width: '80%',
     borderRadius: 10,
+    marginBottom: 10,
     flex: 0.3,
   },
   picker: {
     transform: (Platform.OS === 'ios') ? [{ scaleX: 0.80 }, { scaleY: 0.80 }] : [],
+  },
+  pickerBottom: {
+    marginTop: -80,
   },
   submitButtonContainer: {
     width: '93%',
