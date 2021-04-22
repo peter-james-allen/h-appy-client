@@ -150,7 +150,7 @@ export default function App({ navigation }) {
             description: `Welcome to H-Appy, ${json.user.name}!`,
             type: 'success',
           });
-          dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token) });
+          dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token), name: JSON.stringify(json.user.name) });
           navigation.navigate('Menu');
         } else if (json.name && json.name === 'MongoError') {
           if ('email' in json.keyPattern) {
