@@ -54,13 +54,19 @@ function containerStyle(item) {
 }
 
 function itemStyle(item) {
-  const padding = {
-    padding: '20%',
-  };
-
-  if (!item.id.includes('header')) {
-    return padding;
+  if (item.id.includes('header')) {
+    return {
+      textDecorationLine: 'underline',
+      marginTop: 15,
+      paddingTop: 5,
+      marginBottom: -10,
+      zIndex: 999,
+      lineHeight: 20,
+    };
   }
+  return {
+    paddingTop: '12%',
+  };
 }
 
 const styles = StyleSheet.create({
@@ -69,10 +75,13 @@ const styles = StyleSheet.create({
     height: gridWidth,
     flexDirection: 'row',
     borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   item: {
     flex: 1,
-    margin: 1,
+    marginLeft: 3,
+    marginRight: 3,
     fontSize: 18,
     backgroundColor: '#353746',
     textAlign: 'center',

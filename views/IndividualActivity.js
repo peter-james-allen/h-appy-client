@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { Component, useEffect, useState } from 'react';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Dimensions, TouchableOpacity, Platform,
 } from 'react-native';
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     flex: 0.82,
     marginTop: '52%',
     marginBottom: '11%',
-    width: windowWidth * 0.95,
+    width: windowWidth * 0.93,
     backgroundColor: '#B1B6A6',
     alignItems: 'center',
     justifyContent: 'center',
@@ -136,8 +136,8 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     flex: 0.3,
-    top: 70,
-    width: windowWidth * 0.95,
+    top: 72,
+    width: windowWidth * 0.93,
     minHeight: 160,
     position: 'absolute',
     alignItems: 'center',
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: -6,
     backgroundColor: '#353846',
-    width: windowWidth * 0.95,
+    width: windowWidth * 0.93,
     borderRadius: 7,
     alignItems: 'center',
     justifyContent: 'center',
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   EditButtonContainer: {
     bottom: -6,
     backgroundColor: '#353846',
-    width: windowWidth * 0.95,
+    width: windowWidth * 0.93,
     borderRadius: 7,
     alignItems: 'center',
     justifyContent: 'center',

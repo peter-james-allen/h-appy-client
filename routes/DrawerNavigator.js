@@ -98,7 +98,7 @@ const DrawerNavigator = ({ state }) => {
         drawerContent={(props) => <SignOutButton {...props} />}
         drawerContentOptions={drawerContentStyles}
       >
-        <Drawer.Screen name="Menu" component={MainMenu} />
+        <Drawer.Screen name="Menu" children={()=><MainMenu userName={state.userName}/>}/>
         <Drawer.Screen name="About" component={About} />
         <Drawer.Screen name="Nibbles" component={Nibbles} />
         <Drawer.Screen name="Starters" component={Starters} />
@@ -107,26 +107,26 @@ const DrawerNavigator = ({ state }) => {
         <Drawer.Screen name="Create a Recipe" component={AddActivity} />
         <Drawer.Screen name="Search" component={Search} />
       </Drawer.Navigator>
-    );
-  }
-  return (
-    <Drawer.Navigator
-      drawerStyle={styles.drawer}
-      drawerContentOptions={drawerContentStyles}
-    >
-      <Drawer.Screen name="Menu" component={MainMenu} />
-      <Drawer.Screen name="About" component={About} />
-      <Drawer.Screen name="Nibbles" component={Nibbles} />
-      <Drawer.Screen name="Starters" component={Starters} />
-      <Drawer.Screen name="Mains" component={Mains} />
-      <Drawer.Screen name="Desserts" component={Desserts} />
-      <Drawer.Screen name="Create a Recipe" component={AddActivity} />
-      <Drawer.Screen name="Search" component={Search} />
-      <Drawer.Screen name="Sign up" component={SignUp} />
-      <Drawer.Screen name="Sign in" component={SignIn} />
-    </Drawer.Navigator>
-  );
-};
+        )
+      } else {
+     return (
+      <Drawer.Navigator
+        drawerStyle={styles.drawer}
+        drawerContentOptions={drawerContentStyles}
+      >
+        <Drawer.Screen name="Menu" children={()=><MainMenu userName={state.userName}/>}/>
+        <Drawer.Screen name="About" component={About} />
+        <Drawer.Screen name="Nibbles" component={Nibbles} />
+        <Drawer.Screen name="Starters" component={Starters} />
+        <Drawer.Screen name="Mains" component={Mains} />
+        <Drawer.Screen name="Desserts" component={Desserts} />
+        <Drawer.Screen name="Search" component={Search} />
+        <Drawer.Screen name="Sign up" component={SignUp} />
+        <Drawer.Screen name="Sign in" component={SignIn} />
+      </Drawer.Navigator>
+        )
+     }
+    };
 
 export default DrawerNavigator;
 
