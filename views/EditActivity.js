@@ -2,13 +2,15 @@
 import React, { useState } from 'react';
 import Slider from '@react-native-community/slider';
 import {
-  Text, View, TextInput, StyleSheet, TouchableOpacity, Picker, Platform,
+  Text, View, TextInput, StyleSheet, TouchableOpacity, Picker, Platform, Dimensions,
 } from 'react-native';
 // import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import { editData } from '../src/UserData';
 import { FetchCategories } from '../src/FetchActivities';
+
+const windowWidth = Dimensions.get('window').width;
 
 export default function EditActivity({ route }) {
   const oldItem = route.params.item;
@@ -40,17 +42,6 @@ export default function EditActivity({ route }) {
           />
         </View>
 
-        <View style={styles.nameContainer}>
-          <TextInput
-            editable
-            style={styles.nameField}
-            placeholder="Activity description..."
-            placeholderTextColor="#fff"
-            // eslint-disable-next-line max-len
-            onChangeText={(newActivityDescription) => setActivityDescription(newActivityDescription)}
-            defaultValue={ActivityDescription}
-          />
-        </View>
 
         <View style={styles.pickerContainer}>
           <Picker
@@ -70,6 +61,14 @@ export default function EditActivity({ route }) {
           </Picker>
         </View>
 
+
+        <AccessibilitySlider
+          accessibility={accessibility}
+          setAccessibility={setAccessibility}
+        />
+
+        <PriceSlider price={cost} setPrice={setCost} />
+
         <View style={styles.pickerContainer}>
           <Picker
             style={styles.picker}
@@ -85,12 +84,19 @@ export default function EditActivity({ route }) {
           </Picker>
         </View>
 
-        <AccessibilitySlider
-          accessibility={accessibility}
-          setAccessibility={setAccessibility}
-        />
 
-        <PriceSlider price={cost} setPrice={setCost} />
+
+        <View style={styles.descriptionContainer}>
+          <TextInput
+            editable
+            style={styles.descriptionField}
+            placeholder="Activity description..."
+            placeholderTextColor="#B1B6A6"
+            // eslint-disable-next-line max-len
+            onChangeText={(newActivityDescription) => setActivityDescription(newActivityDescription)}
+            defaultValue={ActivityDescription}
+          />
+        </View>
 
       </View>
       <SubmitButton
@@ -115,7 +121,7 @@ function AccessibilitySlider(props) {
         value={accessibility}
         minimumValue={0}
         maximumValue={10}
-        minimumTrackTintColor="#696773"
+        minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
@@ -139,7 +145,7 @@ function PriceSlider(props) {
         style={styles.slider}
         minimumValue={0}
         maximumValue={4}
-        minimumTrackTintColor="#696773"
+        minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setPrice(Math.ceil(value))}
       />
@@ -203,7 +209,7 @@ const styles = StyleSheet.create({
   },
   FormContainer: {
     flex: 0.82,
-    width: '92%',
+    width: '93%',
     marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -211,19 +217,45 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   nameContainer: {
-    flex: 0.15,
+    flex: 0.1,
     borderRadius: 5,
-    marginTop: '5%',
+    marginTop: '3%',
     padding: 10,
-    width: '90%',
+    width: '93%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#363946',
+    zIndex: 999,
   },
   nameField: {
     color: '#fff',
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
-    fontSize: 18,
+    fontSize: 20,
+    zIndex: 999,
+    padding: 10,
+    height: '100%',
+    width: windowWidth * 0.8,
+    textAlign: 'center',
+  },
+  descriptionContainer: {
+    flex: 0.2,
+    borderRadius: 5,
+    marginBottom: 10,
+    padding: 10,
+    width: '93%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#363946',
+    zIndex: 999,
+  },
+  descriptionField: {
+    color: '#B1B6A6',
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
+    fontSize: 16,
+    zIndex: 999,
+    height: 90,
+    width: windowWidth * 0.8,
+    textAlign: 'center',
   },
   slider: {
     width: 280,
@@ -231,30 +263,35 @@ const styles = StyleSheet.create({
     height: 50,
   },
   sliderContainer: {
-    flex: 0.16,
+    flex: 0.15,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#819595',
-    width: '90%',
+    backgroundColor: '#353846',
+    width: '93%',
     borderRadius: 5,
     marginBottom: 15,
+    zIndex: 999,
   },
   sliderText: {
-    color: '#23252E',
+    color: '#B1B6A6',
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     fontSize: 16,
   },
   pickerContainer: {
-    marginTop: (Platform.OS === 'ios') ? -50 : 0,
+    marginTop: (Platform.OS === 'ios') ? -70 : 0,
     width: '80%',
     borderRadius: 10,
+    marginBottom: 10,
     flex: 0.3,
   },
   picker: {
     transform: (Platform.OS === 'ios') ? [{ scaleX: 0.80 }, { scaleY: 0.80 }] : [],
   },
+  pickerBottom: {
+    marginTop: -80,
+  },
   submitButtonContainer: {
-    width: '92%',
+    width: '93%',
     marginLeft: 8,
     paddingTop: 10,
     paddingBottom: 10,
@@ -270,4 +307,14 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     fontSize: 20,
   },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
+  }
 });
