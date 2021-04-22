@@ -114,7 +114,7 @@ const DrawerNavigator = ({state}) => {
         drawerStyle={styles.drawer}
         drawerContentOptions={drawerContentStyles}
         >
-        <Drawer.Screen name="Menu" component={MainMenu} />
+        <Drawer.Screen name="Menu" children={()=><MainMenu userName={state.userName}/>}/>
         <Drawer.Screen name="About" component={About} />
         <Drawer.Screen name="Nibbles" component={Nibbles} />
         <Drawer.Screen name="Starters" component={Starters} />

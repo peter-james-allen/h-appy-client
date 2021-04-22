@@ -4,15 +4,23 @@ import {
 import React from 'react';
 
 export default function MenuTitle({name}) {
+  if (name != null) {
   const username = name.replace(/['"]+/g, '')
   return (
     <View style={styles.titleContainer}>
       <Text style={styles.menuTitle}>
         Feed your Boredom, {username}
       </Text>
-    </View>
-  );  
-}
+    </View> )
+    } else {
+      return (
+        <View style={styles.titleContainer}>
+          <Text style={styles.menuTitle}>
+            Feed your Boredom...
+          </Text>
+        </View> )
+    }  
+};  
 
 const styles = StyleSheet.create({
   titleContainer: {

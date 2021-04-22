@@ -45,6 +45,7 @@ export default function SignUp() {
           placeholder="Your name here"
           onChangeText={(newName) => setName(newName)}
           defaultValue={Name}
+          autoCompleteType="name"
         />
         </View>
         <View style={styles.FormItem}>
@@ -54,6 +55,10 @@ export default function SignUp() {
           placeholder="Your username here"
           onChangeText={(newUsername) => setUsername(newUsername)}
           defaultValue={Username}
+          spellCheck={false}
+          autoCapitalize="none"
+          autoCorrect={false}
+          autoCompleteType="username"
         />
         </View>
         <View style={styles.FormItem}>
@@ -63,6 +68,10 @@ export default function SignUp() {
           placeholder="joe.bloggs@example.com"
           onChangeText={(newEmail) => setEmail(newEmail)}
           defaultValue={Email}
+          spellCheck={false}
+          autoCapitalize="none"
+          autoCorrect={false}
+          autoCompleteType="email"
         />
         </View>
         <View style={styles.FormItem}>
