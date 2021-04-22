@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 1,
-    margin: 1,
+    marginLeft: 3,
+    marginRight: 3,
     fontSize: 18,
     backgroundColor: '#353746',
     textAlign: 'center',
