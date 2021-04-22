@@ -15,18 +15,24 @@ const defaultData = {
       name: 'Go to the Cinema',
       ingredients: [],
       description: 'Watch a star wars! but please, the originals',
+      size: 'nibble',
+      accessibility: 9,
     },
     {
       _id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
       name: 'Do a Puzzle',
       ingredients: ['a phone or computer or puzzle book'],
       description: 'You can start small but really you want the 5000 pieces one',
+      size: 'nibble',
+      accessibility: 9,
     },
     {
       _id: '58694a0f-3da1-471f-bd96-145571e29d72',
       name: 'Take a long awaited break',
       ingredients: [],
       description: 'Sometimes it can be usefull to just stop doing anything and take a breather. Just do not repeat this activity too many times consecutively',
+      size: 'nibble',
+      accessibility: 10,
     },
   ],
   appetisers: [
@@ -35,12 +41,16 @@ const defaultData = {
       name: 'Do a codewars kata',
       ingredients: ['computer'],
       description: "If you're learning a new coding language, practice makes perfect!",
+      size: 'appetiser',
+      accessibility: 7,
     },
     {
       _id: 'bd0acjea-c4b1-46c2-red5-3ad53abb28ba',
       name: 'Play a piece of music',
       ingredients: ['an instrument', 'somewhere private'],
       description: 'It does help if you own an instrument, but otherwise just makes noise with your mouth until someone walks in',
+      size: 'appetiser',
+      accessibility: 7,
     },
   ],
   mains: [
@@ -49,6 +59,8 @@ const defaultData = {
       name: 'Learn a new song on the guitar',
       ingredients: ['a guitar'],
       description: 'You will not learn it in one go but a bit of a challenge is exatcly what you are here for!',
+      size: 'main',
+      accessibility: 6,
     },
   ],
   desserts: [
@@ -57,6 +69,8 @@ const defaultData = {
       name: 'Browse Reddit for 3 hours',
       ingredients: ['a phone', 'Ennui'],
       description: 'Pretty self-explanatory!',
+      size: 'dessert',
+      accessibility: 10,
     },
   ],
 };
@@ -84,12 +98,16 @@ export const storeData = async (key, value) => {
 export const editData = async (oldID, key, value) => {
   try {
     await deleteData(key, oldID, false);
+    console.log('key', key, 'oldID', oldID);
     userData[key].push(value);
     const jsonValue = JSON.stringify(userData[key]);
     await AsyncStorage.setItem(key, jsonValue);
     alert('Activity successfully edited');
+    return true;
   } catch (e) {
+    console.log(e);
     alert('Failed to change the data in storage');
+    return false;
   }
 };
 

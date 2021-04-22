@@ -95,9 +95,9 @@ const styles = StyleSheet.create({
   },
   aboutContainer: {
     width: windowWidth * 0.93,
-    backgroundColor: "#B1B6A6",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#B1B6A6',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 5,
     padding: 20,
     shadowColor: "#000",
