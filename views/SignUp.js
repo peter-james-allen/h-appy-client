@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Text, View, TextInput, StyleSheet, TouchableOpacity,
+  Text, View, TextInput, StyleSheet, TouchableOpacity, Dimensions,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import AuthContext from '../src/AuthContext';
+
+const windowWidth = Dimensions.get('window').width;
 
 function SubmitButton(props) {
   const navigation = useNavigation();
@@ -13,17 +15,14 @@ function SubmitButton(props) {
     Name, Username, Email, Password,
   } = props;
   return (
-    <View style={{ width: '80%' }}>
+    <View style={[styles.buttonContainer, styles.shadow]}>
       <TouchableOpacity
-        style={{
-          marginLeft: 8, padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8,
-        }}
         onPress={() => {
           signUp(Name, Username, Email, Password, navigation);
         }}
 
       >
-        <Text style={{ color: '#fafafa' }}>Sign Up</Text>
+        <Text style={styles.button}>Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -37,20 +36,25 @@ export default function SignUp() {
   return (
     <View style={styles.container}>
       <Header />
-      <View style={styles.FormItem}>
-        <Text>Name</Text>
+
+      <View style={[styles.titleContainer, styles.shadow]}>
+          <Text style={styles.formTitle}>
+            Sign Up
+          </Text>
+      </View>
+
+      <View style={[styles.FormItem, styles.shadow, { marginTop: 120 }]}>
         <TextInput
-          style={{ height: 20 }}
+          style={styles.textInput}
           placeholder="Your name here"
           onChangeText={(newName) => setName(newName)}
           defaultValue={Name}
           autoCompleteType="name"
         />
       </View>
-      <View style={styles.FormItem}>
-        <Text>Username</Text>
+      <View style={[styles.FormItem, styles.shadow] }>
         <TextInput
-          style={{ height: 20 }}
+          style={styles.textInput}
           placeholder="Your username here"
           onChangeText={(newUsername) => setUsername(newUsername)}
           defaultValue={Username}
@@ -60,10 +64,9 @@ export default function SignUp() {
           autoCompleteType="username"
         />
       </View>
-      <View style={styles.FormItem}>
-        <Text>Email</Text>
+      <View style={[styles.FormItem, styles.shadow]}>
         <TextInput
-          style={{ height: 20 }}
+          style={styles.textInput}
           placeholder="joe.bloggs@example.com"
           onChangeText={(newEmail) => setEmail(newEmail)}
           defaultValue={Email}
@@ -73,11 +76,10 @@ export default function SignUp() {
           autoCompleteType="email"
         />
       </View>
-      <View style={styles.FormItem}>
-        <Text>Password</Text>
+      <View style={[styles.FormItem, styles.shadow]}>
         <TextInput
-          style={{ height: 20 }}
-          placeholder="Minimum 8 characters"
+          style={styles.textInput}
+          placeholder="Password (Minimum 8 characters)"
           onChangeText={(newPassword) => setPassword(newPassword)}
           defaultValue={Password}
           secureTextEntry
@@ -94,14 +96,62 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9d4',
-    alignContent: 'flex-start',
+    backgroundColor: '#696773',
   },
   FormItem: {
-    padding: 4,
+    padding: 15,
     margin: 3,
-    borderWidth: 2,
     borderRadius: 5,
-    width: '80%',
+    width: windowWidth * 0.93,
+    backgroundColor: '#B1B6A6',
+    marginTop: 10,
+
   },
+  textInput: {
+    fontFamily: 'Courier',
+    height: 30,
+    textAlign: 'center',
+    color: '#363946',
+    fontSize: 16
+  },
+  titleContainer: {
+    width: windowWidth * 0.93,
+    top: 80,
+    padding: 50,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#363946',
+    borderRadius: 5,
+    shadowColor: '#000',
+  },
+  formTitle: {
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
+    color: '#fff',
+    fontSize: 20,
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 16,
+  },
+  buttonContainer: {
+    width: windowWidth * 0.93,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#363946',
+    borderRadius: 5,
+    padding: 20,
+    marginTop: 10,
+  },
+  button: {
+    color: '#B1B6A6',
+    fontFamily: 'Courier',
+    fontSize: 16,
+  }
 });

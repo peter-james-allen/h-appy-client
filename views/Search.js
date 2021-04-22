@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import Slider from "@react-native-community/slider";
 import { Text, View, StyleSheet, TouchableOpacity, Picker } from "react-native";
 // import { Picker } from '@react-native-picker/picker';
-import { useNavigation } from "@react-navigation/native";
-import Header from "../components/Header";
-import { FetchCategories } from "../src/FetchActivities";
+import { useNavigation } from '@react-navigation/native';
+import Header from '../components/Header';
+import { FetchCategories } from '../src/FetchActivities';
+import AccessibilityHelpButton from '../components/AccessibilityHelpButton'
+import CostHelpButton from '../components/CostHelpButton'
 
 export default function Search() {
   const [category, setCategory] = useState("all");
@@ -79,10 +81,24 @@ function AccessibilitySlider(props) {
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
+  
       <Text style={styles.sliderText}>
-        Accessibility Score: {"\t"} {accessibility}
-      </Text>
+        Accessibility Score:
+        {' '}
+        {'\t'}
+        {' '}
+        {accessibility}
+        {' '}</Text>
+        <View
+          style={{
+            top: 10,
+            right: 15,
+            position: 'absolute',
+          }}
+        >
+    <AccessibilityHelpButton/>
     </View>
+      </View>
   );
 }
 
@@ -90,17 +106,31 @@ function PriceSlider(props) {
   const { price, setPrice } = props;
   return (
     <View style={[styles.sliderContainer, styles.shadow]}>
-      <Slider
-        style={styles.slider}
-        minimumValue={0}
-        maximumValue={4}
-        minimumTrackTintColor="#819595"
-        maximumTrackTintColor="#363946"
-        onValueChange={(value) => setPrice(Math.ceil(value))}
-      />
-      <Text style={styles.sliderText}>
-        Maximum Cost: {"\t"} {"£ ".repeat(price) || "Free :)"}
+    <Slider
+      style={styles.slider}
+      minimumValue={0}
+      maximumValue={4}
+      minimumTrackTintColor="#819595"
+      maximumTrackTintColor="#363946"
+      onValueChange={(value) => setPrice(Math.ceil(value))}
+    />
+    <Text style={styles.sliderText}>
+      Cost:
+      {' '}
+      {'\t'}
+      {' '}
+      {'£ '.repeat(price) || 'Free :)'}
+      {' '}
       </Text>
+      <View
+          style={{
+            top: 10,
+            right: 15,
+            position: 'absolute',
+          }}
+        >
+    <CostHelpButton/>
+    </View>
     </View>
   );
 }
