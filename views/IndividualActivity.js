@@ -43,7 +43,7 @@ export default function IndividualActivity({ route }) {
         <AddOrDeleteActivity isThisAPIData={isThisAPIData} menuSection={menuSection} item={item} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.touchable}>
-        <EditUserActivity menuSection={menuSection} item={item} />
+        <EditUserActivity isThisAPIData={isThisAPIData} menuSection={menuSection} item={item} />
       </TouchableOpacity>
       <MenuButton />
     </View>
@@ -51,17 +51,18 @@ export default function IndividualActivity({ route }) {
 }
 
 function EditUserActivity(props) {
-  const { item, menuSection } = props;
+  const { item, menuSection, isThisAPIData } = props;
+  const buttonText = (isThisAPIData === true) ? 'Edit activity and Add to Favourites' : 'Edit your Activity';
 
   const navigation = useNavigation();
   return (
     <View style={styles.EditButtonContainer}>
       <Text
         style={styles.deleteButton}
-        title="Edit your Activity"
+        title={buttonText}
         onPress={() => { navigation.navigate('EditActivity', { item, menuSection }); }}
       >
-        Edit your Activity
+        {buttonText}
       </Text>
     </View>
   );
