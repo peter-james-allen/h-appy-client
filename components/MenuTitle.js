@@ -5,15 +5,24 @@ import React from 'react';
 
 const windowWidth = Dimensions.get('window').width;
 
-export default function MenuTitle() {
+export default function MenuTitle({name}) {
+  if (name != null) {
+  const username = name.replace(/['"]+/g, '')
   return (
     <View style={styles.titleContainer}>
       <Text style={styles.menuTitle}>
-        Feed your boredom...
+        Feed your Boredom, {username}
       </Text>
-    </View>
-  );
-}
+    </View> )
+    } else {
+      return (
+        <View style={styles.titleContainer}>
+          <Text style={styles.menuTitle}>
+            Feed your Boredom...
+          </Text>
+        </View> )
+    }  
+};  
 
 const styles = StyleSheet.create({
   titleContainer: {

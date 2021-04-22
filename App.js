@@ -17,10 +17,11 @@ export default function App({ navigation }) {
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
-        case 'RESTORE_TOKEN':
+        case 'RESTORE_USER':
           return {
             ...prevState,
             userToken: action.token,
+            userName: action.name,
             isLoading: false,
           };
         case 'SIGN_IN':
@@ -28,12 +29,14 @@ export default function App({ navigation }) {
             ...prevState,
             isSignout: false,
             userToken: action.token,
+            userName: action.name,
           };
         case 'SIGN_OUT':
           return {
             ...prevState,
             isSignout: true,
             userToken: null,
+            userName: null,
           };
       }
     },
@@ -41,19 +44,22 @@ export default function App({ navigation }) {
       isLoading: true,
       isSignout: false,
       userToken: null,
-    },
+      userName: null,
+    }
   );
 
   React.useEffect(() => {
     const bootstrapAsync = async () => {
       let userToken;
+      let userName;
 
       try {
         userToken = await SecureStore.getItemAsync('userToken');
+        userName = await SecureStore.getItemAsync('userName');
       } catch (error) {
 
       }
-      dispatch({ type: 'RESTORE_TOKEN', token: userToken || null });
+      dispatch({ type: 'RESTORE_USER', token: userToken || null, name: userName || null });
     };
 
     bootstrapAsync();
@@ -62,53 +68,68 @@ export default function App({ navigation }) {
   const authContext = React.useMemo(
     () => ({
       signIn: async (emailData, passwordData, navigation) => {
-        const response = await fetch('http://localhost:3000/user/login', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: emailData,
-            password: passwordData,
-          }),
-        });
-        const json = await response.json();
+        fetch('http://localhost:3000/user/login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: emailData,
+          password: passwordData,
+        })
+      }).then((response) => {
+        return response.json();
+      }).then((json) => {
         if (json.user) {
           showMessage({
             message: 'Sign in successful',
             description: `Welcome back to H-Appy, ${json.user.name}!`,
             type: 'success',
           });
-          dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token) });
-          navigation.navigate('Menu');
+
+          dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token), name: JSON.stringify(json.user.name)})
+          navigation.navigate('Menu')
         } else {
-          showMessage({
-            message: 'Authentication failed',
-            description: "Those details don't match our records",
-            type: 'error',
-          });
-        }
+           showMessage({
+             message: "Authentication failed",
+             description: "Those details don't match our records",
+             type: "error",
+           });
+      }}).catch((error) => {
+        showMessage({
+          message: "Oops",
+          description: `Something went wrong. Please try again later.`,
+          type: "error",
+        });
+      })
       },
       signOut: async (navigation, userToken) => {
-        await fetch('http://localhost:3000/user/profile/logout', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${state.userToken}`,
-          },
-        });
-        dispatch({ type: 'SIGN_OUT' });
-        navigation.navigate('Menu');
+        fetch('http://localhost:3000/user/profile/logout', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + state.userToken
+        },
+      }).then(() => {
+        dispatch({ type: 'SIGN_OUT'})
+        navigation.navigate('Menu')
         showMessage({
           message: 'Sign out successful',
           description: 'Come back soon!',
-          type: 'success',
+          type: "success",
+        })
+      }).catch((error) => {
+        showMessage({
+          message: "Oops",
+          description: `Something went wrong. Please try again later.`,
+          type: "error",
         });
-      },
+      })
+    },
       signUp: async (nameData, usernameData, emailData, passwordData, navigation) => {
-        const response = await fetch('http://localhost:3000/user', {
+        fetch('http://localhost:3000/user', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -119,9 +140,10 @@ export default function App({ navigation }) {
             username: usernameData,
             email: emailData,
             password: passwordData,
-          }),
-        });
-        const json = await response.json();
+          })
+        }).then((response) => {
+         return response.json();
+        }).then((json) => {
         if (json.user) {
           showMessage({
             message: 'Signup successful',
@@ -159,6 +181,13 @@ export default function App({ navigation }) {
             });
           }
         }
+      }).catch((error) => {
+        showMessage({
+          message: "Oops",
+          description: `Something went wrong. Please try again later.`,
+          type: "error",
+        });
+      })
       },
     }),
     [],

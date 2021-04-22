@@ -42,6 +42,10 @@ export default function SignIn() {
           style={{ height: 20 }}
           onChangeText={(newEmail) => setEmail(newEmail)}
           defaultValue={Email}
+          spellCheck={false}
+          autoCapitalize="none"
+          autoCorrect={false}
+          autoCompleteType="email"
         />
       </View>
       <View style={styles.FormItem}>

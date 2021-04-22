@@ -23,7 +23,7 @@ function pressHandler() {
   Alert.alert('No Network connection', "We can't fetch suggestions. Please try again later.");
 }
 
-export default function MainMenu() {
+export default function MainMenu({userName}) {
   const [userData, setUserData] = useState(emptyUserData);
   const isFocused = useIsFocused();
 
@@ -44,7 +44,7 @@ export default function MainMenu() {
   return (
     <View style={styles.container}>
       <Header />
-      <MenuTitle />
+      <MenuTitle name={userName}/>
 
       <View style={styles.menuContainer}>
         <ScrollView>
