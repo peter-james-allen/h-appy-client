@@ -10,7 +10,7 @@ const CostHelpButton = () => {
       style={{ paddingTop: 5 }}
       onPress={() => Alert.alert(
         "Cost",
-        "Cost description",
+        "Rating of Free to ££££, categorising activities by how much they will set you back.",
       )}
     >
       <Text>

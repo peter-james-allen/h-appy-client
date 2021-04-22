@@ -9,8 +9,8 @@ const AccessibilityHelpButton = () => {
     <TouchableOpacity
       style={{ paddingTop: 5 }}
       onPress={() => Alert.alert(
-        "Accesibility",
-        "Accessibility description",
+        "Accessibility",
+        "Rating of 1 to 10, where 10 is an activity accessible to everyone, and 1 is an activity that lots of people might not be able to do.",
       )}
     >
         <Ionicons name="help-circle-outline" size={20} color="#B1B6A6" style={{ height: 20, width: 20, textAlign: 'center' }} />
