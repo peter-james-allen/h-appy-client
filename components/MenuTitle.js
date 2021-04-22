@@ -24,7 +24,7 @@ export default function MenuTitle({name}) {
         </View>
         <View style={styles.signintoaddcontainer}>
           <Text style={styles.signintoaddactivity}>
-            Sign in or sign up to add activities.
+            Sign in or sign up to add activities
           </Text>
         </View>
         </>
