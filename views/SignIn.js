@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
-import SendAuthenticationData from '../src/AuthenticationData';
 import AuthContext from '../src/AuthContext';
 import { color } from 'react-native-reanimated';
 

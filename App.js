@@ -8,9 +8,6 @@ import {
 import FlashMessage, { showMessage, hideMessage } from 'react-native-flash-message';
 import SecureStore from 'expo-secure-store';
 import AppNavigator from './routes/AppNavigator';
-import DrawerNavigator from './routes/DrawerNavigator';
-
-import sendAuthenticationData from './src/AuthenticationData';
 import AuthContext from './src/AuthContext';
 
 export default function App({ navigation }) {
@@ -68,7 +65,7 @@ export default function App({ navigation }) {
   const authContext = React.useMemo(
     () => ({
       signIn: async (emailData, passwordData, navigation) => {
-        fetch('http://localhost:3000/user/login', {
+        fetch('https://happy-haddocks.herokuapp.com/user/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -105,7 +102,7 @@ export default function App({ navigation }) {
       })
       },
       signOut: async (navigation, userToken) => {
-        fetch('http://localhost:3000/user/profile/logout', {
+        fetch('https://happy-haddocks.herokuapp.com/user/profile/logout', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -129,7 +126,7 @@ export default function App({ navigation }) {
       })
     },
       signUp: async (nameData, usernameData, emailData, passwordData, navigation) => {
-        fetch('http://localhost:3000/user', {
+        fetch('https://happy-haddocks.herokuapp.com/user', {
           method: 'POST',
           headers: {
             Accept: 'application/json',

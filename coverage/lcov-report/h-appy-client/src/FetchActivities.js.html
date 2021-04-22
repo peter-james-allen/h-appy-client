@@ -94,7 +94,7 @@ export default function FetchActivities() {
   const [apiData, setApiData] = useState([]);
 &nbsp;
   useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    fetch('http://localhost:3000/activities')</span>
+<span class="cstat-no" title="statement not covered" >    fetch('https://happy-haddocks.herokuapp.com/activities')</span>
       .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; <span class="cstat-no" title="statement not covered" >response.json())</span>
       .then(<span class="fstat-no" title="function not covered" >(j</span>son) =&gt; <span class="cstat-no" title="statement not covered" >setApiData(json))</span>
       .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >console.error(error))</span>;
