@@ -34,7 +34,7 @@ export default function EditActivity({ route }) {
 
       <View style={styles.FormContainer}>
 
-        <View style={styles.nameContainer}>
+        <View style={[styles.nameContainer, styles.shadow]}>
           <TextInput
             editable
             style={styles.nameField}
@@ -89,7 +89,7 @@ export default function EditActivity({ route }) {
 
 
 
-        <View style={styles.descriptionContainer}>
+        <View style={[styles.descriptionContainer, styles.shadow]}>
           <TextInput
             editable
             style={styles.descriptionField}
@@ -120,7 +120,7 @@ export default function EditActivity({ route }) {
 function AccessibilitySlider(props) {
   const { accessibility, setAccessibility } = props;
   return (
-    <View style={styles.sliderContainer}>
+    <View style={[styles.sliderContainer, styles.shadow]}>
       <Slider
         style={styles.slider}
         value={accessibility}
@@ -144,7 +144,7 @@ function AccessibilitySlider(props) {
 function PriceSlider(props) {
   const { price, setPrice } = props;
   return (
-    <View style={styles.sliderContainer}>
+    <View style={[styles.sliderContainer, styles.shadow]}>
       <Slider
         value={price}
         style={styles.slider}
@@ -318,6 +318,16 @@ const styles = StyleSheet.create({
     color: '#B1B6A6',
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
     fontSize: 20,
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
   },
   shadow: {
     shadowColor: '#000',
