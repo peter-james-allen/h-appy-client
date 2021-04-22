@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,23 +8,24 @@ import {
   Dimensions,
   TouchableOpacity,
   Picker,
-} from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import Slider from "@react-native-community/slider";
-import Header from "../components/Header";
-import CourseHeader from "../components/CourseHeader";
-import FetchActivities from "../src/FetchActivities";
-import IndividualActivityButton from "../components/IndividualActivityButton.js";
-import MenuButton from "../components/MenuButton";
-import { FetchCategories } from "../src/FetchActivities";
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Slider from '@react-native-community/slider';
+import Header from '../components/Header';
+import CourseHeader from '../components/CourseHeader';
+import FetchActivities, { FetchCategories } from '../src/FetchActivities';
+import IndividualActivityButton from '../components/IndividualActivityButton.js';
+import MenuButton from '../components/MenuButton';
 
-const windowWidth = Dimensions.get("window").width;
+const windowWidth = Dimensions.get('window').width;
 
 function buildItem(item) {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.item}>
-        <Text style={styles.itemText}>{item.item.name}</Text>
+        <Text style={styles.itemText}>
+          {item.item.name}
+        </Text>
         <IndividualActivityButton
           style={styles.individualButton}
           item={item.item}
@@ -39,7 +40,7 @@ function SearchActivities(query) {
 
   useEffect(() => {
     fetch(
-      `https://happy-haddocks.herokuapp.com/search?cost=${query.cost}&accessibility=${query.accessibility}&categories=${query.category}`
+      `https://happy-haddocks.herokuapp.com/search?cost=${query.cost}&accessibility=${query.accessibility}&categories=${query.category}`,
     )
       .then((response) => response.json())
       .then((json) => setApiData(json))
@@ -51,38 +52,46 @@ function SearchActivities(query) {
 function AccessibilitySlider(props) {
   const { accessibility, setAccessibility } = props;
   return (
-    <View style={styles.sliderContainer}>
+    <View style={[styles.sliderContainer, styles.shadow]}>
       <Slider
         style={styles.slider}
-        minimumValue={0}
+        minimumValue={1}
         maximumValue={10}
         value={accessibility}
-        minimumTrackTintColor="#696773"
+        minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
       <Text style={styles.sliderText}>
-        Accessibility Score: {"\t"} {accessibility}
+        Accessibility Score:
+        {' '}
+        {'\t'}
+        {' '}
+        {accessibility}
       </Text>
     </View>
   );
 }
 
 function PriceSlider(props) {
-  let { price, setPrice } = props;
+  const { price, setPrice } = props;
   return (
-    <View style={styles.sliderContainer}>
+    <View style={[styles.sliderContainer, styles.shadow]}>
       <Slider
         style={styles.slider}
         minimumValue={0}
         maximumValue={4}
         value={price}
-        minimumTrackTintColor="#696773"
+        minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setPrice(Math.ceil(value))}
       />
       <Text style={styles.sliderText}>
-        Cost: {"\t"} {"£ ".repeat(price) || "Free :)"}
+        Cost:
+        {' '}
+        {'\t'}
+        {' '}
+        {'£ '.repeat(price) || 'Free :)'}
       </Text>
     </View>
   );
@@ -96,8 +105,8 @@ function SubmitButton(props) {
     <View style={styles.submitButtonContainer}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Search");
-          navigation.navigate("SearchResults", { searchParams });
+          navigation.navigate('Search');
+          navigation.navigate('SearchResults', { searchParams });
         }}
       >
         <Text style={styles.submitButton}>Update Results</Text>
@@ -127,7 +136,7 @@ export default function SeachResults({ route }) {
     <View style={styles.container}>
       <Header />
 
-      <View style={styles.formContainer}>
+      <View style={[styles.formContainer, styles.shadow]}>
         <AccessibilitySlider
           accessibility={accessibility}
           setAccessibility={setAccessibility}
@@ -146,20 +155,18 @@ export default function SeachResults({ route }) {
               value=""
               enabled={false}
             />
-            {categories.map((item, index) => {
-              return <Picker.Item label={item} value={item} key={index} />;
-            })}
+            {categories.map((item, index) => <Picker.Item label={item} value={item} key={index} />)}
           </Picker>
         </View>
-
-        <SubmitButton
-          accessibility={accessibility}
-          price={price}
-          category={category}
-        />
       </View>
 
-      <View style={styles.activitiesContainer}>
+      <SubmitButton
+        accessibility={accessibility}
+        price={price}
+        category={category}
+      />
+
+      <View style={[styles.activitiesContainer, styles.shadow]}>
         <View style={styles.activityList}>
           <FlatList
             data={apiData}
@@ -176,17 +183,17 @@ export default function SeachResults({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#696773",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#696773',
   },
   formContainer: {
-    flex: 0.5,
-    width: "92%",
-    marginTop: "20%",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#B1B6A6",
+    flex: 0.55,
+    width: windowWidth * 0.939,
+    marginTop: '19%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#B1B6A6',
     borderRadius: 5,
   },
   slider: {
@@ -195,87 +202,63 @@ const styles = StyleSheet.create({
     height: 50,
   },
   sliderContainer: {
-    flex: Platform.OS === "ios" ? 0.2 : 0.4,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#819595",
-    width: "90%",
+    flex: Platform.OS === 'ios' ? 0.2 : 0.4,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#353846',
+    width: windowWidth * 0.875,
     borderRadius: 5,
-    marginBottom: 15,
+    marginBottom: Platform.OS === 'ios' ? 15 : 0,
+    marginTop: Platform.OS === 'ios' ? -8 : 10,
     zIndex: 999,
+    paddingBottom: 5,
   },
   sliderText: {
-    color: "#23252E",
-    fontFamily: "Courier",
+    color: '#B1B6A6',
+    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
     fontSize: 16,
   },
   pickerContainer: {
-    marginTop: Platform.OS === "ios" ? -100 : 0,
-    width: "80%",
-    // padding: 20,
-    borderRadius: 10,
+    marginTop: Platform.OS === 'ios' ? -80 : 0,
+    width: '80%',
+    paddingTop: Platform.OS === 'ios' ? 10 : 0,
+    borderRadius: 5,
     flex: 0.5,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   picker: {
-    transform: Platform.OS === "ios" ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],
+    transform: Platform.OS === 'ios' ? [{ scaleX: 0.8 }, { scaleY: 0.8 }] : [],
   },
   submitButtonContainer: {
-    width: "92%",
-    marginLeft: 8,
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: "#363946",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 8,
-    position: "absolute",
-    bottom: 15,
+    width: windowWidth * 0.93,
+    backgroundColor: '#353846',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    flex: 0.08,
+    marginTop: 15
   },
   submitButton: {
-    color: "#B1B6A6",
-    fontFamily: "Courier",
+    color: '#B1B6A6',
+    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'Roboto',
     fontSize: 20,
   },
-  courseDetailsContainer: {
-    flex: 0.4,
-    alignContent: "center",
-    justifyContent: "center",
-    width: "90%",
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  courseDetails: {
-    fontFamily: "Courier",
-    textAlign: "center",
-    fontSize: 17,
-    color: "#353746",
-  },
-  headerContainer: {
-    flex: 0.08,
-    alignContent: "center",
-    justifyContent: "center",
-    backgroundColor: "#819595",
-    width: windowWidth * 0.9,
-    padding: 15,
-    top: "10%",
-    borderRadius: 5,
-  },
   activityList: {
-    justifyContent: "center",
-    alignItems: "center",
-    flex: 0.8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 0.95,
     paddingBottom: 10,
+    width: '100%'
   },
   item: {
     margin: 3,
     padding: 10,
     fontSize: 15,
-    backgroundColor: "#363946",
+    backgroundColor: '#363946',
     borderRadius: 5,
-    flexDirection: "column",
-    alignItems: "center",
-    shadowColor: "#000",
+    flexDirection: 'column',
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 8,
@@ -285,24 +268,36 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   itemText: {
-    color: "#fff",
-    fontFamily: "Chalkduster",
-    textAlign: "center",
+    color: '#fff',
+    fontFamily: Platform.OS === 'ios' ? 'Chalkduster' : 'Roboto',
+    textAlign: 'center',
     fontSize: 17,
+    width: '100%'
   },
   itemContainer: {
     borderRadius: 5,
-    overflow: "hidden",
+    overflow: 'hidden',
     padding: 3,
+    width: windowWidth * 0.9
   },
   activitiesContainer: {
-    flex: 0.4,
-    marginTop: "5%",
-    marginBottom: "12%",
-    width: windowWidth * 0.9,
-    backgroundColor: "#B1B6A6",
-    alignItems: "center",
-    justifyContent: "center",
+    flex: 0.6,
+    marginTop: '3%',
+    marginBottom: '12%',
+    width: windowWidth * 0.939,
+    backgroundColor: '#B1B6A6',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 5,
   },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
+  }
 });

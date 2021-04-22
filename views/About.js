@@ -1,13 +1,12 @@
 import React, { Component, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
-  StyleSheet, Text, View, TouchableOpacity, Image, Dimensions
+  StyleSheet, Text, View, TouchableOpacity, Image, Dimensions,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Header from '../components/Header';
 import Anchor from '../components/Anchor';
-import { Ionicons } from '@expo/vector-icons';
 import MenuButton from '../components/MenuButton';
-
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -16,29 +15,35 @@ export default function About() {
   return (
     <View style={styles.container}>
       <Header />
-    <View style={styles.aboutFlex}>
-      <Image style={styles.logo} source={require('../assets/logoH.png')}/>
-      <Text style={styles.about}>{"\n"}About H-Appy</Text>
-    </View>
-    <View style={styles.aboutContainer}>  
-    <Text style={styles.blurb}>
-    When you're bored, it can be difficult to choose an activity to relieve that boredom, in the same way that it can be difficult to make good food decisions when you're already hungry. Often, we end up doing things that just don't make us feel any better - like spending all day on social media, or eating unhealthy food.
-    {"\n"}{"\n"}
-A dopamine menu is a list of activities grouped into different categories. It can help you decide what to do to alleviate your boredom in an appropriate way.
+      <View style={styles.aboutFlex}>
+        <Image style={styles.logo} source={require('../assets/logoH.png')} />
+        <Text style={styles.about}>
+          {'\n'}
+          About H-Appy
+        </Text>
+      </View>
+      <View style={styles.aboutContainer}>
+        <Text style={styles.blurb}>
+          When you're bored, it can be difficult to choose an activity to relieve that boredom, in the same way that it can be difficult to make good food decisions when you're already hungry. Often, we end up doing things that just don't make us feel any better - like spending all day on social media, or eating unhealthy food.
+          {'\n'}
+          {'\n'}
+          A dopamine menu is a list of activities grouped into different categories. It can help you decide what to do to alleviate your boredom in an appropriate way.
 
-Press the button below to learn more about the dopamine menu.{"\n"}
-    </Text>
-    <Anchor style={{alignItems: 'center', margin: 20}}
-      href ='https://www.youtube.com/watch?v=-6WCkTwW6xg'
-    >
-      <Ionicons style={{alignContent: 'center', position: 'absolute'}} name="logo-youtube" size={30} color="#363946" />
-    </Anchor>
-    <Text>
-    {"\n"}
-    </Text>
+          Press the button below to learn more about the dopamine menu.
+          {'\n'}
+        </Text>
+        <Anchor
+          style={{ alignItems: 'center', margin: 20 }}
+          href="https://www.youtube.com/watch?v=-6WCkTwW6xg"
+        >
+          <Ionicons style={{ alignContent: 'center', position: 'absolute' }} name="logo-youtube" size={30} color="#363946" />
+        </Anchor>
+        <Text>
+          {'\n'}
+        </Text>
+      </View>
+      <MenuButton />
     </View>
-    <MenuButton />
-        </View>
   );
 }
 
@@ -54,12 +59,12 @@ const styles = StyleSheet.create({
   aboutFlex: {
     margin: 20,
     padding: 20,
-    width: "50%",
+    width: '50%',
     minHeight: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#363946",
-    shadowColor: "#000",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#363946',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 8,
@@ -70,10 +75,10 @@ const styles = StyleSheet.create({
   },
   about: {
     fontSize: 18,
-    textAlign: "center",
-    maxWidth: "90%",
-    fontFamily: "Chalkduster",
-    color: "white",
+    textAlign: 'center',
+    maxWidth: '90%',
+    fontFamily: 'Chalkduster',
+    color: 'white',
   },
   aboutContainer: {
     width: windowWidth * 0.7,
@@ -94,7 +99,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 200,
-    height: 100,  
+    height: 100,
   },
 });
-

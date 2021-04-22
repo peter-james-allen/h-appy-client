@@ -1,5 +1,5 @@
-import React, { Component, useEffect, useState } from "react";
-import { DrawerActions, useNavigation } from "@react-navigation/native";
+import React, { Component, useEffect, useState } from 'react';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Dimensions, TouchableOpacity, Platform,
 } from 'react-native';
@@ -8,7 +8,7 @@ import { deleteDataByID, doesActivityNameExist, storeData } from '../src/UserDat
 import Grid from '../components/Grid';
 import MenuButton from '../components/MenuButton';
 
-const windowWidth = Dimensions.get("window").width;
+const windowWidth = Dimensions.get('window').width;
 
 export default function IndividualActivity({ route }) {
   const { item } = route.params;
@@ -78,30 +78,30 @@ function AddOrDeleteActivity(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#696773",
-    height: Dimensions.get("window").height,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#696773',
+    height: Dimensions.get('window').height,
     width: windowWidth,
   },
   description: {
     fontSize: 16,
     lineHeight: 25,
-    textAlign: "center",
+    textAlign: 'center',
     padding: 10,
-    position: "absolute",
+    position: 'absolute',
     top: 5,
     color: '#23252E',
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
   },
   descriptionContainer: {
     flex: 0.82,
-    marginTop: "52%",
-    marginBottom: "11%",
-    width: windowWidth * 0.95,
-    backgroundColor: "#B1B6A6",
-    alignItems: "center",
-    justifyContent: "center",
+    marginTop: '52%',
+    marginBottom: '11%',
+    width: windowWidth * 0.93,
+    backgroundColor: '#B1B6A6',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 5,
   },
   individualDetail: {
@@ -117,15 +117,15 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     flex: 0.3,
-    top: 70,
-    width: windowWidth * 0.95,
+    top: 72,
+    width: windowWidth * 0.93,
     minHeight: 160,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#363946",
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#363946',
     borderRadius: 7,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 8,
@@ -137,15 +137,15 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 0.4,
     marginTop: 40,
-    position: "absolute",
+    position: 'absolute',
     bottom: 70,
   },
   grid: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     flex: 0.3,
     paddingBottom: 15,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 8,
@@ -159,17 +159,17 @@ const styles = StyleSheet.create({
     color: '#B1B6A6',
   },
   deleteButtonContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: -6,
-    backgroundColor: "#353846",
-    width: windowWidth * 0.95,
+    backgroundColor: '#353846',
+    width: windowWidth * 0.93,
     borderRadius: 7,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 10,
   },
   touchable: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

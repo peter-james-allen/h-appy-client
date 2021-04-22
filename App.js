@@ -5,15 +5,15 @@ import { useState, useEffect, useContext } from 'react';
 import {
   StyleSheet, Platform, SafeAreaView, ScrollView, StatusBar,
 } from 'react-native';
-import { showMessage, hideMessage } from "react-native-flash-message";
+import FlashMessage, { showMessage, hideMessage } from 'react-native-flash-message';
+import SecureStore from 'expo-secure-store';
 import AppNavigator from './routes/AppNavigator';
 import DrawerNavigator from './routes/DrawerNavigator';
-import FlashMessage from 'react-native-flash-message';
-import SecureStore from 'expo-secure-store';
+
 import sendAuthenticationData from './src/AuthenticationData';
 import AuthContext from './src/AuthContext';
 
-export default function App({navigation}) {
+export default function App({ navigation }) {
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -83,10 +83,11 @@ export default function App({navigation}) {
       }).then((json) => {
         if (json.user) {
           showMessage({
-            message: "Sign in successful",
+            message: 'Sign in successful',
             description: `Welcome back to H-Appy, ${json.user.name}!`,
-            type: "success",
+            type: 'success',
           });
+
           dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token), name: JSON.stringify(json.user.name)})
           navigation.navigate('Menu')
         } else {
@@ -115,7 +116,7 @@ export default function App({navigation}) {
         dispatch({ type: 'SIGN_OUT'})
         navigation.navigate('Menu')
         showMessage({
-          message: "Sign out successful",
+          message: 'Sign out successful',
           description: 'Come back soon!',
           type: "success",
         })
@@ -132,7 +133,7 @@ export default function App({navigation}) {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             name: nameData,
@@ -145,41 +146,38 @@ export default function App({navigation}) {
         }).then((json) => {
         if (json.user) {
           showMessage({
-            message: "Signup successful",
+            message: 'Signup successful',
             description: `Welcome to H-Appy, ${json.user.name}!`,
-            type: "success",
+            type: 'success',
           });
-          dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token)})
-          navigation.navigate('Menu')
-        } else if (json.name && json.name === "MongoError") {
-          if ("email" in json.keyPattern) {
+          dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token) });
+          navigation.navigate('Menu');
+        } else if (json.name && json.name === 'MongoError') {
+          if ('email' in json.keyPattern) {
             showMessage({
-              message: "Email in use",
-              description: "That email has already been taken",
-              type: "error",
+              message: 'Email in use',
+              description: 'That email has already been taken',
+              type: 'error',
+            });
+          } else if ('username' in json.keyPattern) {
+            showMessage({
+              message: 'Username in use',
+              description: 'That username has already been taken',
+              type: 'error',
             });
           }
-          else if ("username" in json.keyPattern) {
+        } else if (json.errors) {
+          if (json.errors.email && json.errors.email.name === 'ValidatorError') {
             showMessage({
-              message: "Username in use",
-              description: "That username has already been taken",
-              type: "error",
+              message: 'Email not valid',
+              description: 'You must submit a valid email',
+              type: 'error',
             });
-          }
-        }
-        else if (json.errors) {
-          if (json.errors.email && json.errors.email.name === "ValidatorError") {
+          } else if (json.errors.password && json.errors.password.name === 'ValidatorError') {
             showMessage({
-              message: "Email not valid",
-              description: "You must submit a valid email",
-              type: "error",
-            });
-          }
-          else if (json.errors.password && json.errors.password.name === "ValidatorError") {
-            showMessage({
-              message: "Password too short",
-              description: "Your password must be at least 8 characters long",
-              type: "error",
+              message: 'Password too short',
+              description: 'Your password must be at least 8 characters long',
+              type: 'error',
             });
           }
         }
@@ -197,13 +195,13 @@ export default function App({navigation}) {
 
   return (
     <>
-    <AuthContext.Provider value={authContext}>
-      <SafeAreaView style={styles.safeAreaTop} />
-      <SafeAreaView style={styles.safeAreaBottom}>
-        <FlashMessage position="top" />
-        <AppNavigator state = {state}/>
-      </SafeAreaView>
-      <StatusBar barStyle="light-content" />
+      <AuthContext.Provider value={authContext}>
+        <SafeAreaView style={styles.safeAreaTop} />
+        <SafeAreaView style={styles.safeAreaBottom}>
+          <FlashMessage position="top" />
+          <AppNavigator state={state} />
+        </SafeAreaView>
+        <StatusBar barStyle="light-content" />
       </AuthContext.Provider>
     </>
   );

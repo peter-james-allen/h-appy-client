@@ -165,20 +165,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#696773',
     width: windowWidth,
   },
-  scroll: {
-  },
   menuContainer: {
     overflow: 'scroll',
     flex: 0.8,
     alignItems: 'center',
     justifyContent: 'center',
     width: windowWidth,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 5.32,
+    elevation: 4,
   },
   menuCollapsible: {
     fontSize: 50,
     borderRadius: 7,
     backgroundColor: '#B1B6A6',
-    width: windowWidth * 0.939,
+    width: windowWidth * 0.93,
   },
   menuSubText: {
     textAlign: 'center',
