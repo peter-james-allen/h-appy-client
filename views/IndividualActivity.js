@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   descriptionContainer: {
     flex: 0.82,
-    marginTop: '52%',
+    marginTop: '40%',
     marginBottom: '11%',
     width: windowWidth * 0.93,
     backgroundColor: '#B1B6A6',
@@ -128,17 +128,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   name: {
-    fontSize: 24,
+    fontSize: 22,
     textAlign: 'center',
     maxWidth: '90%',
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
     color: 'white',
   },
   nameContainer: {
-    flex: 0.3,
+    flex: 0.2,
     top: 72,
     width: windowWidth * 0.93,
-    minHeight: 160,
+    minHeight: 120,
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
@@ -152,12 +152,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.44,
     shadowRadius: 10.32,
     elevation: 16,
-  },
-  detailsContainer: {
-    flex: 0.4,
-    marginTop: 40,
-    position: 'absolute',
-    bottom: 70,
   },
   grid: {
     position: 'absolute',
