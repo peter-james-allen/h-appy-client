@@ -17,7 +17,7 @@ export default function MenuTitle() {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flex: 0.15,
+    flex: 0.2,
     width: windowWidth * 0.93,
     alignItems: 'center',
     justifyContent: 'center',
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     elevation: 16,
     marginBottom: '5%',
-    marginTop: '15%'
+    marginTop: '20%'
   },
   menuTitle: {
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
