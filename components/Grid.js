@@ -59,7 +59,9 @@ function itemStyle(item) {
       textDecorationLine: 'underline',
       marginTop: 15,
       paddingTop: 5,
-      marginBottom: -10
+      marginBottom: -10,
+      zIndex: 999,
+      lineHeight: 20,
     };
   }
   return {
