@@ -77,6 +77,7 @@ function AccessibilitySlider(props) {
         style={styles.slider}
         minimumValue={1}
         maximumValue={10}
+        value={accessibility}
         minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
