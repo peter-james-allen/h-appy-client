@@ -120,7 +120,6 @@ const DrawerNavigator = ({ state }) => {
         <Drawer.Screen name="Starters" component={Starters} />
         <Drawer.Screen name="Mains" component={Mains} />
         <Drawer.Screen name="Desserts" component={Desserts} />
-        <Drawer.Screen name="Create a Recipe" component={AddActivity} />
         <Drawer.Screen name="Search" component={Search} />
         <Drawer.Screen name="Sign up" component={SignUp} />
         <Drawer.Screen name="Sign in" component={SignIn} />

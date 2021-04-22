@@ -11,7 +11,7 @@ export default function MenuTitle({name}) {
   return (
     <View style={styles.titleContainer}>
       <Text style={styles.menuTitle}>
-        Feed your Boredom, {username}
+        Feed your Boredom,{'\n'}{username}!
       </Text>
     </View> )
     } else {
@@ -29,8 +29,8 @@ export default function MenuTitle({name}) {
         </View>
         </>
         )
-    }  
-};  
+    }
+};
 
 const styles = StyleSheet.create({
   titleContainer: {
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Chalkduster',
     color: '#fff',
     fontSize: 20,
+    textAlign: 'center',
   },
   signintoaddactivity: {
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Courier',
