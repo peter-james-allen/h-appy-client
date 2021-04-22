@@ -2,13 +2,15 @@
 import React, { useState } from 'react';
 import Slider from '@react-native-community/slider';
 import {
-  Text, View, TextInput, StyleSheet, TouchableOpacity, Picker, Platform, Dimensions,
+  Text, View, TextInput, StyleSheet, TouchableOpacity, Picker, Platform, Dimensions, Alert
 } from 'react-native';
 // import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import { storeData, doesActivityNameExist, addToUserData } from '../src/UserData';
 import { FetchCategories } from '../src/FetchActivities';
+import AccessibilityHelpButton from '../components/AccessibilityHelpButton'
+import CostHelpButton from '../components/CostHelpButton'
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -104,6 +106,7 @@ export default function AddActivity() {
   );
 }
 
+
 function AccessibilitySlider(props) {
   const { accessibility, setAccessibility } = props;
   return (
@@ -116,14 +119,24 @@ function AccessibilitySlider(props) {
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
+  
       <Text style={styles.sliderText}>
         Accessibility Score:
         {' '}
         {'\t'}
         {' '}
         {accessibility}
-      </Text>
+        {' '}</Text>
+        <View
+          style={{
+            top: 10,
+            right: 15,
+            position: 'absolute',
+          }}
+        >
+    <AccessibilityHelpButton/>
     </View>
+      </View>
   );
 }
 
@@ -131,21 +144,31 @@ function PriceSlider(props) {
   const { price, setPrice } = props;
   return (
     <View style={[styles.sliderContainer, styles.shadow]}>
-      <Slider
-        style={styles.slider}
-        minimumValue={0}
-        maximumValue={4}
-        minimumTrackTintColor="#819595"
-        maximumTrackTintColor="#363946"
-        onValueChange={(value) => setPrice(Math.ceil(value))}
-      />
-      <Text style={styles.sliderText}>
-        Cost:
-        {' '}
-        {'\t'}
-        {' '}
-        {'£ '.repeat(price) || 'Free :)'}
+    <Slider
+      style={styles.slider}
+      minimumValue={0}
+      maximumValue={4}
+      minimumTrackTintColor="#819595"
+      maximumTrackTintColor="#363946"
+      onValueChange={(value) => setPrice(Math.ceil(value))}
+    />
+    <Text style={styles.sliderText}>
+      Cost:
+      {' '}
+      {'\t'}
+      {' '}
+      {'£ '.repeat(price) || 'Free :)'}
+      {' '}
       </Text>
+      <View
+          style={{
+            top: 10,
+            right: 15,
+            position: 'absolute',
+          }}
+        >
+    <CostHelpButton/>
+    </View>
     </View>
   );
 }
