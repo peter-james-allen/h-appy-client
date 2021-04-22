@@ -53,7 +53,6 @@ export default function SignIn() {
           autoCorrect={false}
           autoCompleteType="email"
           placeholder="Email"
-          placeholderTextColor="#363946"
         />
       </View>
       <View style={[styles.FormItem, styles.shadow]}>
@@ -63,7 +62,6 @@ export default function SignIn() {
           defaultValue={Password}
           secureTextEntry
           placeholder="Password"
-          placeholderTextColor="#363946"
         />
       </View>
       <SubmitButton Email={Email} Password={Password} />
