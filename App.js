@@ -151,7 +151,7 @@ export default function App({ navigation }) {
             type: 'success',
           });
           dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token), name: JSON.stringify(json.user.name) });
-          navigation.navigate('Menu');
+          navigation.navigate('Menu');s
         } else if (json.name && json.name === 'MongoError') {
           if ('email' in json.keyPattern) {
             showMessage({
