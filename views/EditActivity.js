@@ -93,6 +93,7 @@ export default function EditActivity({ route }) {
           <TextInput
             editable
             style={styles.descriptionField}
+            multiline
             placeholder="Activity description..."
             placeholderTextColor="#B1B6A6"
             // eslint-disable-next-line max-len

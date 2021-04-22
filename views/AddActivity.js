@@ -18,7 +18,7 @@ export default function AddActivity() {
   const [ActivityType, setActivityType] = useState('default');
   const [ActivityName, setActivityName] = useState('');
   const [ActivityDescription, setActivityDescription] = useState('');
-  const [accessibility, setAccessibility] = useState(0);
+  const [accessibility, setAccessibility] = useState(10);
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState([]);
 
@@ -115,11 +115,12 @@ function AccessibilitySlider(props) {
         style={styles.slider}
         minimumValue={1}
         maximumValue={10}
+        value={accessibility}
         minimumTrackTintColor="#819595"
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
-  
+
       <Text style={styles.sliderText}>
         Accessibility Score:
         {' '}
@@ -129,8 +130,8 @@ function AccessibilitySlider(props) {
         {' '}</Text>
         <View
           style={{
-            top: 10,
-            right: 15,
+            top: 0,
+            right: 6,
             position: 'absolute',
           }}
         >
@@ -162,8 +163,8 @@ function PriceSlider(props) {
       </Text>
       <View
           style={{
-            top: 10,
-            right: 15,
+            top: 0,
+            right: 6,
             position: 'absolute',
           }}
         >

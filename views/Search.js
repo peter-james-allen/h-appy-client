@@ -11,7 +11,7 @@ import CostHelpButton from '../components/CostHelpButton'
 
 export default function Search() {
   const [category, setCategory] = useState("all");
-  const [accessibility, setAccessibility] = useState(0);
+  const [accessibility, setAccessibility] = useState(10);
   const [price, setPrice] = useState(0);
 
   const categories = FetchCategories();
@@ -81,7 +81,7 @@ function AccessibilitySlider(props) {
         maximumTrackTintColor="#363946"
         onValueChange={(value) => setAccessibility(Math.ceil(value))}
       />
-  
+
       <Text style={styles.sliderText}>
         Accessibility Score:
         {' '}
@@ -91,8 +91,8 @@ function AccessibilitySlider(props) {
         {' '}</Text>
         <View
           style={{
-            top: 10,
-            right: 15,
+            top: 0,
+            right: 6,
             position: 'absolute',
           }}
         >
@@ -124,8 +124,8 @@ function PriceSlider(props) {
       </Text>
       <View
           style={{
-            top: 10,
-            right: 15,
+            top: 0,
+            right: 6,
             position: 'absolute',
           }}
         >
