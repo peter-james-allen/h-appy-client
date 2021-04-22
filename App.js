@@ -142,7 +142,8 @@ export default function App({ navigation }) {
             password: passwordData,
           })
         }).then((response) => {
-         return response.json();
+          console.log(response.json)
+          return response.json();
         }).then((json) => {
         if (json.user) {
           showMessage({
