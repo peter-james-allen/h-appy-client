@@ -60,7 +60,7 @@ function EditUserActivity(props) {
       <Text
         style={styles.deleteButton}
         title={buttonText}
-        onPress={() => { navigation.navigate('EditActivity', { item, menuSection }); }}
+        onPress={() => { navigation.navigate('EditActivity', { item, menuSection, isThisAPIData }); }}
       >
         {buttonText}
       </Text>

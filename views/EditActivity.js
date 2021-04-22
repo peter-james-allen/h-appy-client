@@ -6,14 +6,16 @@ import {
 } from 'react-native';
 // import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
+import { useEffect } from 'react/cjs/react.development';
 import Header from '../components/Header';
 import { editData } from '../src/UserData';
 import { FetchCategories } from '../src/FetchActivities';
-import { useEffect } from 'react/cjs/react.development';
 
 export default function EditActivity({ route }) {
   const oldItem = route.params.item;
-  console.log(oldItem);
+  const { isThisAPIData } = route.params;
+  console.log('EditActivity');
+  console.log('isThisAPIData', isThisAPIData);
   const { menuSection } = route.params;
   const [ActivityType, setActivityType] = useState(menuSection);
   const [ActivityName, setActivityName] = useState(oldItem.name);
@@ -102,6 +104,7 @@ export default function EditActivity({ route }) {
         accessibility={accessibility}
         price={cost}
         categories={[category]}
+        isThisAPIData={isThisAPIData}
       />
     </View>
   );
@@ -165,7 +168,10 @@ function SubmitButton(props) {
     accessibility,
     price,
     categories,
+    isThisAPIData,
   } = props;
+
+  const buttonText = (isThisAPIData) ? "Add to Favourites" : "Save Edit";
   return (
     <View style={styles.submitButtonContainer}>
       <TouchableOpacity
@@ -187,7 +193,7 @@ function SubmitButton(props) {
           }
         }}
       >
-        <Text style={styles.submitButton}>Edit </Text>
+        <Text style={styles.submitButton}>{buttonText}</Text>
       </TouchableOpacity>
     </View>
   );
