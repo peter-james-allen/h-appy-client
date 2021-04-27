@@ -139,17 +139,17 @@ export default function App({ navigation }) {
             password: passwordData,
           })
         }).then((response) => {
-          console.log(response.json)
           return response.json();
         }).then((json) => {
         if (json.user) {
+          console.log(json.user)
           showMessage({
             message: 'Signup successful',
             description: `Welcome to H-Appy, ${json.user.name}!`,
             type: 'success',
           });
           dispatch({ type: 'SIGN_IN', token: JSON.stringify(json.token), name: JSON.stringify(json.user.name) });
-          navigation.navigate('Menu');s
+          navigation.navigate('Menu');
         } else if (json.name && json.name === 'MongoError') {
           if ('email' in json.keyPattern) {
             showMessage({
@@ -180,6 +180,7 @@ export default function App({ navigation }) {
           }
         }
       }).catch((error) => {
+        console.log(error)
         showMessage({
           message: "Oops",
           description: `Something went wrong. Please try again later.`,
