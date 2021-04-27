@@ -8,6 +8,8 @@ A group project, being the final project of the Makers Academy software developm
 
 There are two repos associated with this project. This repo is for the app client; the repo for our server can be found at [https://github.com/AJ8GH/h-appy-server](https://github.com/AJ8GH/h-appy-server).
 
+Our video presentation of the app can be found [insert link here].
+
 [Badges]
 
 ---
@@ -45,9 +47,11 @@ Our app uses concepts found in restaurant menus to provide an easy-to-understand
 * How about an indulgent activity that you really shouldn't do very often? You'll find what you're looking for in the desserts section.
 * Don't fancy anything on the menu? Maybe one of the Chef's Specials can tempt you instead.
 
-By default, users will see a list of suggestions provided by the app. A signed-in user can tailor the menu suggestions so that only their favourite dishes appear.
+By default, users will see a list of suggestions provided by the app. A signed-in user can tailor the menu suggestions by marking some of those suggested activities as favourites, which appear at the top of the menu.
 
-Users can also create their own recipes by adding their own bespoke activities to the menu.
+Users can also add their own bespoke activities to the menu.
+
+There is a separate back-end database that holds details of activities and users, hosted [here](https://github.com/AJ8GH/h-appy-server). It is accessed through an API, which we have hosted on https://happy-haddocks.herokuapp.com/. The app has full CRUD functionality, in that users can create, read, edit and delete activities.
 
 ---
 
@@ -79,7 +83,37 @@ Back-end:
 
 ## Installation
 
+Clone this repo:
 
+```bash
+git clone https://github.com/peter-james-allen/h-appy-client.git
+```
+
+Navigate to the project folder:
+
+```bash
+cd h-appy-client
+```
+
+Install dependencies:
+
+```
+npm i
+```
+
+You will need to have Expo CLI installed to run the app. 
+
+If running the app from your Mac:
+
+[instructions]
+
+If running the app from an Android phone:
+
+[instructions]
+
+If running the app from an iPhone:
+
+[instructions]
 
 ---
 
@@ -87,7 +121,29 @@ Back-end:
 
 ## Usage
 
+### Main Menu
 
+On opening the app, the main menu will be displayed:
+
+[screenshot]
+
+### Activities
+
+
+
+### Signing Up
+
+
+
+### Creating an activity
+
+
+
+### Editing an activity
+
+
+
+### Deleting an activity
 
 ---
 
