@@ -34,7 +34,7 @@ Our video presentation of the app can be found [insert link here].
 
 ## Description
 
-An IOS app based around the idea of a [dopamine menu](https://www.youtube.com/watch?v=-6WCkTwW6xg).
+An IOS/Android app based around the idea of a [dopamine menu](https://www.youtube.com/watch?v=-6WCkTwW6xg).
 
 When you're bored, it can be difficult to choose an activity to relieve that boredom, in the same way that it can be difficult to make good food decisions when you're already hungry. Often, we end up doing things that just don't make us feel any better - like spending all day on social media, or eating unhealthy food.
 
@@ -123,17 +123,30 @@ If running the app from an iPhone:
 
 ### Main Menu
 
-On opening the app, the main menu will be displayed:
+On opening the app, the main menu will be displayed. This is collapsible by menu section:
 
-[screenshot]
+<p float="left">
+<img src="/screenshot/main-menu.png" alt="The main menu" width="296" />
+<img src="/screenshot/menu-collapsing-gif.gif" alt="The main menu" width="296" />
+  </p>
 
-### Activities
+### About
 
+An about screen can be navigated to through the drawer navigator, to read about the dopamine menu and get a link to the youtube video.
 
+<img src="/screenshot/about-screen.png" alt="The about screen" width="296" />
 
-### Signing Up
+### Activity search
 
+Users can search all activities based on type, accessibility and cost.
 
+<img src="/screenshot/search-function-gif.gif" alt="The search function" width="296" />
+
+### User narrative
+
+This gif shows a typical user narrative - signing in, looking at available activities, adding a custom one, adding one from the database to favourites, and searching for one.
+
+<img src="/screenshot/demo-vid.gif" alt="Demo vid" width="296" />
 
 ### Creating an activity
 
