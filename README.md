@@ -2,7 +2,7 @@
 
 | [Team Members](#team-members) | [Description](#description) | [Tech Stack](#tech-stack) | [Installation](#installation) | [Usage](#usage) | [Code Stats](#code-stats) | [Project goals](#project-goals) |
 
-An app to remind you of fun things to do that make you happy.
+An activity finder app in the style of a restaurant menu, to remind you of fun things to do that make you happy.
 
 A group project, being the final project of the Makers Academy software development bootcamp. The aim of the project is to work in a team, using high-quality processes to build an app (see [below](#project-goals) for more detailed project goals).
 
@@ -49,7 +49,7 @@ Our app uses concepts found in restaurant menus to provide an easy-to-understand
 
 By default, users will see a list of suggestions provided by the app. A signed-in user can tailor the menu suggestions by marking some of those suggested activities as favourites, which appear at the top of the menu.
 
-Users can also add their own bespoke activities to the menu.
+Users can also add their own bespoke activities to the menu. We viewed customisation as an important tool - users would be far more likely to find the app's suggestions useful if they could tailor them to their own interests and needs. Activities belong to a menu section, have a name, a description, a score for accessibility and a score for cost. We included the latter two to reduce the number of assumptions our app would be making about its users and enable a further degree of tailoring and customization.
 
 There is a separate back-end database that holds details of activities and users, hosted [here](https://github.com/AJ8GH/h-appy-server). It is accessed through an API, which we have hosted on https://happy-haddocks.herokuapp.com/. The app has full CRUD functionality, in that users can create, read, edit and delete activities.
 
@@ -130,33 +130,49 @@ On opening the app, the main menu will be displayed. This is collapsible by menu
 <img src="/screenshot/menu-collapsing-gif.gif" alt="The main menu" width="296" />
   </p>
 
-### About
-
-An about screen can be navigated to through the drawer navigator, to read about the dopamine menu and get a link to the youtube video.
-
-<img src="/screenshot/about-screen.png" alt="The about screen" width="296" />
-
 ### Activity search
 
-Users can search all activities based on type, accessibility and cost.
+Users can view all 'chef's special' activities for a particular menu section through the drawer navigator. Users can also search all specials based on type, accessibility and cost.
 
+<p float="left">
+<img src="/screenshot/menu-section.gif" alt="Menu category browsing" width="296" />
 <img src="/screenshot/search-function-gif.gif" alt="The search function" width="296" />
+  </p>
+  
+### Creating an activity
+
+Users can add their custom activities through the 'Create a Recipe' screen. They can then view the details of that activity from the menu.
+
+<p float="left">
+<img src="/screenshot/add-an-activity.png" alt="Menu category browsing" width="296" />
+<img src="/screenshot/individual-activity.png" alt="Individual activity page" width="296" />
+  </p>
+
+
+### Editing/Deleting an activity
+
+To enhance customisation, users can edit activities (perhaps to reflect their personal circumstances) and remove activities (if they are, for example, out of budget or not of interest).
+
+<p float="left">
+<img src="/screenshot/editing-activity.gif" alt="Editing an activity" width="296" />
+<img src="/screenshot/deleting-activity.gif" alt="Deleting an activity" width="296" />
+  </p>
+  
+### Helping the user
+
+An about screen can be navigated to through the drawer navigator, to read about the concept of the dopamine menu and get a link to the youtube video. Help alerts on the search and add activity pages also explain properties like accessibility and cost.
+
+<p float="left">
+<img src="/screenshot/about-page.gif" alt="The about screen" width="296" />
+<img src="/screenshot/help-alerts.gif" alt="Help alerts on dish categories" width="296" />
+  </p>
 
 ### User narrative
 
-This gif shows a typical user narrative - signing in, looking at available activities, adding a custom one, adding one from the database to favourites, and searching for one.
+This demo video shows a typical user narrative - signing in, looking at available activities, adding a custom one, adding one from the database to favourites, and searching for one.
 
-<img src="/screenshot/demo-vid.gif" alt="Demo vid" width="296" />
+https://user-images.githubusercontent.com/48794743/116425852-86ea3e80-a83a-11eb-941c-3df61d2b3949.mp4
 
-### Creating an activity
-
-
-
-### Editing an activity
-
-
-
-### Deleting an activity
 
 ---
 
