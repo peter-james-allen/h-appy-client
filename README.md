@@ -10,6 +10,8 @@ There are two repos associated with this project. This repo is for the app clien
 
 To watch the demo video, demonstrating a typical user narrative, click [here](https://user-images.githubusercontent.com/48794743/116425852-86ea3e80-a83a-11eb-941c-3df61d2b3949.mp4). You can also see the video in the 'Usage' section of this README.
 
+Shout-outs to [Mosh](https://www.youtube.com/watch?v=0-S5a0eXPoc&t=1007s&ab_channel=ProgrammingwithMosh) and [Traversy Media](https://www.youtube.com/watch?v=w7ejDZ8SWv8&t=3434s&ab_channel=TraversyMedia) for their React Native and React tutorial videos.
+
 Our slides from presenting the app are visible below. Click on the thumbnails to see a bigger version.
 
 <p float="left">
