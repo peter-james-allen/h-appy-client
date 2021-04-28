@@ -197,19 +197,9 @@ Install dependencies:
 npm i
 ```
 
-You will need to have Expo CLI installed to run the app. 
+You will need to have Expo CLI installed to run the app. Type 'expo start' into the command line to get the app running.
 
-If running the app from your Mac:
-
-[instructions]
-
-If running the app from an Android phone:
-
-[instructions]
-
-If running the app from an iPhone:
-
-[instructions]
+You will then see a series of instructions from expo. To run the app on your phone, you will need to have installed the Expo App. You can then scan the QR code with your camera app (Android) or the expo app (Iphone) to run the app on your phone. On your mac, you can follow the instructions to run the app on a simulator. Bear in mind you will need to have XCode installed to do the latter option.
 
 ---
 
